@@ -310,16 +310,16 @@ Based on our team’s availability, we have decided that possible meeting times 
 
 ### Partner Meeting Notes
 
-First meeting with Partner(Debbie from StopGap Foundation):
+First meeting with Partner (Debbie from StopGap Foundation):
 Time: Monday January 27, 11am-12pm
 Location: Google Hangouts
-Discussion content:Arrange a regular meeting schedule; we also need to discuss many basic questions we need to know about this project from scratch, we list a set of questions for Debbie and ask her one by one.
+Discussion content: Arrange a regular meeting schedule; we also need to discuss many basic questions we need to know about this project from scratch, we list a set of questions for Debbie and ask her one by one.
 Outcomes: We get most answers for the questions. The details for the answers and questions can be found here:
 https://docs.google.com/document/d/1mHZyDL0u9HM0qHzUnC35di8V_AMbEL8AcP3gbPm93zo/edit#
 
 
-Second meeting with Partner(Debbie from StopGap Foundation):
-Time: The Initial Plan was Friday January 31 4:30 pm, but it was canceled as Debbie had a personal emergency to deal with. We instead used email communication to discuss the topics we would have discussed in this meeting.
+Second meeting with Partner (Debbie from StopGap Foundation):
+Time: The Initial Plan was Friday January 31, 4:30 pm, but it was canceled as Debbie had a personal emergency to deal with. We instead used email communication to discuss the topics we would have discussed in this meeting.
 Discussion content: Mainly we need to talk over the preliminary requirements and the user stories as we have a tight schedule and afraid we may don't know which requirements we may be able to finish and which ones  are not. We also need some details for some requirements as they are not clear enough. We wanna make sure that we understand the specifications properly for the user stories/requirements.
 Outcomes: Debbie sent some notes about the requirements and it gives sufficient details on each requirement. We have a much better understanding of each requirement and a clearer scope for the project. These can be found here:
 https://docs.google.com/document/d/11NOJmLcD0P73gUsg7iPexuyGQPuj-OC823zlvbL9yQQ/edit
@@ -361,7 +361,7 @@ Sam: Generally what I think is a useful approach to development?
 
 Commit Frequency
 
-Sam: Should we decide on a minimum number of commits for a timeframe? Not sure it’s super necessary, but something like 1 commit per week or between team meetings might help keep everyone on track on other people’s work.
+As a team, we have decided that each member should have at least one commit per week. This is to ensure that everyone on the team is keeping at pace for deadlines. Commits themselves need not be extremely substanial. If for one week not much work was completed, we expect the next week to make up for that and so on.  
 
 Branching:
 The Master branch will contain code that has been thoroughly vetted and is ready for deployment. Underneath that we will have the Development branch, which will be for work that is completed and approved, but has not been thoroughly reviewed. Each individual team member will have their own branch, where they will complete the tasks that they have been assigned. When they are ready to merge to the development branch, one team member will review the code for quality, and then decide whether or not to accept the merge request.
