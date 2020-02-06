@@ -93,7 +93,7 @@ Will Django and React work for deployment with Heroku?
       CI/CD: CircleCI (integrates well with Heroku)
 
 Architecture and patterns:
-![Image description](imgs/diagram.png){:height="75%" width="75%"}
+![Image description](imgs/diagram.png)
 
 Given a limited amount of time, our team decided to use a relatively simple architecture for the web application. Firstly, we will decouple the frontend (React) from the backend (Django REST Framework) and use the PostgreSQL managed by heroku as our database of choice. The frontend and the backend will be deployed separately in two docker containers.
 
@@ -299,11 +299,11 @@ Describe meetings (and other events) you are planning to have.
 
 ### Availability
 
-![Image description](imgs/availability.png){:height="75%" width="75%"}
+![Image description](imgs/availability.png)
 
 ### Team Meeting Schedule
 
-![Image description](imgs/density.png){:height="75%" width="75%"}
+![Image description](imgs/density.png)
 
 https://www.when2meet.com/?8701708-n87OW
 Based on our team’s availability, we have decided that possible meeting times are Tuesday mornings, Wednesday afternoons, Thursday evenings, and Friday afternoons. We will have a minimum of one group meeting a week, to discuss current progress and plan out the next steps of development. The time of this meeting will vary between the aforementioned times, and is dependent on who is able and unable to attend at which times, and whose presence at the meeting is most important in relation to what we are discussing. This meeting will be seperate from the partner meetings.
