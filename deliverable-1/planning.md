@@ -340,30 +340,44 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do tasks get assigned to team members?
    * How do you determine the status of work from inception to completion?
 
-We will have a Trello board, which will contain a list of tasks that need to be done. Tasks will be voluntarily assigned to team members who wish to do them. We have already prioritized the features that we want to include in our app, so we will first ensure all those features are completed or very close to completion before assigning other less important tasks. The Trello board will have various columns representing the state of completion of the tasks it contains, and members working on tasks will move the task on the board to the appropriate column when they have progressed with the completion of that task.
+##### Development Framework
 
-### Keeping Accountability
+We will use the **Kanban** method for delegating tasks. We chose this because it is a “low effort” option that allows team members to pick any task that works for them and that they have time to work on. Since we are students with varying schedules and workloads outside of CSC301, a task organization that reduces the amount of “in person” (or online voice) meetings needed and allows work to be done flexibly works best.
 
-Requirement lists/To-Do lists
+For the Kanban board, we will use a shared **Trello** board. Our columns will be:
+ * **To Do**, containing tasks and user stories that have yet to be implemented. This will continuously be populated as more specific product specifications and feedback is given or as software bugs or potential design flaws become apparent.
+ * **Pending**, tasks that are currently being developed on. Each member will assign the task to themselves and move the task to this list, commenting on the task with any important details (such as the feature branch). Ideally, members will only take on 1 or 2 tasks at a time, and so this list should have only up to 14 cards at any time.
+ * **For Review**, for tasks that are implemented and need to be code-reviewed before being merged into the dev branch on GitHub. Ideally other members can comment issues on the task, after which it can be moved back to pending while the feature is revised.
+ * **Blocked**, for tasks that can not be completed or reviewed because it relies on another yet-to-be-completed task. Ideally the member working on the task will comment the reason for it to be blocked.
+ * **Done**, for tasks that are done and merged into dev. The list will be cleared upon a product deployment.
+
+The Trello will also have separate columns for important links or resources, and for questions that we may have for our partner or TA.
+
+Each task on Trello may also have labels signaling its importance: Urgent, High Priority, Low Priority, Bug Fix, and Question.
+
+Tasks will be voluntarily assigned to team members who wish to do them. We have already prioritized the features that we want to include in our app, so we will first ensure all those features are completed or very close to completion before assigning other less important tasks. Members working on tasks will move the task on the board to the appropriate column when they have progressed with the completion of that task.
+
+##### Keeping Accountability
+
+**Requirement lists/To-Do lists**
 We already have finished the requirement list during the partner meeting. It specify the details of the requirements for the project, which are just what we need to finish before the end of this term. We will use it to make TO-Do lists for the project and assign a subset of them to each team member in the future. We will also update the requirements list and To-Do lists after group meetings and partner meetings if they need to be changed.
 
-Discord/Messenger
-We use discord and messenger to communicate and deliver first hand information about the project. We use messenger to send quick short messages; we use discord for important message and voice communication. We will discuss jobs assignments, time schedule preference for each one during the meeting at Discord and Messenger.
+**Discord/Messenger**
+We use Discord and Messenger to communicate and deliver first hand information about the project. We use Messenger to send quick short messages; we use Discord for important message and voice communication. We will discuss jobs assignments, time schedule preference for each one during the meeting at Discord and Messenger.
 
-Completing a Task
+##### Completing a Task
 
-Sam: Generally what I think is a useful approach to development?
 1. Commit to starting your task ASAP
    * I think this helps people to figure out: what the specific requirements of a task are, what they know and don’t know, what they might have trouble with, etc.
 2. Identify areas of your task that might give you trouble
 3. Ask for help at the next team meeting if you can’t figure it out by then
    * Gives us a chance to touch base, revisit tasks, discuss potential solutions, change requirements, etc.
 
-Commit Frequency
+##### Commit Frequency
 
 As a team, we have decided that each member should have at least one commit per week. This is to ensure that everyone on the team is keeping at pace for deadlines. Commits themselves need not be extremely substanial. If for one week not much work was completed, we expect the next week to make up for that and so on.  
 
-Branching:
+##### Git Flow
 The Master branch will contain code that has been thoroughly vetted and is ready for deployment. Underneath that we will have the Development branch, which will be for work that is completed and approved, but has not been thoroughly reviewed. Each individual team member will have their own branch, where they will complete the tasks that they have been assigned. When they are ready to merge to the development branch, one team member will review the code for quality, and then decide whether or not to accept the merge request.
 
 
