@@ -113,20 +113,21 @@ For each new function / API endpoint we will write for unit tests. The person re
  * If you have a partner, these must be reviewed and accepted by them
  * The user stories should be written in Github and each one must have clear acceptance criteria.
 
-Main Goals (highlight the user stories which meet these, but we can show the other ones as well)
-Able to request a ramp
-Checkbox for subsidy
-Checkbox for teacher
-Detail how to take proper photos
-Authentication 
-Client account
-Admin account
-Organize and Display relevant information
-Client will see only their request and its status
-Admin can see all requests and all of their status’
-Admin can filter info as needed
+Main Goals (highlight the user stories which meet these, but we can show the other ones as well):
 
-Main user stories (followed by acceptance criteria after each story):
+1. Able to request a ramp
+2. Checkbox for subsidy
+3. Checkbox for teacher
+4. Detail how to take proper photos
+5. Authentication 
+6. Client account
+7. Admin account
+8. Organize and Display relevant information
+9. Client will see only their request and its status
+10. Admin can see all requests and all of their status’
+11. Admin can filter info as needed
+
+### Main user stories (followed by acceptance criteria after each story):
 
 As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized
 Be able to gather ramp request information from the database and display it on screen
@@ -222,9 +223,24 @@ Overall the roles and responsibilities of each member will be very flexible. We 
 Stew:
 
    * General Strengths:
-      1. Test
+      1. Frontend (HTML, CSS, JavaScript)
+      2. Backend (npm, Express.js, Flask, Mongoose)
+      3. Some app dev experience (Native, React Native). Not super experienced but can quickly learn
+      4. Some DevOps infrastructure experience (Docker, GCS, DigitalOcean).
+      5. Quick to learn new technologies (flexible)
    * Weaknesses:
-      1. Test
+      1. No experience with CI/CD
+
+Joseph:
+
+   * General Strengths:
+      1. Frontend (HTML, CSS, JavaScript)
+      2. Backend (npm, Express.js, Flask, Mongoose)
+      3. Some app dev experience (Native, React Native). Not super experienced but can quickly learn
+      4. Some DevOps infrastructure experience (Docker, GCS, DigitalOcean).
+      5. Quick to learn new technologies (flexible)
+   * Weaknesses:
+      1. No experience with CI/CD
 
 #### Q7: What operational events will you have as a team?
 
