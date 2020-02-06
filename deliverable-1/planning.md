@@ -126,49 +126,75 @@ Client will see only their request and its status
 Admin can see all requests and all of their status’
 Admin can filter info as needed
 
-Main user stories(followed by acceptance criteria after each story):
+Main user stories (followed by acceptance criteria after each story):
+
 As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized
 Be able to gather ramp request information from the database and display it on screen
+
 As a business owner, I want to be able to give my personal information to StopGap so we can proceed with the ramp transaction
 Allow them to access an in-app ramp request form which will outline what information they need to provide
+
 As a StopGap project manager, I want to automatically validate client personal information to ensure that it is usable
 Validate certain fields to ensure the entries are formatted correctly (ie. postal codes)
+
 As a StopGap product manager, I want to be able to capture measurements of the ramp so that I can better produce the ramp that the client is requesting
 Be able to store both the right and left side measurements of the required ramp for each request
+
 As a business owner, I want to be able to submit photos of my entranceway so that I can show the StopGap team what kind of ramp I need
 Able to upload photos to the app and store them alongside request information
+
 As a StopGap product manager, I want to be able to receive the photos sent by the client so that I can plan the ramp that they are requesting
 Able to view the photos associated with each request
+
 As a business owner, I want to easily sign the liability waiver so that I can continue with the ramp ordering process
 Allow the signing of the liability waiver PDF within the app
+
 As a business owner, I want to request a subsidy so that I can better afford a ramp 
 Allow clients to request a subsidy as part of the request process, and store this information with their request
+
 As a StopGap product manager, I want to identify if the client is a school or someone else, so that I can prioritize their needs appropriately
+
 Allow clients to specify if they are a school, and store this information with their request
+
 As a StopGap employee I want to be able to log in to the app as a StopGap user so I can access the features only available to users like me
+
 Allow admins to create other admin accounts with usernames and passwords, and allow users to sign in with those credentials
+
 As a StopGap employee, I want to be able to add notes to client information so that I can better organize
 Be able to add custom fields to the data associated with each request
+
 As a StopGap employee, I want to be able to filter the information so that I can easily find groups of information that I need
+
 Be able to filter requests by various qualities (ie. build progress, delivered or not, is the ramp for a business or school, etc)
-As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs.
+
+As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs. 
+
 Be able to create a dashboard that displays all the aforementioned data
- As a StopGap client I want to be able to create and log in to an account so that I can use the StopGap services.
+ 
+As a StopGap client I want to be able to create and log in to an account so that I can use the StopGap services.
+
 Allow users to create and log in to client accounts with username and password, which will have separate permissions than admin accounts
+
 As a StopGap client I want to be able to see the progress of my ramp request, so that I can have an idea of how long until it is completed.
 Have the progress of the ramp request associated with this user’s account displayed to that account.
 
 Additional user stories:
+
 As a business owner, I want to be shown how to take ideal photos so that I can better communicate the specifications of the ramp I am requesting to the StopGap team
 Have a flow that walks the user through taking proper photos of their entranceway
+
 As a StopGap employee, I want to be able to easily search for specific information so that I can easily find what I need
 Have a search bar that can allow searching through the data 
+
 As a StopGap employee, I want to be able to communicate with clients so that I can inform them about their order and better serve their needs
 Have an instant messaging system between client and admin accounts
+
 As a StopGap client I want to be able to communicate with the StopGap team so that I can tell them what I require from them.
 Have an instant messaging system between client and admin accounts
+
 As a StopGap employee, I want to be able to use Quickbooks while using the app to manage the payment status of the company invoices.
 Integrate with quickbooks to allow those features to be used on the app
+
 As a StopGap employee, I want to be able to tag ramp requests as being the next request to be built, or the next request to be painted, so I can better organize the fulfillment of the ramp requests.
 Allow custom tagging of ramp requests, and filtering of those tags
 
@@ -196,9 +222,9 @@ Overall the roles and responsibilities of each member will be very flexible. We 
 Stew:
 
    * General Strengths:
-      ** Test
+      1. Test
    * Weaknesses:
-      ** Test
+      1. Test
 
 #### Q7: What operational events will you have as a team?
 
