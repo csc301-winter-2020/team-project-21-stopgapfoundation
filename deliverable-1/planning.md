@@ -234,13 +234,56 @@ Stew:
 Joseph:
 
    * General Strengths:
-      1. Frontend (HTML, CSS, JavaScript)
-      2. Backend (npm, Express.js, Flask, Mongoose)
-      3. Some app dev experience (Native, React Native). Not super experienced but can quickly learn
-      4. Some DevOps infrastructure experience (Docker, GCS, DigitalOcean).
-      5. Quick to learn new technologies (flexible)
+      1. In terms of tech, Java, Python, some experience with HTML and CSS
+      2. Quick to learn new things so picking up new tech shouldn't be a big problem
+      3. General communication, I like to constantly communicate my progress on anything we are working on
    * Weaknesses:
-      1. No experience with CI/CD
+      1. Don’t have a lot of experience in a development environment 
+      2. Not a lot of technical skills currently but will be able to learn at least
+
+Zhao:
+
+   * General Strengths:
+      1. Web skills:  CSS, HTML, JavaScript, Node, Express.js, Ajax
+      2. Database: Know both SQL and NoSQL, tools experienced:mySQL, mongoDB, not a lot about Firebase
+      3. Backend: Java, C++, C#, C, Python, know how to write server calls
+   * Weaknesses:
+      1. Web skills: more familiar with vanilla javascript but not React or Angular  
+      2. Database: knowledge is quite limited, only use a few database before
+      3. Backend: not familiar with Python frameworks like Django or Flask
+
+
+Andrey:
+
+   * General Strengths:
+      1. Backend: Spring Boot (Java), Django (Python), Golang (some basic knowledge)
+      2. Cloud Infrastructure: AWS (have a developer associate certificate), a little knowledge of GCP
+      3. Databases: DynamoDB, PostgreSQL, MongoDB
+      4. CI/CD: Bash, Jenkins, Bamboo, AWS Deployment Suite (probably can learn how to use any CI/CD system fairly quickly)
+      5. General Deployment: Docker, Docker Swarm, K8s
+   * Weaknesses:
+      1. Frontend (I have some experience from personal projects with React, HTML, CSS, JavaScript, but it will probably not be the best work)
+
+Daven:
+
+   * General Strengths:
+      1. Learning a lot of web dev right now (currently in csc309 so everything should hopefully come together at the same time): css/html, react, javascript, flask
+      2. Databases: PostgreSQL, MongoDB
+      3. Quick to pick stuff up
+      4. Python, Java, C
+   * Weaknesses:
+      1. Mobile app development
+
+Alex:
+
+   * General Strengths:
+      1. Much experience in Python and Java
+      2. Experience working in large groups for software development projects
+      3. Quick to learn new skills
+   * Weaknesses:
+      1. Lack of experience with many technologies
+      2. Minimal experience developing with servers
+      3. Lack of experience with web development
 
 #### Q7: What operational events will you have as a team?
 
@@ -254,7 +297,36 @@ Describe meetings (and other events) you are planning to have.
    * You must provide meeting minutes.
    * You must have a regular meeting schedule established by the second meeting.  
 
+### Availability
 
+![Image description](imgs/availability.png)
+
+### Team Meeting Schedule
+
+![Image description](imgs/density.png)
+
+https://www.when2meet.com/?8701708-n87OW
+Based on our team’s availability, we have decided that possible meeting times are Tuesday mornings, Wednesday afternoons, Thursday evenings, and Friday afternoons. We will have a minimum of one group meeting a week, to discuss current progress and plan out the next steps of development. The time of this meeting will vary between the aforementioned times, and is dependent on who is able and unable to attend at which times, and whose presence at the meeting is most important in relation to what we are discussing. This meeting will be seperate from the partner meetings.
+
+### Partner Meeting Notes
+
+First meeting with Partner(Debbie from StopGap Foundation):
+Time: Monday January 27, 11am-12pm
+Location: Google Hangouts
+Discussion content:Arrange a regular meeting schedule; we also need to discuss many basic questions we need to know about this project from scratch, we list a set of questions for Debbie and ask her one by one.
+Outcomes: We get most answers for the questions. The details for the answers and questions can be found here:
+https://docs.google.com/document/d/1mHZyDL0u9HM0qHzUnC35di8V_AMbEL8AcP3gbPm93zo/edit#
+
+
+Second meeting with Partner(Debbie from StopGap Foundation):
+Time: The Initial Plan was Friday January 31 4:30 pm, but it was canceled as Debbie had a personal emergency to deal with. We instead used email communication to discuss the topics we would have discussed in this meeting.
+Discussion content: Mainly we need to talk over the preliminary requirements and the user stories as we have a tight schedule and afraid we may don't know which requirements we may be able to finish and which ones  are not. We also need some details for some requirements as they are not clear enough. We wanna make sure that we understand the specifications properly for the user stories/requirements.
+Outcomes: Debbie sent some notes about the requirements and it gives sufficient details on each requirement. We have a much better understanding of each requirement and a clearer scope for the project. These can be found here:
+https://docs.google.com/document/d/11NOJmLcD0P73gUsg7iPexuyGQPuj-OC823zlvbL9yQQ/edit
+
+Future schedule for Partner Meeting:
+Time: Possibly Sunday noon or Monday noon each week, depends on the availability of partner and each team member 
+Location: Google Hangouts(online)
 
   
 #### Q8: What artifacts will you use to self-organize?
@@ -267,6 +339,33 @@ List/describe the artifacts you will produce in order to organize your team.
    * How do you prioritize tasks?
    * How do tasks get assigned to team members?
    * How do you determine the status of work from inception to completion?
+
+We will have a Trello board, which will contain a list of tasks that need to be done. Tasks will be voluntarily assigned to team members who wish to do them. We have already prioritized the features that we want to include in our app, so we will first ensure all those features are completed or very close to completion before assigning other less important tasks. The Trello board will have various columns representing the state of completion of the tasks it contains, and members working on tasks will move the task on the board to the appropriate column when they have progressed with the completion of that task.
+
+### Keeping Accountability
+
+Requirement lists/To-Do lists
+We already have finished the requirement list during the partner meeting. It specify the details of the requirements for the project, which are just what we need to finish before the end of this term. We will use it to make TO-Do lists for the project and assign a subset of them to each team member in the future. We will also update the requirements list and To-Do lists after group meetings and partner meetings if they need to be changed.
+
+Discord/Messenger
+We use discord and messenger to communicate and deliver first hand information about the project. We use messenger to send quick short messages; we use discord for important message and voice communication. We will discuss jobs assignments, time schedule preference for each one during the meeting at Discord and Messenger.
+
+Completing a Task
+
+Sam: Generally what I think is a useful approach to development?
+1. Commit to starting your task ASAP
+   * I think this helps people to figure out: what the specific requirements of a task are, what they know and don’t know, what they might have trouble with, etc.
+2. Identify areas of your task that might give you trouble
+3. Ask for help at the next team meeting if you can’t figure it out by then
+   * Gives us a chance to touch base, revisit tasks, discuss potential solutions, change requirements, etc.
+
+Commit Frequency
+
+Sam: Should we decide on a minimum number of commits for a timeframe? Not sure it’s super necessary, but something like 1 commit per week or between team meetings might help keep everyone on track on other people’s work.
+
+Branching:
+The Master branch will contain code that has been thoroughly vetted and is ready for deployment. Underneath that we will have the Development branch, which will be for work that is completed and approved, but has not been thoroughly reviewed. Each individual team member will have their own branch, where they will complete the tasks that they have been assigned. When they are ready to merge to the development branch, one team member will review the code for quality, and then decide whether or not to accept the merge request.
+
 
 #### Q9: What are the rules regarding how your team works?
 
@@ -282,8 +381,43 @@ Describe your team's working culture.
 **Conflict Resolution:**
  * List at least three team scenarios/conflicts you discussed in lecture and how you decided you will resolve them. Indecisions? Non-responsive team members? Any other scenarios you can think of?
 
+### General Expectations for Team Members (Working Culture)
+
+* Regular communication: Checking Messenger/Discord once every 2-3 days
+* Regular commits: Commit whenever a feature is complete + push to repo
+* Keep task board up to date
+* Communicate promptly + professionally with external people
+* Support other group members, build confidence among the group
+* Keep things friendly: we don’t need to be overly professional, but we also need to be respectful of each other
+
+### Communication Methods
+
+Our team plans will use two different communication channels for our project. For general group information such as meeting and deadline reminders, we plan on using Facebook Messenger. Given that all of us are active on Facebook, this will provide the greatest and fastest outreach to everyone in the group. For all work pertaining to the project we will use Discord. Discord allows us to have voice group meetings compared to other providers like Slack. In addition, like other providers, Discord has the same abilities of channel creation, inserting code snippets, and pinning important information. The current goal is to be in communication at least once every two to three days to keep the team up-to-date and in constant progress. 
+
+For partner meetings, we have discussed that going forward Google Hangout calls are the best way to reach our partner correspondent. Currently, we plan on scheduling at least one partner meeting per week, to keep them up to date on the current progress.
+
+### Meetings
+
+Meetings are coordinated in advance to ensure that at least 5/7 members can meet. If anyone cannot attend a meeting, we develop meeting notes for them to review at a later time. Attending meetings is not only encouraged but expected. If a member has failed to meet this commitment repeatedly, we all agree to talk about attending future meetings. 
+
+During meetings, our group plans on using Trello to establish deadlines and discuss TODOs. We plan on making meetings a collaborative discussion about how we will plan and implement various parts of our project. In addition, we hope meetings can give a wide overview of how everyone’s work is coming along, so no one member is left behind. For example if one sub-team is working on the front-end of the project, other members should have at the very least a general overview of their goals, progress and implementation.
 
 
+### Resolving Conflicts
+
+Scenario 1: A member is given a task to do by a deadline, and fails to complete that task.
+   * Make deadlines that are a few days ahead of official dates, so that there is a period of time to recover from situations like this.
+   * Have a conversation with the person unable to complete the task: find out why they were unable to finish and take steps to make sure they are able to complete future tasks 
+   * Encourage members to speak up early if they are having issues to avoid this situation happening in the first place. We want to create an inclusive group that is willing to help each other out in times like this.
+
+Scenario 2: Two members don’t agree on how a feature should be implemented
+   * Have a group meeting where both members present their cases, and the group can collectively decide which member’s method to go with.
+   * Judge both individual skills of each member to see who has more experience in the implementation. Preference is given to someone with experience. 
+
+Scenario 3: A group member hasn’t responded to any attempts to contact them in two days.
+   * As a team, we will use Facebook Messenger / Discord to contact group members on the 3rd day and remind them about our team rules. 
+   * If by the following tutorial day (Monday) we don’t receive a response or any indication that they’ve seen our message, we talk to our TA. 
+   * If we haven’t received a response and talked to our TA about the situation, we immediately divvy up the work of the member and move forward without them. 
 
 ----
 ### Highlights
