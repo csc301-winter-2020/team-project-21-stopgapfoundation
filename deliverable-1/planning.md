@@ -20,7 +20,7 @@
 
 We are creating a system that streamlines and centralizes StopGap’s ramp requests. Clients will be able to place ramp orders and keep track of their progress, and StopGap will be able to easily manage and fulfill these orders. This will be a web app where both clients and the StopGap team will have accounts. 
 
-Many Toronto stores have entrance ways that are not aligned with the street level, creating a step that people with certain disabilities are not able to traverse. A business owner in charge of one of these stores who wants to order a ramp from StopGap for their entrance can use the web app to easily place an order and track it’s status. On the other side, the StopGap team can use the web app to organize the requests they do get, and communicate with their clients. For instance, if a photo submitted by a client is not clear enough to tell the height of the entranceway from, a StopGap employee can contact that client directly within the app, letting them know the issue and how to solve it.
+Many Toronto stores have entrance ways that are not aligned with the street level, creating a step that people with certain disabilities are not able to traverse. A business owner in charge of one of these stores who wants to order a ramp from StopGap for their entrance can use the web app to easily place an order and track its status. On the other side, the StopGap team can use the web app to organize the requests they do get, and communicate with their clients. For instance, if a photo submitted by a client is not clear enough to tell the height of the entranceway from, a StopGap employee can contact that client directly within the app, letting them know the issue and how to solve it.
 
 
 #### Q2: Who are your target users?
@@ -33,26 +33,43 @@ Many Toronto stores have entrance ways that are not aligned with the street leve
 There are two main groups of target users: StopGap clients and StopGap employees.
 There are some personas for our target users:
 Xtensio Profiles: https://csc301stopgap.xtensio.com/7g1672qs
+
 For employee side:
-Name:Jane
-Age:29
-Job:StopGap employee
+
+Name: Jane
+
+Age: 29
+
+Job: StopGap employee
+
 Personality: Hardworking, practical
-Background :Jane is a employee who has been tasked to oversee the overall progress of ramp requests, she needs to deal with ramp requests everyday and she wants find a sufficient way to filter out all ramp requests and manage them
+
+Background: Jane is a employee who has been tasked to oversee the overall progress of ramp requests, she needs to deal with ramp requests everyday and she wants find a sufficient way to filter out all ramp requests and manage them
+
 
 Client side:
-Name:Edwin
-Age:40
+
+Name: Edwin
+
+Age: 40
+
 Job: small coffee shop owner in downtown Toronto. 
+
 Personality: kind, considerate, easy-going
+
 Background: The entrance to Edwin’s stop has a 35cm step that prevents clients with wheelchairs from entering, he wants to use the app or website to book ramps easily so he can place an order for a custom ramp for the people using wheelchairs.
 
 
-Name:Melissa
-Age:33
-Job:The principal of an Elementary school in Mississauga 
+Name: Melissa
+
+Age: 33
+
+Job: The principal of an Elementary school in Mississauga 
+
 Personality: responsible, organized
+
 Background: She has already begun cooperation with StopGap’s school program to provide ramps for local businesses. Melissa wants to find an efficient  way to contact stopgap foundation and get the latest information as soon as possible  so she does not need to wait for the emails all the time  and know how to coordinate with the StopGap team about the next steps in the process. 
+
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
@@ -65,12 +82,11 @@ Background: She has already begun cooperation with StopGap’s school program to
     * Does this application exist in another form? If so, how does your differ and provide value to the users?
     * How does this align with your partner's organization's values/mission/mandate?
 
-Currently, clients submit their request to StopGap using a wordpress form, after which the information gets transferred to some document for manual processing by the StopGap team. Communication between clients and StopGap is done through email.
+Currently, clients submit their request to StopGap using a Google Form, after which the information gets transferred to a spreadsheet document for manual processing by the StopGap team. Communication between clients and StopGap is done through email.
 
+With our app, clients will be able to create an account and request the ramp through that account. While the request process will be largely the same, the main benefits will be the ease of communication and availability of information to the client through the app. Clients will no longer need to email StopGap to request updates and wait for a response, as the up-to-date information related to their order will be displayed to them through their account. The instant messaging feature will also streamline communication, as compared to email which can be slow and cluttered.
 
-With our app, clients will be able to create and account and request the ramp through that account. While the request process will be largely the same, the main benefits will be the ease of communication and availability of information to the client through the app. Clients will no longer need to email StopGap to request updates and wait for a response, as the up-to-date information related to their order will be displayed to them through their account. The instant messaging feature will also streamline communication, as compared to email which can be slow and cluttered.
-
-The StopGap team will benefit from the data organization aspects of the app. Ramp request info will be vetted by the app for validity (ie. correct formats for addresses and postal codes) to reduce the amount of garbage data in the system. Team members will also be able to filter the data in the system to only display what they want to see, saving what could add up to hours of scrolling through data, looking for very specific information. Overall it will help StopGap accomplish their goal of increasing accessibility throughout the Toronto area, by increasing the efficiency in which they are able to create and deliver ramps.
+The StopGap team will benefit from the data organization aspects of the app. Ramp request info will be vetted by the app for validity (ie. correct formats for addresses and postal codes) to reduce the amount of garbage data in the system. Team members will also be able to filter the data in the system to only display what they want to see, saving what could add up to hours of scrolling through data, looking for very specific information. This gives StopGap access to better analytic capabilities, increasing their ability to request funding and modify their programs based on historical data. Overall it will help StopGap accomplish their goal of increasing accessibility throughout the Toronto area, by increasing the efficiency in which they are able to create and deliver ramps.
 
 
 #### Q4: How will you build it?
@@ -95,7 +111,7 @@ Will Django and React work for deployment with Heroku?
 Architecture and patterns:
 ![Image description](imgs/diagram.png)
 
-Given a limited amount of time, our team decided to use a relatively simple architecture for the web application. Firstly, we will decouple the frontend (React) from the backend (Django REST Framework) and use the PostgreSQL managed by heroku as our database of choice. The frontend and the backend will be deployed separately in two docker containers.
+Given a limited amount of time, our team decided to use a relatively simple architecture for the web application. Firstly, we will decouple the frontend (React) from the backend (Django REST Framework) and use the PostgreSQL managed by Heroku as our database of choice. The frontend and the backend will be deployed separately in two docker containers.
 
 Third Party application/API (if any?):
 
@@ -126,78 +142,124 @@ Main Goals (highlight the user stories which meet these, but we can show the oth
 9. Client will see only their request and its status
 10. Admin can see all requests and all of their status’
 11. Admin can filter info as needed
+12. Admin can contact client directly through the app
+13. Client can contact admin directly through the app
 
 ### Main user stories (followed by acceptance criteria after each story):
 
-As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized
-Be able to gather ramp request information from the database and display it on screen
+1. Able to request a ramp
 
-As a business owner, I want to be able to give my personal information to StopGap so we can proceed with the ramp transaction
-Allow them to access an in-app ramp request form which will outline what information they need to provide
+Story: As a business owner, I want to be able to give my personal information to StopGap so we can proceed with the ramp transaction
 
-As a StopGap project manager, I want to automatically validate client personal information to ensure that it is usable
-Validate certain fields to ensure the entries are formatted correctly (ie. postal codes)
+Acceptance criteria: Allow them to access an in-app ramp request form which will outline what information they need to provide
 
-As a StopGap product manager, I want to be able to capture measurements of the ramp so that I can better produce the ramp that the client is requesting
-Be able to store both the right and left side measurements of the required ramp for each request
+2. Checkbox for subsidy
 
-As a business owner, I want to be able to submit photos of my entranceway so that I can show the StopGap team what kind of ramp I need
-Able to upload photos to the app and store them alongside request information
+Story: As a business owner, I want to request a subsidy so that I can better afford a ramp 
 
-As a StopGap product manager, I want to be able to receive the photos sent by the client so that I can plan the ramp that they are requesting
-Able to view the photos associated with each request
+Acceptance criteria: Allow clients to request a subsidy as part of the request process, and store this information with their request
 
-As a business owner, I want to easily sign the liability waiver so that I can continue with the ramp ordering process
-Allow the signing of the liability waiver PDF within the app
+3. Checkbox for teacher
 
-As a business owner, I want to request a subsidy so that I can better afford a ramp 
-Allow clients to request a subsidy as part of the request process, and store this information with their request
+Story: As a StopGap product manager, I want to identify if the client is a school or someone else, so that I can prioritize their needs appropriately
 
-As a StopGap product manager, I want to identify if the client is a school or someone else, so that I can prioritize their needs appropriately
+Acceptance criteria: Allow clients to specify if they are a school, and store this information with their request
 
-Allow clients to specify if they are a school, and store this information with their request
+4. Detail how to take proper photos
 
-As a StopGap employee I want to be able to log in to the app as a StopGap user so I can access the features only available to users like me
+Story: As a StopGap product manager, I want to be able to capture measurements of the ramp so that I can better produce the ramp that the client is requesting
 
-Allow admins to create other admin accounts with usernames and passwords, and allow users to sign in with those credentials
+Acceptance criteria: Be able to store both the right and left side measurements of the required ramp for each request
 
-As a StopGap employee, I want to be able to add notes to client information so that I can better organize
-Be able to add custom fields to the data associated with each request
+Story: As a business owner, I want to be able to submit photos of my entranceway so that I can show the StopGap team what kind of ramp I need
 
-As a StopGap employee, I want to be able to filter the information so that I can easily find groups of information that I need
+Acceptance criteria: Able to upload photos to the app and store them alongside request information
 
-Be able to filter requests by various qualities (ie. build progress, delivered or not, is the ramp for a business or school, etc)
+Story: As a business owner, I want to be shown how to take ideal photos so that I can better communicate the specifications of the ramp I am requesting to the StopGap team
 
-As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs. 
+Acceptance criteria: Have a flow that walks the user through taking proper photos of their entranceway
 
-Be able to create a dashboard that displays all the aforementioned data
- 
-As a StopGap client I want to be able to create and log in to an account so that I can use the StopGap services.
+5. Authentication
 
-Allow users to create and log in to client accounts with username and password, which will have separate permissions than admin accounts
+Story: As a StopGap project manager, I want to automatically validate client personal information to ensure that it is usable
 
-As a StopGap client I want to be able to see the progress of my ramp request, so that I can have an idea of how long until it is completed.
-Have the progress of the ramp request associated with this user’s account displayed to that account.
+Acceptance criteria: Validate certain fields to ensure the entries are formatted correctly (ie. postal codes)
 
-Additional user stories:
+6. Client account
 
-As a business owner, I want to be shown how to take ideal photos so that I can better communicate the specifications of the ramp I am requesting to the StopGap team
-Have a flow that walks the user through taking proper photos of their entranceway
+Story: As a StopGap employee I want to be able to log in to the app as a StopGap user so I can access the features only available to users like me
 
-As a StopGap employee, I want to be able to easily search for specific information so that I can easily find what I need
-Have a search bar that can allow searching through the data 
+Acceptance criteria: Allow admins to create other admin accounts with usernames and passwords, and allow users to sign in with those credentials
 
-As a StopGap employee, I want to be able to communicate with clients so that I can inform them about their order and better serve their needs
-Have an instant messaging system between client and admin accounts
+Story: As a business owner, I want to easily sign the liability waiver so that I can continue with the ramp ordering process
 
-As a StopGap client I want to be able to communicate with the StopGap team so that I can tell them what I require from them.
-Have an instant messaging system between client and admin accounts
+Acceptance criteria: Allow the signing of the liability waiver PDF within the app
+
+7. Admin account
+
+Story: As a StopGap client I want to be able to create and log in to an account so that I can use the StopGap services.
+
+Acceptance criteria: Allow users to create and log in to client accounts with username and password, which will have separate permissions than admin accounts
+
+8. Organize and Display relevant information
+
+Story: As a StopGap employee, I want to be able to add notes to client information so that I can better organize
+
+Acceptance criteria: Be able to add custom fields to the data associated with each request
+
+Story: As a StopGap employee, I want to be able to tag ramp requests as being the next request to be built, or the next request to be painted, so I can better organize the fulfillment of the ramp requests.
+
+Acceptance criteria: Allow custom tagging of ramp requests, and filtering of those tags
+
+9. Client will see only their request and its status
+
+Story: As a StopGap client I want to be able to see the progress of my ramp request, so that I can have an idea of how long until it is completed.
+
+Acceptance criteria: Have the progress of the ramp request associated with this user’s account displayed to that account.
+
+10. Admin can see all requests and all of their status’
+
+Story: As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized
+
+Acceptance criteria: Be able to gather ramp request information from the database and display it on screen
+
+Story: As a StopGap product manager, I want to be able to receive the photos sent by the client so that I can plan the ramp that they are requesting
+
+Acceptance criteria: Able to view the photos associated with each request
+
+Story: As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs.
+
+Acceptance criteria: Be able to create a dashboard that displays all the aforementioned data
+
+11. Admin can filter info as needed
+
+Story: As a StopGap employee, I want to be able to filter the information so that I can easily find groups of information that I need
+
+Acceptance criteria: Be able to filter requests by various qualities (ie. build progress, delivered or not, is the ramp for a business or school, etc)
+
+Story: As a StopGap employee, I want to be able to easily search for specific information so that I can easily find what I need
+
+Acceptance criteria: Have a search bar that can allow searching through the data 
+
+12. Admin can contact client directly through the app
+
+Story: As a StopGap employee, I want to be able to communicate with clients so that I can inform them about their order and better serve their needs
+
+Acceptance criteria: Have an instant messaging system between client and admin accounts
+
+13. Client can contact admin directly through the app
+
+Story: As a StopGap client I want to be able to communicate with the StopGap team so that I can tell them what I require from them.
+
+Acceptance criteria: Have an instant messaging system between client and admin accounts
+
+
+Additional Stories:
 
 As a StopGap employee, I want to be able to use Quickbooks while using the app to manage the payment status of the company invoices.
 Integrate with quickbooks to allow those features to be used on the app
 
-As a StopGap employee, I want to be able to tag ramp requests as being the next request to be built, or the next request to be painted, so I can better organize the fulfillment of the ramp requests.
-Allow custom tagging of ramp requests, and filtering of those tags
+
 
 ----
 
@@ -284,6 +346,18 @@ Alex:
       1. Lack of experience with many technologies
       2. Minimal experience developing with servers
       3. Lack of experience with web development
+      
+Sam:
+
+   * General Strengths:
+      1. Languages: Python, Java, C, C++, Ruby, PHP
+      2. Frameworks: Django, React
+      3. Databases: MySQL, PostgreSQL
+      4. Pretty quick to pick up new skills, comfortable switching between languages/tools
+      5. Work experience, so pretty familiar with building something from the start as well as building onto existing work
+   * Weaknesses:
+      1. Not as comfortable with web dev, more of a backend developer
+      2. Not as good of a communicator- work better in an environment where team touches base fairly frequently
 
 #### Q7: What operational events will you have as a team?
 
