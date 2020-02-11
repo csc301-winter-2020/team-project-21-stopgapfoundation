@@ -6,29 +6,12 @@
  
 #### Q1: What are you planning to build?
 
- > Short (1 - 2 min' read)
- * Start with a single sentence, high-level description of the product.
- * Be clear - Describe the problem you are solving in simple terms.
- * Be concrete. For example:
-    * What are you planning to build? Is it a website, mobile app,
-   browser extension, command-line app, etc.?      
-    * When describing the problem/need, give concrete examples of common use cases.
-    * Assume your the reader knows nothing about the problem domain and provide the necessary context. 
- * Focus on *what* your product does, and avoid discussing *how* you're going to implement it.      
-   For example: This is not the time or the place to talk about which programming language and/or framework you are planning to use.
- * **Feel free (and very much encouraged) to include useful diagrams, mock-ups and/or links**.
-
 We are creating a system that streamlines and centralizes StopGap’s ramp requests. Clients will be able to place ramp orders and keep track of their progress, and StopGap will be able to easily manage and fulfill these orders. This will be a web app where both clients and the StopGap team will have accounts. 
 
 Many Toronto stores have entrance ways that are not aligned with the street level, creating a step that people with certain disabilities are not able to traverse. A business owner in charge of one of these stores who wants to order a ramp from StopGap for their entrance can use the web app to easily place an order and track its status. On the other side, the StopGap team can use the web app to organize the requests they do get, and communicate with their clients. For instance, if a photo submitted by a client is not clear enough to tell the height of the entranceway from, a StopGap employee can contact that client directly within the app, letting them know the issue and how to solve it.
 
 
 #### Q2: Who are your target users?
-
-  > Short (1 - 2 min' read max)
- * Be specific (e.g. a 'a third-year university student studying Computer Science' and not 'a student')
- * **Feel free (but not obligated) to use personas.         
-   You can create your personas as part of this Markdown file, or add a link to an external site (for example, [Xtensio](https://xtensio.com/user-persona/)).**
 
 There are two main groups of target users: StopGap clients and StopGap employees.
 There are some personas for our target users:
@@ -73,15 +56,6 @@ Background: She has already begun cooperation with StopGap’s school program to
 
 #### Q3: Why would your users choose your product? What are they using today to solve their problem/need?
 
-> Short (1 - 2 min' read max)
- * We want you to "connect the dots" for us - Why does your product (as described in your answer to Q1) fits the needs of your users (as described in your answer to Q2)?
- * Explain the benefits of your product explicitly & clearly. For example:
-    * Save users time (how much?)
-    * Allow users to discover new information (which information? And, why couldn't they discover it before?)
-    * Provide users with more accurate and/or informative data (what kind of data? Why is it useful to them?)
-    * Does this application exist in another form? If so, how does your differ and provide value to the users?
-    * How does this align with your partner's organization's values/mission/mandate?
-
 Currently, clients submit their request to StopGap using a Google Form, after which the information gets transferred to a spreadsheet document for manual processing by the StopGap team. Communication between clients and StopGap is done through email.
 
 With our app, clients will be able to create an account and request the ramp through that account. While the request process will be largely the same, the main benefits will be the ease of communication and availability of information to the client through the app. Clients will no longer need to email StopGap to request updates and wait for a response, as the up-to-date information related to their order will be displayed to them through their account. The instant messaging feature will also streamline communication, as compared to email which can be slow and cluttered.
@@ -124,20 +98,21 @@ For each new function / API endpoint we will write for unit tests. The person re
 
 #### Q5: What are the user stories that make up the MVP?
 
- * At least 5 user stories concerning the main features of the application - note that this can broken down further
- * You must follow proper user story format (as taught in lecture) ```As a <user of the app>, I want to <do something in the app> in order to <accomplish some goal>```
- * If you have a partner, these must be reviewed and accepted by them
- * The user stories should be written in Github and each one must have clear acceptance criteria.
-
 Main Goals (highlight the user stories which meet these, but we can show the other ones as well):
 
-1. Create the flow for requesting a ramp
-   This covers the first 4 user stories, we want to have ramps be able to be requested, have all of the necessary flags for different types of requests and make sure all the given information is proper.
-2. Authentication with seperate accounts
-   This covers user stories 5-7, we want to have two different accounts which have different functionality.
-3. Organize and Display the relevant information for each account
-   This covers the rest of the user stories where the clients should be able to request a ramp properly, be able to monitor their own requests and see their status. The admin should be able to see all of the requests, filter through them as needed, and mark them by their progress. Both accounts should be able to communicate with each other (client with admin and vice-versa)
-
+1. Able to request a ramp
+2. Checkbox for subsidy
+3. Checkbox for teacher
+4. Detail how to take proper photos
+5. Authentication 
+6. Client account
+7. Admin account
+8. Organize and Display relevant information
+9. Client will see only their request and its status
+10. Admin can see all requests and all of their status’
+11. Admin can filter info as needed
+12. Admin can contact client directly through the app
+13. Client can contact admin directly through the app
 
 ### Main user stories (followed by acceptance criteria after each story):
 
@@ -355,16 +330,6 @@ Sam:
 
 #### Q7: What operational events will you have as a team?
 
-Describe meetings (and other events) you are planning to have. 
- * When and where? Recurring or ad hoc? In-person or online?
- * What's the purpose of each meeting?
- * Other events could be coding sessions, code reviews, quick weekly sync meeting online, etc.
- * You must have at least 2 meetings with your project partner (if you have one). Describe them here:
-   * What did you discuss during the meetings?
-   * What were the outcomes of each meeting?
-   * You must provide meeting minutes.
-   * You must have a regular meeting schedule established by the second meeting.  
-
 ### Availability
 
 ![Image description](imgs/availability.png)
@@ -398,15 +363,6 @@ Location: Google Hangouts(online)
 
   
 #### Q8: What artifacts will you use to self-organize?
-
-List/describe the artifacts you will produce in order to organize your team.       
-
- * Artifacts can be To-Do lists, Task boards, schedule(s), meeting minutes, etc.
- * We want to understand:
-   * How do you keep track of what needs to get done?
-   * How do you prioritize tasks?
-   * How do tasks get assigned to team members?
-   * How do you determine the status of work from inception to completion?
 
 ##### Development Framework
 
@@ -451,18 +407,6 @@ The Master branch will contain code that has been thoroughly vetted and is ready
 
 #### Q9: What are the rules regarding how your team works?
 
-Describe your team's working culture.
-
-**Communications:**
- * What is the expected frequency? What methods/channels are appropriate? 
- * If you have a partner project, what is your process (in detail) for communicating with your partner?
- 
-**Meetings:**
- * How are people held accountable for attending meetings, completing action items? Is there a moderator or process?
- 
-**Conflict Resolution:**
- * List at least three team scenarios/conflicts you discussed in lecture and how you decided you will resolve them. Indecisions? Non-responsive team members? Any other scenarios you can think of?
-
 ### General Expectations for Team Members (Working Culture)
 
 * Regular communication: Checking Messenger/Discord once every 2-3 days
@@ -504,21 +448,10 @@ Scenario 3: A group member hasn’t responded to any attempts to contact them in
 ----
 ### Highlights
 
-Specify 3 - 5 key decisions and/or insights that came up during your meetings
-and/or collaborative process.
-
- * Short (5 min' read max)
- * Decisions can be related to the product and/or the team process.
-    * Mention which alternatives you were considering.
-    * Present the arguments for each alternative.
-    * Explain why the option you decided on makes the most sense for your team/product/users.
- * Essentially, we want to understand how (and why) you ended up with your current product and process plan.
- * This section is useful for important information regarding your decision making process that may not necessarily fit in other sections. 
-
 1.) One of the key decisions that we decided over revolved around the scope of our project. Initially, we were unsure of whether we were tasked with the learning management system or the ramp requests portion of StopGap's proposal. During our first meeting with our partner, we took on the responsibility of both components. It seemed do-able enough given the size of our group and the importance of each to StopGap. As time went on through meetings and planning discussions, we quickly discovered that both components were possibly too large of a task and the scope of our project was too large. Also, after discussions with our TA and partner, we came to the decision that our main focus should be StopGap's ramp request component. The ramp request component was clearly the more fulfilling project for StopGap given the current implementation was cumbersome and not fit for the large intake StopGap is expecting in the near future. As a team we also agreed that our skills would better translate for a more complete project if we focused on ramp requests. Our team has a strong background in databases (SQL, MongoDB) and web development (React, RESTful APIs). 
 
 2.) One of the key decisions for our group was about choosing our members. Initially, we only had 6 group members and we considered having one more member. Our group had more than one person interested in joining our group and we were considering whether to have a group of 7, or 8. After a long discussion, we decided to choose Daven as our last group member as he has the skills and personalities we sought from a team member. Also, we decided to keep a team of 7 instead of 8. The reason for this is that it's already difficult to manage a team of 7 and assign a job to everybody. In a team of 8, although everyone may be assigned less work, it will be harder to manage in terms to communication and assigning tasks.
 
-3.) Another key decision came in terms of our **tech stack**. At first we waited to have a partner meeting and decide our scope before deciding a tech stack (to see if we needed to develop an app vs a website, or to see how complex our product would be to develop). Eventually, we decided on a web app built with a React frontend and a Django backend with a Postgres SQL database, all of which deployed on Heroku using CircleCI integration. We decided this during a tutorial meeting where we discussed what technologies we were familiar with. A few team members were already familiar with React, so we used that for the frontend. Similarly for Django and Postgres SQL. Furthermore, when deciding how we were going to host our site, we were initially unsure if Heroku or AWS would be a better solution. We settled on Heroku because 1) it could do the basics that we needed it to do, AWS would be overkill, and 2) AWS is much more complex to work with and would cost us more development time for us to configure it. Overall, most of our tech stack decisions were based on what was the **easiest** for us to work with. This is a priority since we only have 2 months to develop our product and so we need to use our limited development time as efficently as possible - spending time learning new tech frameworks would not be efficent. 
+3.) Another key decision came in terms of our **tech stack**. At first we waited to have a partner meeting and decide our scope before deciding a tech stack (to see if we needed to develop an app vs a website, or to see how complex our product would be to develop). Eventually, we decided on a web app built with a React frontend and a Django backend with a PostgresSQL database, all of which deployed on Heroku using CircleCI integration. We decided this during a tutorial meeting where we discussed what technologies we were familiar with. A few team members were already familiar with React, so we used that for the frontend. Similarly for Django and PostgresSQL. Furthermore, when deciding how we were going to host our site, we were initially unsure if Heroku or AWS would be a better solution. We settled on Heroku because 1) it could do the basics that we needed it to do, AWS would be overkill, and 2) AWS is much more complex to work with and would cost us more development time for us to configure it. Overall, most of our tech stack decisions were based on what was the **easiest** for us to work with. This is a priority since we only have 2 months to develop our product and so we need to use our limited development time as efficiently as possible - spending time learning new tech frameworks would not be efficient. 
 
-4.) When choosing our project, our team took the time to look through each partner proposal and collectively decide. We consider it a key highlight because it highlighted our decision-making process as a team. Each member constructed their own list of favorite proposals and their overall reason for choosing it. The reasons varied from interesting proposal to easy implementation. StopGap wasn't everyone's first choice but after our team meetings it became our collective choice. Through debates and discussions, we talked over our skill set and how it would fair in each proposal. Also, it was chosen because it was on the majority of our team's list and it was the most fitting option. Because of this process, our team is satisfied with our project and no one finds working on the project a bore.  
+4.) When choosing our project, our team took the time to look through each partner proposal and collectively decide. We consider it a key highlight because it highlighted our decision-making process as a team. Each member constructed their own list of favorite proposals and their overall reason for choosing it. The reasons varied from interesting proposal to easy implementation. StopGap wasn't everyone's first choice but after our team meetings it became our collective choice. Through debates and discussions, we talked over our skill set and how it would fair in each proposal. Also, it was chosen because it was on the majority of our team's list and it was the most fitting option. Because of this process, our team is satisfied with our project and no one finds working on the project a bore. 
