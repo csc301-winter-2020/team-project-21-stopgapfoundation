@@ -399,7 +399,7 @@ We use Discord and Messenger to communicate and deliver first hand information a
 
 ##### Commit Frequency
 
-As a team, we have decided that each member should have at least one commit per week. This is to ensure that everyone on the team is keeping at pace for deadlines. Commits themselves need not be extremely substanial. If for one week not much work was completed, we expect the next week to make up for that and so on.  
+As a team, we have decided that each member should have at least one commit per week. This is to ensure that everyone on the team is keeping at pace for deadlines. Commits themselves need not be extremely substantial. If for one week not much work was completed, we expect the next week to make up for that and so on.  
 
 ##### Git Flow
 The Master branch will contain code that has been thoroughly vetted and is ready for deployment. Underneath that we will have the Development branch, which will be for work that is completed and approved, but has not been thoroughly reviewed. Each individual team member will have their own branch, where they will complete the tasks that they have been assigned. When they are ready to merge to the development branch, one team member will review the code for quality, and then decide whether or not to accept the merge request.
@@ -411,16 +411,16 @@ The Master branch will contain code that has been thoroughly vetted and is ready
 
 * Regular communication: Checking Messenger/Discord once every 2-3 days
 * Regular commits: Commit whenever a feature is complete + push to repo
-* Keep task board up to date
+* Keep task board up to date. (Trello)
 * Communicate promptly + professionally with external people
 * Support other group members, build confidence among the group
 * Keep things friendly: we don’t need to be overly professional, but we also need to be respectful of each other
 
 ### Communication Methods
 
-Our team plans will use two different communication channels for our project. For general group information such as meeting and deadline reminders, we plan on using Facebook Messenger. Given that all of us are active on Facebook, this will provide the greatest and fastest outreach to everyone in the group. For all work pertaining to the project we will use Discord. Discord allows us to have voice group meetings compared to other providers like Slack. In addition, like other providers, Discord has the same abilities of channel creation, inserting code snippets, and pinning important information. The current goal is to be in communication at least once every two to three days to keep the team up-to-date and in constant progress. 
+Our team plans to use two different communication channels for our project. For general group information such as meeting and deadline reminders, we plan on using Facebook Messenger. Given that all of us are active on Facebook, this will provide the greatest and fastest outreach to everyone in the group. For all work pertaining to the project we will use Discord. Discord allows us to have voice group meetings compared to other providers like Slack. In addition, like other providers, Discord has the same abilities of channel creation, inserting code snippets, and pinning important information. The current goal is to be in communication at least once every two to three days to keep the team up-to-date and in constant progress. 
 
-For partner meetings, we have discussed that going forward Google Hangout calls are the best way to reach our partner correspondent. Currently, we plan on scheduling at least one partner meeting per week, to keep them up to date on the current progress.
+For partner meetings, we have discussed that going forward Google Hangout calls and E-mail are the best way to reach our partner correspondent. Currently, we plan on scheduling at least one partner meeting per week, to keep them up to date on the current progress. 
 
 ### Meetings
 
@@ -434,7 +434,7 @@ During meetings, our group plans on using Trello to establish deadlines and disc
 Scenario 1: A member is given a task to do by a deadline, and fails to complete that task.
    * Make deadlines that are a few days ahead of official dates, so that there is a period of time to recover from situations like this.
    * Have a conversation with the person unable to complete the task: find out why they were unable to finish and take steps to make sure they are able to complete future tasks 
-   * Encourage members to speak up early if they are having issues to avoid this situation happening in the first place. We want to create an inclusive group that is willing to help each other out in times like this.
+   * Encourage members to speak up early if they are having issues to avoid this situation happening in the first place. We want to create an inclusive group that is willing to help each other out in times like this. Was the team member inexperienced or overwhelmed with the project? Did they have a lot of stuff on their plate in terms of the task or other courses? It's important to find out the root cause early on. 
 
 Scenario 2: Two members don’t agree on how a feature should be implemented
    * Have a group meeting where both members present their cases, and the group can collectively decide which member’s method to go with.
@@ -443,7 +443,7 @@ Scenario 2: Two members don’t agree on how a feature should be implemented
 Scenario 3: A group member hasn’t responded to any attempts to contact them in two days.
    * As a team, we will use Facebook Messenger / Discord to contact group members on the 3rd day and remind them about our team rules. 
    * If by the following tutorial day (Monday) we don’t receive a response or any indication that they’ve seen our message, we talk to our TA. 
-   * If we haven’t received a response and talked to our TA about the situation, we immediately divvy up the work of the member and move forward without them. 
+   * If we haven’t received a response and talked to our TA about the situation, we immediately divvy up the work of the member and move forward without them for the time being. It's important that as a team we don't lose our stride. We're also understanding of situations where a member is gone for a period of time. When the member does have time to reach out to us and we've completed some work, we will inform them of changes and incorporate them back in as usual. 
 
 ----
 ### Highlights
