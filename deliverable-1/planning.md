@@ -159,34 +159,33 @@ Each story is followed by its acceptance criteria.
 
    * **Story**: As a StopGap client I want to be able to see the progress of my ramp request, so that I can have an idea of how long until it is completed.
       * **Acceptance Criteria**: Have the progress of the ramp request associated with this user’s account displayed to that account.
-
 10. **Admin: Overview All Request Information**
 
-   * **Story**: As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized.
-      * **Acceptance Criteria**: Be able to gather ramp request information from the database and display it on screen.
+    * **Story**: As a StopGap project manager, I want to easily see all the ramp information for each client in one place, so I can be better organized.
+         * **Acceptance Criteria**: Be able to gather ramp request information from the database and display it on screen.
 
-   * **Story**: As a StopGap product manager, I want to be able to receive the photos sent by the client so that I can plan the ramp that they are requesting.
+    * **Story**: As a StopGap product manager, I want to be able to receive the photos sent by the client so that I can plan the ramp that they are requesting.
       * **Acceptance Criteria**: Able to view the photos associated with each request.
 
-   * **Story**: As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs.
+    * **Story**: As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs.
       * **Acceptance Criteria**: Be able to create a dashboard that displays all the aforementioned data.
 
 11. **Admin: Filter Information**
 
-   * **Story**: As a StopGap employee, I want to be able to filter the information so that I can easily find groups of information that I need.
+    * **Story**: As a StopGap employee, I want to be able to filter the information so that I can easily find groups of information that I need.
       * **Acceptance Criteria**: Be able to filter requests by various qualities (ie. build progress, delivered or not, is the ramp for a business or school, etc).
 
-   * **Story**: As a StopGap employee, I want to be able to easily search for specific information so that I can easily find what I need.
+    * **Story**: As a StopGap employee, I want to be able to easily search for specific information so that I can easily find what I need.
       * **Acceptance Criteria**: Have a search bar that can allow searching through the data.
 
 12. **Admin: Contact Clients**
 
-   * **Story**: As a StopGap employee, I want to be able to communicate with clients so that I can inform them about their order and better serve their needs.
+    * **Story**: As a StopGap employee, I want to be able to communicate with clients so that I can inform them about their order and better serve their needs.
       * **Acceptance Criteria**: Have an instant messaging system between client and admin accounts.
 
 13. **Client: In-App Communication to Admins**
 
-   * **Story**: As a StopGap client I want to be able to communicate with the StopGap team so that I can tell them what I require from them.
+    * **Story**: As a StopGap client I want to be able to communicate with the StopGap team so that I can tell them what I require from them.
       * **Acceptance Criteria**: Have an instant messaging system between client and admin accounts.
 
 
