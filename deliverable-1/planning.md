@@ -4,10 +4,13 @@
  
 #### Q1: What are you planning to build?
 
-We are creating a system that streamlines and centralizes StopGap’s ramp requests. Clients will be able to place ramp orders and keep track of their progress, and StopGap will be able to easily manage and fulfill these orders. This will be a web app where both clients and the StopGap team will have accounts. 
+We are creating a system that streamlines and centralizes StopGap’s ramp requests. Clients will be able to place ramp orders and keep track of their progress, and StopGap will be able to easily manage and fulfill these orders. This will be a web app where both clients and the StopGap team will have accounts.
 
-Many Toronto stores have entrance ways that are not aligned with the street level, creating a step that people with certain disabilities are not able to traverse. A business owner in charge of one of these stores who wants to order a ramp from StopGap for their entrance can use the web app to easily place an order and track its status. On the other side, the StopGap team can use the web app to organize the requests they do get, and communicate with their clients. For instance, if a photo submitted by a client is not clear enough to tell the height of the entranceway from, a StopGap employee can contact that client directly within the app, letting them know the issue and how to solve it.
+Currently, clients submit their information into a Google Form, which then gets sent to the StopGap team upon completion. There is no way to verify the information in the form before submission. In the event of wrong information, the StopGap team has to follow up with the client via email, which is hard to keep track of and can be time-consuming. As a result, it is difficult for StopGap to keep track of the status of these orders.
 
+By creating a web application where the order information is centrally stored, both the clients and the StopGap team can easily view the status of their orders. For clients, this removes the frustration of having to contact StopGap by email to receive updates on their order. For the StopGap team, it allows them to organize their order requests and communicate with their clients. In the event that more information is required to process an order, StopGap can contact the client directly within the app, letting them know the issue and how to solve it, and the client will be notified through the app and by email.
+
+For example, a photo submitted by a client is frequently not clear enough for StopGap to be able to determine the height of the entranceway. In this case, a StopGap employee can message the client within the app, and the client can submit updated photos onto their profile without having to resubmit the form.
 
 #### Q2: Who are your target users?
 
