@@ -91,19 +91,17 @@ For each new function / API endpoint we will write for unit tests. The person re
 
 Main Goals (highlight the user stories which meet these, but we can show the other ones as well):
 
-1. Able to request a ramp
-2. Checkbox for subsidy
-3. Checkbox for teacher
-4. Detail how to take proper photos
-5. Authentication 
-6. Client account
-7. Admin account
-8. Organize and Display relevant information
-9. Client will see only their request and its status
-10. Admin can see all requests and all of their status’
-11. Admin can filter info as needed
-12. Admin can contact client directly through the app
-13. Client can contact admin directly through the app
+1. Create the application process.
+   This would entail the ability to request a ramp, getting all of the necessary information from the client and ensuring that it is usable. User stories 1-4.
+
+2. Authentication 
+   This entails the ability to have different accounts which each have different uses. User stories 5-7
+
+3. Display all of the relevant information
+   For each type of account we will have select information available. The clients will be able to see their respective requests, the admins will be able to see all requests, their statuses, filter and sort information as necessary. User stories 8-11
+
+4. Communication
+   The clients and admins will be able to communicate directly with each other through the app. User stories 12-13
 
 ### Main user stories (followed by acceptance criteria after each story):
 
