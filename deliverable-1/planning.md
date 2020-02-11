@@ -371,8 +371,8 @@ We will use the **Kanban** method for delegating tasks. We chose this because it
 For the Kanban board, we will use a shared **Trello** board. Our columns will be:
  * **To Do**, containing tasks and user stories that have yet to be implemented. This will continuously be populated as more specific product specifications and feedback is given or as software bugs or potential design flaws become apparent.
  * **Pending**, tasks that are currently being developed on. Each member will assign the task to themselves and move the task to this list, commenting on the task with any important details (such as the feature branch). Ideally, members will only take on 1 or 2 tasks at a time, and so this list should have only up to 14 cards at any time.
- * **For Review**, for tasks that are implemented and need to be code-reviewed before being merged into the dev branch on GitHub. Ideally other members can comment issues on the task, after which it can be moved back to pending while the feature is revised.
- * **Blocked**, for tasks that can not be completed or reviewed because it relies on another yet-to-be-completed task. Ideally the member working on the task will comment the reason for it to be blocked.
+ * **For Review**, for tasks that are implemented and need to be code-reviewed before being merged into the dev branch on GitHub. Ideally other members can comment on issues on the task, after which it can be moved back to pending while the feature is revised.
+ * **Blocked**, for tasks that can not be completed or reviewed because it relies on another yet-to-be-completed task. Ideally the member working on the task will comment on the reason for it to be blocked.
  * **Done**, for tasks that are done and merged into dev. The list will be cleared upon a product deployment.
 
 The Trello will also have separate columns for important links or resources, and for questions that we may have for our partner or TA.
