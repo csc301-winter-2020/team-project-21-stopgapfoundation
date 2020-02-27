@@ -1,0 +1,28 @@
+# Based on guide from dev.to:
+#     https://dev.to/englishcraig/creating-an-app-with-docker-compose-django-and-create-react-app-31lf
+
+version: "3.2"
+services:
+  ### Backend code. Uncomment when Django is setup
+  # backend:
+  #   build: ./backend
+  #   volumes:
+  #     - ./backend:/app/backend
+  #   ports:
+  #     - "8000:8000"
+  #   stdin_open: true
+  #   tty: true
+  #   command: python3 manage.py runserver 0.0.0.0:8000
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      # One-way volume to use node_modules from inside image
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    # depends_on:
+      # - backend
+    command: npm start
