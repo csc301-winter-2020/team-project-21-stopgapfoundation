@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from fields.PhoneNumberField import PhoneNumberField
 
 
 # Use this method to get the directory to store a user's photos
@@ -23,7 +22,7 @@ class ClientInformation(models.Model):
     last_name = models.CharField(max_length=150)
     company = models.CharField(max_length=180)
     email = models.CharField(max_length=180)
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=180)
     website = models.CharField(max_length=180)
 
