@@ -1,11 +1,27 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User, Group
+from django.shortcuts import render	from django.shortcuts import render
+from rest_framework import generics, viewsets, permissions
 
+from .models import ClientInformation, Waiver, Order
+from .serializers import UserSerializer, GroupSerializer, ClientInformationSerializer
 
-from .models import  Order,ClientInformation,Waiver
-from .serializers import *
-from rest_framework import generics
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
 
-class ClientListCreate(generics.ListCreateAPIView):
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [
+        permissions.IsAuthenticated
+    ]
+
+class ClientInformationListCreate(generics.ListCreateAPIView):
     queryset = ClientInformation.objects.all()
-    serializer_class = ClientSerializer
-
+    serializer_class = ClientInformationSerializer
+    permission_classes =[
+        permissions.IsAuthenticated
+    ]
