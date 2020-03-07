@@ -15,7 +15,7 @@ Instructions to set up the Django environment locally
 5. Command to create a new Django project:
     (IMPORTANT: Don't run this again in our project's folder, it will rewrite our files)
 
-    django-admin start project stopgap-project
+    django-admin startproject stopgap_project .
 
 6. Command to create a new app within our Django project:
 
@@ -28,6 +28,18 @@ Instructions to set up the Django environment locally
 
     python manage.py makemigrations <app_name>
 
-8. Command to apply migrations to database (actually apply the migration commands from step 7)
+8. Command to apply migrations to database (actually apply the migration commands from step 7):
 
     python manage.py migrate
+
+9. Command to run local Django server:
+
+    python manage.py runserver
+
+
+Other commands:
+
+- Create a superuser:
+
+    python manage.py createsuperuser --email <email address> --username <username>
+

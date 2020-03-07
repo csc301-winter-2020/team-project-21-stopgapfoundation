@@ -5,6 +5,9 @@
 1) Run
 
         export NODE_ENV="development"
+        
+        For Windows:
+        $env:NODE_ENV="development" 
 
 2) Change directory into the cloned repository
 3) Execute:
