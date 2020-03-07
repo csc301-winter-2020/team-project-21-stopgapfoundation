@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+from .models import  Order,ClientInformation,Waiver
+from .serializers import *
+from rest_framework import generics
+
+class ClientListCreate(generics.ListCreateAPIView):
+    queryset = ClientInformation.objects.all()
+    serializer_class = ClientSerializer
+
