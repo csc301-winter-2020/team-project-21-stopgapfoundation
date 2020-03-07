@@ -42,12 +42,12 @@ class Waiver(models.Model):
     # Name and signature of owner or manager
     signatory_first_name = models.CharField(max_length=30)
     signatory_last_name = models.CharField(max_length=150)
-    signatory_signature = models.Charfield(max_length=180)  # Use full name as e-signature
+    signatory_signature = models.CharField(max_length=180)  # Use full name as e-signature
 
     # Name and signature of witness
     witness_first_name = models.CharField(max_length=30)
     witness_last_name = models.CharField(max_length=150)
-    witness_signature = models.Charfield(max_length=180)    # Use full name as e-signature
+    witness_signature = models.CharField(max_length=180)    # Use full name as e-signature
 
 
 class Order(models.Model):
