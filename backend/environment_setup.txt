@@ -9,14 +9,25 @@ Instructions to set up the Django environment locally
 
 3. Source the $VENV_HOME/bin/activate file created from step 2
 
-4. Use pip to install django and djangorestframework
-    ex. pip install django djangorestframework
+4. Use pip to install django, djangorestframework, Pillow
+    ex. pip install django djangorestframework Pillow
 
-5. This command is used to create a new Django project:
+5. Command to create a new Django project:
     (IMPORTANT: Don't run this again in our project's folder, it will rewrite our files)
 
     django-admin start project stopgap-project
 
-6. This command is used to create a new app within our Django project:
+6. Command to create a new app within our Django project:
 
-    django-admin start app order_manager
+    django-admin start app <app_name>
+
+    Current apps:
+        - order_manager
+
+7. Command to make migrations (create commands to update database tables to match our Django models):
+
+    python manage.py makemigrations <app_name>
+
+8. Command to apply migrations to database (actually apply the migration commands from step 7)
+
+    python manage.py migrate

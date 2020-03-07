@@ -18,10 +18,7 @@ class ClientInformation(models.Model):
     )
 
     # Additional information
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=150)
     company = models.CharField(max_length=180)
-    email = models.CharField(max_length=180)
     phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=180)
     website = models.CharField(max_length=180)
@@ -67,7 +64,6 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         primary_key=True
     )
-    waiver_confirmation = models.BooleanField(default=False)
 
     # Ramp information; height information stored in inches
     entryway_photo = models.ImageField(upload_to=user_directory_path)
