@@ -4,7 +4,7 @@
 1) Run:
 
     export NODE_ENV="development"
-    
+
 2) Change directory into the cloned repository
 3) Run:
 
