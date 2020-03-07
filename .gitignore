@@ -1,0 +1,8 @@
+# Ignore database files
+*.sqlite3
+
+# Ignore system files
+*.DS_Store
+
+# Folders to ignore
+**/__pycache__
