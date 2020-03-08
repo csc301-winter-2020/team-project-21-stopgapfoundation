@@ -34,7 +34,7 @@ class OrderListCreate(generics.ListCreateAPIView):
     ]
 
 class WaiverListCreate(generics.ListCreateAPIView):
-    queryset = Waiver.objects.all().order_by('date')
+    queryset = Waiver.objects.all().order_by('user')
     serializer_class = WaiverSerializer
     permission_classes =[
         permissions.IsAuthenticated
