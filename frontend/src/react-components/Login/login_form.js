@@ -8,6 +8,13 @@ import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
+/**
+ * Form for filling in login credentials.
+ * 
+ * @prop {function} login - use to login user. Takes new user object
+ * @prop {function} goBack - use to return to parent login page.
+ * @prop {boolean}  isAdmin - true iff the login form is for an admin
+ */
 function LoginForm(props) {
   return (
     <div className="buttons center">
@@ -40,11 +47,12 @@ function LoginForm(props) {
           type="submit"
           fullWidth
           variant="contained"
+          onClick={(e) => {
+            e.preventDefault();
+            props.login({isAdmin: props.isAdmin})
+          }}
         >
-          {/* <Link to={"./../userprofile"}> */}
             Sign in
-          {/* </Link> */}
-
         </Button>
 
         <Grid container>
