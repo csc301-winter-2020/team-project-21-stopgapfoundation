@@ -6,35 +6,35 @@ from .models import ClientInformation, Waiver, Order
 from .serializers import UserSerializer, GroupSerializer, ClientInformationSerializer,OrderSerializer,WaiverSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
     permission_classes = [
         permissions.IsAuthenticated
     ]
 
 class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
+    queryset = Group.objects.all().order_by('name')
     serializer_class = GroupSerializer
     permission_classes = [
         permissions.IsAuthenticated
     ]
 
-class ClientInformationListCreate(generics.ListCreateAPIView):
-    queryset = ClientInformation.objects.all()
+class ClientInformationViewSet(viewsets.ModelViewSet):
+    queryset = ClientInformation.objects.all().order_by('user')
     serializer_class = ClientInformationSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class OrderListCreate(generics.ListCreateAPIView):
-    queryset = Order.objects.all()
+class OrderInformationViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all().order_by('date_created')
     serializer_class = OrderSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class WaiverListCreate(generics.ListCreateAPIView):
-    queryset = Waiver.objects.all()
+class WaiverInformationViewSet(viewsets.ModelViewSet):
+    queryset = Waiver.objects.all().order_by('user')
     serializer_class = WaiverSerializer
     permission_classes =[
         permissions.IsAuthenticated

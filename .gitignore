@@ -1,5 +1,6 @@
 # Ignore database files
 *.sqlite3
+**data/
 
 # Ignore system files
 *.DS_Store

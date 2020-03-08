@@ -31,15 +31,7 @@ class ClientInformationSerializer(serializers.ModelSerializer):
         model = ClientInformation
 
         fields = [
-            #'id',
             'user',
-            #'username',
-            #'first_name',
-            #'last_name',
-            #'password',
-            #'email',
-            #'is_staff',
-            #'is_active',
             'company',
             'phone_number',
             'address',
@@ -51,7 +43,7 @@ class WaiverSerializer(serializers.ModelSerializer):
         model = Waiver
 
         fields = [
-            #'id',
+            'pk',
             'user',
             'date',
             'signatory_first_name',
@@ -60,16 +52,16 @@ class WaiverSerializer(serializers.ModelSerializer):
             'witness_first_name',
             'witness_last_name',
             'witness_signature'
-
-
         ]
+
 class OrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = Order
 
         fields = [
-            #'id',
+            'pk',
             'user',
+            'date_created',
             'billing_address',
             'shipping_address',
             'waiver',
@@ -81,5 +73,4 @@ class OrderSerializer(serializers.ModelSerializer):
             'ramp_colour',
             'delivery_method',
             'subsidize'
-
         ]
