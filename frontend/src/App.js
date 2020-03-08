@@ -9,9 +9,10 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      loggedIn: false,
       user: {
-        loggedIn: false,
-        isAdmin: false
+        isAdmin: true
+        // login: () => this.setState(user:)
       }
     };
   }
@@ -26,7 +27,7 @@ class App extends React.Component {
               <Route exact path='/login' render={() => (<Home />)}/>
               <Route exact path='/dashboard' render={() => (<Dashboard user={this.state.user} />)}/> { /* TODO: create a dashboard component that will then have its own router for admin/user dashboards */ }
             </Switch>
-            {this.state.user.loggedIn ? <Redirect to="/dashboard" /> : <Redirect to="/login" /> }
+            {this.state.loggedIn ? <Redirect to="/dashboard" /> : <Redirect to="/login" /> }
           </BrowserRouter>
         </div>
       )

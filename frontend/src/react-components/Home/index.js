@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import ReactDOM from 'react-dom';
 import "./styles.css";
 import Header from "../Header";
-import User from "../Login/user";
+import ClientLogin from "../Login/user";
 import Admin from "../Login/admin";
 
 
@@ -23,47 +23,34 @@ class Home extends React.Component {
     }
   }
 
+  goBack = () => this.setState({ isLoggingIn: false })
+
   render () {
     let mainComponent = null;
     if (!this.state.isLoggingIn){
-      mainComponent = <LoginButtons clickHandler={(isAdmin) => {
-        this.setState({
-          isLoggingIn: true,
-          isAdmin
-        });
-      }} />
+      mainComponent = <LoginButtons clickHandler={ (isAdmin) =>  this.setState({isLoggingIn: true, isAdmin: isAdmin}) }/>
     } else {
-      mainComponent = this.state.isAdmin ? <Admin /> : <User />
+      mainComponent = this.state.isAdmin ? <Admin  goBack = {this.goBack} />  : <ClientLogin goBack = {this.goBack} />
     }
 
     return (
-      <Router>
-        <div className="home__bg-image center">
-          <Header />
-          {mainComponent}
-        </div>
-      </Router >
+      <div className="home__bg-image center">
+        <Header />
+        {mainComponent}
+      </div>
     );
   }
 }
 
 function LoginButtons(props) {
-  const onClickAdmin = (e) => {
-    e.preventDefault();
-    props.clickHandler(false);
-  }
-
-  const onClickClient = (e) => {
-    e.preventDefault();
-    props.clickHandler(true);
-  }
+  console.log("test");
 
   return (
     <div className="buttons center">
-      <Button className="home__button" onClick={onClickClient}>
+      <Button className="home__button" onClick={() => props.clickHandler(false) }>
         Client
       </Button>
-      <Button className="home__button" onClick={onClickAdmin}>
+      <Button className="home__button" onClick={() => props.clickHandler(true) }>
         Admin
       </Button>
     </div>
