@@ -19,21 +19,21 @@ class GroupViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
-class ClientInformationListCreate(generics.ListCreateAPIView):
+class ClientInformationViewSet(viewsets.ModelViewSet):
     queryset = ClientInformation.objects.all().order_by('user')
     serializer_class = ClientInformationSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class OrderListCreate(generics.ListCreateAPIView):
+class OrderInformationViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all().order_by('date_created')
     serializer_class = OrderSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class WaiverListCreate(generics.ListCreateAPIView):
+class WaiverInformationViewSet(viewsets.ModelViewSet):
     queryset = Waiver.objects.all().order_by('user')
     serializer_class = WaiverSerializer
     permission_classes =[

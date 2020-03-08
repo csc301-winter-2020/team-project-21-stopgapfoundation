@@ -1,9 +1,13 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from order_manager import views
 
-from . import views
+
+router = routers.DefaultRouter()
+router.register(r'client-information', views.ClientInformationViewSet)
+router.register(r'order-information', views.OrderInformationViewSet)
+router.register(r'waiver-information', views.WaiverInformationViewSet)
 
 urlpatterns =[
-    path('client-information/', views.ClientInformationListCreate.as_view()),
-    path('order-information/', views.OrderListCreate.as_view()),
-    path('waiver-information/', views.WaiverListCreate.as_view())
+    path('', include(router.urls))
 ]
