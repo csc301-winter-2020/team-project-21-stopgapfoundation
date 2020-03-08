@@ -7,7 +7,7 @@ class ClientDashboard extends React.Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar title="Client Dashboard"/>
         <h1 style={{ textAlign: 'center' }}>Welcome to StopGap!</h1>
             <Button onClick={onClickRequestForm} className="newRequestButton"
               color="primary" variant="contained" size='large'

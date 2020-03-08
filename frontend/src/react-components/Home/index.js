@@ -6,7 +6,6 @@ import {
   Link
 } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import ReactDOM from 'react-dom';
 import "./styles.css";
 import Header from "../Header";
 import User from "../Login/user";
