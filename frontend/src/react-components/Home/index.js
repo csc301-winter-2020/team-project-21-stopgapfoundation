@@ -38,7 +38,7 @@ class Home extends React.Component {
 
     return (
       <Router>
-        <div className="home__bg-image center">
+        <div className="home__bg center">
           <Header />
           {mainComponent}
         </div>
