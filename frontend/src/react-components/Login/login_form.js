@@ -2,20 +2,13 @@ import React from "react";
 import "./style.css";
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Home from "../Home";
-import Header from "../Header";
-import Register from "../Register/register";
-import UserItems from "../Profile/user";
 
-function ClientLogin(props) {
+function LoginForm(props) {
   return (
     <div className="buttons center">
       <form  >
@@ -56,34 +49,25 @@ function ClientLogin(props) {
 
         <Grid container>
           <Grid item xs>
-            <Button onClick={props.goBack} >
+            <Button className="center_link" onClick={props.goBack} >
               Back to home page
             </Button>
           </Grid>
-          <Grid item>
-            <Link className="register_link" to={"./../register"}>
-              Don't have an account? Sign Up!
+          { // We only allow clients to create new accounts. Stopgap accounts are made manually.
+          !props.isAdmin && 
+          <Grid item xs>
+            <Link to={"./../register"}>
+              <Button className="center_link">
+                Don't have an account?<br/>Sign Up!
+              </Button>
             </Link>
-          </Grid>
+          </Grid>}
+          
         </Grid>
       </form>
-      {/* <div className="home__bg-image center">
-       
-         <Switch>
-          <Route path="/home">
-            <Home />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/userprofile">
-            <UserItems />
-          </Route>
-        </Switch> 
-      </div> */}
     </div>
       
   );
 }
 
-export default ClientLogin;                                                                                                                                           
+export default LoginForm;                                                                                                                                           

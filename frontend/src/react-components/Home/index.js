@@ -9,8 +9,7 @@ import Button from "@material-ui/core/Button";
 import ReactDOM from 'react-dom';
 import "./styles.css";
 import Header from "../Header";
-import ClientLogin from "../Login/user";
-import Admin from "../Login/admin";
+import LoginForm from "../Login/login_form";
 
 
 /* Component for the Home page */
@@ -18,20 +17,18 @@ class Home extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isLoggingIn: false,
+      inLoginForm: false,
       isAdmin: false
     }
   }
 
-  goBack = () => this.setState({ isLoggingIn: false })
+  goBack = () => this.setState({ inLoginForm: false })
+
 
   render () {
-    let mainComponent = null;
-    if (!this.state.isLoggingIn){
-      mainComponent = <LoginButtons clickHandler={ (isAdmin) =>  this.setState({isLoggingIn: true, isAdmin: isAdmin}) }/>
-    } else {
-      mainComponent = this.state.isAdmin ? <Admin  goBack = {this.goBack} />  : <ClientLogin goBack = {this.goBack} />
-    }
+    const mainComponent = !this.state.inLoginForm ? 
+      <AccountTypeSelector clickHandler={ (isAdmin) =>  this.setState({inLoginForm: true, isAdmin: isAdmin}) }/> : 
+      <LoginForm isAdmin={this.state.isAdmin} goBack = {this.goBack} />;
 
     return (
       <div className="home__bg-image center">
@@ -42,9 +39,7 @@ class Home extends React.Component {
   }
 }
 
-function LoginButtons(props) {
-  console.log("test");
-
+function AccountTypeSelector(props) {
   return (
     <div className="buttons center">
       <Button className="home__button" onClick={() => props.clickHandler(false) }>
