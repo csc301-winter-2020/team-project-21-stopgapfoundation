@@ -2,7 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { Redirect } from 'react-router-dom';
 import "./style.css";
-import Header from "../Header";
+import Header from "./Header";
 import LoginForm from "./login_form";
 import RegisterForm from "./register";
 
