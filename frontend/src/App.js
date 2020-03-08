@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.css';
-import Home from './react-components/Home';
+import Login from './react-components/Login';
 import Dashboard from './react-components/Dashboard';
 
 class App extends React.Component {
@@ -9,24 +9,44 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      loggedIn: false,
       user: {
-        loggedIn: true,
         isAdmin: false
       }
     };
   }
 
-  render() {
+  login = (user) => {
+    console.log("Stopgap: Logging in . . .");
+    if (this.state.user.loggedIn){ //already logged in.
+      console.error("Stopgap: user already logged in.");
+      this.setState({
+        loggedIn: false
+      });
+      this.setState({
+        loggedIn: true
+      });
+      return;
+    }
+    const newUser = { ... this.state.user}
+    Object.assign(newUser, user);
+    this.setState({
+      loggedIn: true,
+      user: newUser
+    });
+  }
 
+  render() { 
       return (
         <div> 
           <BrowserRouter>
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
-              <Route exact path='/login' render={() => (<Home />)}/>
-              <Route exact path='/dashboard' render={() => (<Dashboard user={this.state.user} />)}/> { /* TODO: create a dashboard component that will then have its own router for admin/user dashboards */ }
+              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} />) } />
+              <Route path='/dashboard' render={() => (<Dashboard loggedIn={this.state.loggedIn} user={this.state.user} />) } />
+              <Redirect path='/' to={this.state.loggedIn ? "/dashboard" : "/login" } />
             </Switch>
-            {this.state.user.loggedIn ? <Redirect to="/dashboard" /> : <Redirect to="/login" /> }
+            
           </BrowserRouter>
         </div>
       )
