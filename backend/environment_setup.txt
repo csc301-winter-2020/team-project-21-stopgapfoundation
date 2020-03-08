@@ -39,7 +39,16 @@ Instructions to set up the Django environment locally
 
 Other commands:
 
-- Create a superuser:
+- Create a superuser for development purposes:
 
     python manage.py createsuperuser --email <email address> --username <username>
 
+    Note: Keep track of superusers and delete them before production
+
+- Test an http request through the command line, with a Django server running locally
+
+    # Install httpie
+    ex. sudo apt-get install httpie
+
+    # http request command
+    http -a <username>:<password> <url>
