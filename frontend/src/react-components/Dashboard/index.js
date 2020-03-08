@@ -7,8 +7,8 @@ import ClientDashboard from "./client_dash";
 /* Primary Component for the Admin Dashboard page */
 class Dashboard extends React.Component {
   render () {
-    // if (!this.props.loggedIn) // user is not logged in.
-    //   return <Redirect to="/login" /> 
+    if (!this.props.loggedIn) // user is not logged in.
+      return <Redirect to="/login" /> 
     return (
       <div>
         {this.props.user.isAdmin ? <AdminDashboard /> : <ClientDashboard />}

@@ -17,6 +17,17 @@ class App extends React.Component {
   }
 
   login = (user) => {
+    console.log("Stopgap: Logging in . . .");
+    if (this.state.user.loggedIn){ //already logged in.
+      console.error("Stopgap: user already logged in.");
+      this.setState({
+        loggedIn: false
+      });
+      this.setState({
+        loggedIn: true
+      });
+      return;
+    }
     const newUser = { ... this.state.user}
     Object.assign(newUser, user);
     this.setState({

@@ -1,25 +1,13 @@
 import React from "react";
 
-import {
-  Link
-} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 
-/**
- * Form for filling in login credentials.
- * 
- * @prop {function} login - use to login user. Takes new user object
- * @prop {function} goBack - use to return to parent login page.
- * @prop {boolean}  isAdmin - true iff the login form is for an admin
- */
-function LoginForm(props) {
-
-  
+function RegisterForm(props) {
   return (
     <div className="buttons center">
-      <form  >
+      <form>
         <TextField
           variant="outlined"
           margin="normal"
@@ -44,36 +32,43 @@ function LoginForm(props) {
           autoComplete="current-password"
         />
 
+
+        <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="repeatpassword"
+          label="RepeatPassword"
+          type="repeatpassword"
+          id="repeatpassword"
+          autoComplete="current-password"
+        />
+
         <Button
           type="submit"
           fullWidth
           variant="contained"
           onClick={(e) => {
             e.preventDefault();
-            props.login({isAdmin: props.isAdmin})
-          }}
-        >
-            Sign in
+            props.login({isAdmin: false});
+          }} >
+          { /* TODO: feed in actual new user data */ }
+          Submit
         </Button>
 
         <Grid container>
           <Grid item xs>
-            <Button className="center_link" onClick={props.goBack} >
-              Back to home page
+            <Button fullWidth onClick={props.goBack}>
+              Go Back
             </Button>
           </Grid>
-          { // We only allow clients to create new accounts. Stopgap accounts are made manually.
-          !props.isAdmin && 
-          <Grid item xs>
-            <Button className="center_link" onClick={props.register}>
-              Don't have an account?<br/>Sign Up!
-            </Button>
-          </Grid>}
-          
         </Grid>
+
       </form>
+
     </div>
   );
 }
 
-export default LoginForm;                                                                                                                                           
+export default RegisterForm;  
