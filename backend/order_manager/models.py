@@ -9,7 +9,7 @@ def user_directory_path(instance, filename):
 
 # Expand the standard user class provided by Django Auth
 # Store any additional information about client in this model
-class ClientInformation(models.Model):
+class Client(models.Model):
     # Reference to base user model
     user = models.OneToOneField(
         User,
