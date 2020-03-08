@@ -121,7 +121,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
 # Django REST framework settings
 REST_FRAMEWORK = {
     # Control how many objects are returned per page

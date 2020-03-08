@@ -1,60 +1,55 @@
-/* Styles for the Home React component */
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.home__bg-image {
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  background-color: grey;
-}
-
 .home__button-link {
   text-decoration: none;
-  padding: 5px;
 }
-
-.home__button {
-  width: 250px;
-  height: 80px;
+#logo{
+  background-color: lightblue;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+  display: block;
 }
-
-/* Increase specificity to override component styles */
-.MuiButton-root.home__button {
+#logoContainer{
+background-color: lightblue;
+  width: 100%;
+  height: 17%;
+}
+.MuiButton-root.login__button:hover {
   background-color: transparent;
-  border: 4px black solid;
+  border: 4px darkslategrey solid;
   border-radius: 0;
 }
 
-.home__button .MuiButton-label {
+.login__button .MuiButton-label {
   font-size: 1.5em;
-  color: black;
+  color: darkslategray;
 }
 
-.buttons {
+.home__bg {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  background-color: floralwhite;
+}
+
+.center_left {
+  position: absolute;
   top: 50%;
+  left: 40%;
+  transform: translate(-50%, -50%);
+}
+.center_right {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform:translate(-50%, -50%);
+}
+.center {
+  position: absolute;
+  top:50%;
   left: 50%;
-  display: inline-block;
-  position: relative;
-  padding-top: 70px;
+  transform:translate(-50%, -50%);
 }
-
-p {
-  text-align: center;
-}
-
-.userform {
-  margin-top: 100px;
-}
-
-.adminform {
-  margin-top: 100px;
-}
-
-.register_link {
-  margin-left: 400px;
+.login__button {
+  width: 300px;
+  height: 80px;
 }

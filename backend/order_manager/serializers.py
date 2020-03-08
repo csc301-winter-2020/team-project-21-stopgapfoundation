@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from order_manager.models import ClientInformation, Waiver, Order
+from .models import ClientInformation, Waiver, Order
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -46,60 +46,40 @@ class ClientInformationSerializer(serializers.ModelSerializer):
             'website'
         ]
 
-"""
+class WaiverSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Waiver
 
-# Store a single waiver instance with this model
-# Every ramp request will have its own waiver
-class Waiver(models.Model):
-    # Reference to associated client
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
-
-    # Date of waiver creation/completion (assumed to be at the same time)
-    date = models.DateField(auto_now_add=True)
-
-    # Name and signature of owner or manager
-    signatory_first_name = models.CharField(max_length=30)
-    signatory_last_name = models.CharField(max_length=150)
-    signatory_signature = models.CharField(max_length=180)  # Use full name as e-signature
-
-    # Name and signature of witness
-    witness_first_name = models.CharField(max_length=30)
-    witness_last_name = models.CharField(max_length=150)
-    witness_signature = models.CharField(max_length=180)    # Use full name as e-signature
+        fields = [
+            #'id',
+            'user',
+            'date',
+            'signatory_first_name',
+            'signatory_last_name',
+            'signatory_signature',
+            'witness_first_name',
+            'witness_last_name',
+            'witness_signature'
 
 
-class Order(models.Model):
-    # Reference to associated client
-    user = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
+        ]
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
 
-    # Address information
-    billing_address = models.CharField(max_length=180)
-    shipping_address = models.CharField(max_length=180)
+        fields = [
+            #'id',
+            'user',
+            'billing_address',
+            'shipping_address',
+            'waiver',
+            'entryway_photo',
+            'step_left_photo',
+            'step_right_photo',
+            'step_left_height',
+            'step_right_height',
+            'ramp_colour',
+            'delivery_method',
+            'subsidize'
 
-    # Waiver information
-    waiver = models.OneToOneField(
-        Waiver,
-        on_delete=models.CASCADE,
-        primary_key=True
-    )
-    waiver_confirmation = models.BooleanField(default=False)
-
-    # Ramp information; height information stored in inches
-    entryway_photo = models.ImageField(upload_to=user_directory_path)
-    step_left_photo = models.ImageField(upload_to=user_directory_path)
-    step_right_photo = models.ImageField(upload_to=user_directory_path)
-    step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
-    step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
-    ramp_colour = models.CharField(max_length=50)
-    
-    # Additional information
-    delivery_method = models.CharField(max_length=50)
-    subsidize = models.BooleanField(default=False)
-
-"""
+        ]
