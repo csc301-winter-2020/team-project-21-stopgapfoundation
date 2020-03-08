@@ -4,12 +4,12 @@ from django.contrib.auth.models import User
 
 # Use this method to get the directory to store a user's photos
 def user_directory_path(instance, filename):
-    return "user_{0}/step_photos/{1}".format(instance.user.id, filename)
+    return "data/user_{0}/step_photos/{1}".format(instance.user.id, filename)
 
 
 # Expand the standard user class provided by Django Auth
 # Store any additional information about client in this model
-class ClientInformation(models.Model):
+class Client(models.Model):
     # Reference to base user model
     user = models.OneToOneField(
         User,
@@ -53,6 +53,9 @@ class Order(models.Model):
         User,
         on_delete=models.CASCADE
     )
+
+    # Date of order creation
+    date_created = models.DateField(auto_now_add=True)
 
     # Address information
     billing_address = models.CharField(max_length=180)
