@@ -15,43 +15,59 @@ import Admin from "../Login/admin";
 
 /* Component for the Home page */
 class Home extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isLoggingIn: false,
+      isAdmin: false
+    }
+  }
+
   render () {
+    let mainComponent = null;
+    if (!this.state.isLoggingIn){
+      mainComponent = <LoginButtons clickHandler={(isAdmin) => {
+        this.setState({
+          isLoggingIn: true,
+          isAdmin
+        });
+      }} />
+    } else {
+      mainComponent = this.state.isAdmin ? <Admin /> : <User />
+    }
+
     return (
       <Router>
         <div className="home__bg-image center">
           <Header />
-          <div className="buttons center">
-            <Link className="home__button-link" to={"./../user"}>
-              <Button className="home__button" >User</Button>
-            </Link>
-            <Link className="home__button-link" to={"./../admin"}>
-              <Button className="home__button">Admin</Button>
-            </Link>
-          </div>
-
-          <Switch>
-            < Route path="/user">
-              <User />
-            </Route>
-            <Route path="/admin">
-              <Admin />
-            </Route>
-            {/* <Route path="/home">
-              <Home />
-            </Route> */}
-          </Switch>
+          {mainComponent}
         </div>
       </Router >
     );
   }
 }
 
+function LoginButtons(props) {
+  const onClickAdmin = (e) => {
+    e.preventDefault();
+    props.clickHandler(false);
+  }
 
+  const onClickClient = (e) => {
+    e.preventDefault();
+    props.clickHandler(true);
+  }
 
-
-
-
-
-
+  return (
+    <div className="buttons center">
+      <Button className="home__button" onClick={onClickClient}>
+        Client
+      </Button>
+      <Button className="home__button" onClick={onClickAdmin}>
+        Admin
+      </Button>
+    </div>
+  );
+}
 
 export default Home;
