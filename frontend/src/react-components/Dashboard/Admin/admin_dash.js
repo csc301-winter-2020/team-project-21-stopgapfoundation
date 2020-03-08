@@ -7,8 +7,9 @@ class AdminDashboard extends React.Component {
     return (
       <div>
         <div id="navbar">
-          navbar
+          navbar {/*TODO: replace with actual navbar component */}
         </div>
+        
 
       </div>
     );
