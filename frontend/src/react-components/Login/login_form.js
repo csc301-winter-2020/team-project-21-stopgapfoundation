@@ -14,19 +14,29 @@ import Grid from '@material-ui/core/Grid';
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      email: "",
+      pwd: ""
+    }
     this.form = React.createRef();
   }
 
-  validate = () => {
-    return this.form.current.reportValidity();
+  validateAndSubmit = e => {
+    e.preventDefault();
+    if(this.form.current.reportValidity()){
+      this.props.login({isAdmin: this.props.isAdmin})
+    }
   }
   
   render() {
-    const props = this.props;
     return (
       <div className="buttons center">
-        <form ref={this.form} onSubmit={e => e.preventDefault()}>
+        <form ref={this.form} onSubmit={this.validateAndSubmit}>
           <TextField
+            value={this.state.email}
+            onChange = { e => this.setState({
+              email: e.target.value
+            })}
             variant="outlined"
             margin="normal"
             required
@@ -40,6 +50,10 @@ class LoginForm extends React.Component {
           />
   
           <TextField
+            value = {this.state.pwd}
+            onChange = { e => this.setState({
+              pwd: e.target.value
+            })}
             variant="outlined"
             margin="normal"
             required
@@ -55,27 +69,20 @@ class LoginForm extends React.Component {
             type="submit"
             fullWidth
             variant="contained"
-            onClick={ e => {
-              e.preventDefault();
-              if (this.validate()){
-                console.log('uhh ok');
-                props.login({isAdmin: props.isAdmin})
-              }
-            }}
           >
               Sign in
           </Button>
   
           <Grid container>
             <Grid item xs>
-              <Button className="center_link" onClick={props.goBack} >
+              <Button className="center_link" onClick={this.props.goBack} >
                 Back to home page
               </Button>
             </Grid>
             { // We only allow clients to create new accounts. Stopgap accounts are made manually.
-            !props.isAdmin && 
+            !this.props.isAdmin && 
             <Grid item xs>
-              <Button className="center_link" onClick={props.register}>
+              <Button className="center_link" onClick={this.props.register}>
                 Don't have an account?<br/>Sign Up!
               </Button>
             </Grid>}
