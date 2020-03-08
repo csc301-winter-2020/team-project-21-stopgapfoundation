@@ -19,8 +19,8 @@ class Login extends React.Component {
   goBack = () => this.setState({ inLoginForm: false })
 
   render () {
-    if (this.props.loggedIn) // user already logged in. they must actually log OUT to stay logged in.
-      return <Redirect to="/dashboard" />
+    // if (this.props.loggedIn) // user already logged in. they must actually log OUT to stay logged in.
+    //   return <Redirect to="/dashboard" />
     
     return (
       <div className="login__bg-image center">
