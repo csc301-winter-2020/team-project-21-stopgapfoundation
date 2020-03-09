@@ -24,8 +24,13 @@ router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),                # Admin login, testing
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),  # REST API browsable login/logout
-    path('api/', include(router.urls)),             # User, Group data
-    path('api/', include('order_manager.urls')),    # Order manager app data
+
+    path('admin/', admin.site.urls),
+    path('', include('frontend.urls')),
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('', include('order_manager.urls')),
+  
+
+
 ]

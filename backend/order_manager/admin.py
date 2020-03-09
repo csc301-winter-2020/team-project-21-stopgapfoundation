@@ -1,8 +1,8 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import ClientInformation, Order, Waiver
+from .models import Client, Order, Waiver
 
-admin.site.register(ClientInformation)
+admin.site.register(Client)
 admin.site.register(Order)
 admin.site.register(Waiver)

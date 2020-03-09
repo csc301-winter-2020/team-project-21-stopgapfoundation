@@ -36,6 +36,22 @@ Instructions to set up the Django environment locally
 
     python manage.py runserver
 
+10. Command to set front-end
+
+install packages needed:
+npm i webpack webpack-cli --save-dev
+npm i @babel/core babel-loader @babel/preset-env @babel/preset-react --save-dev
+npm i react react-dom --save-dev
+
+Use same command :npm i packge-name  --save-dev
+ to install other packages if needed
+(check possible packages needed in devDependencies in package.json in frontend directory)
+
+
+Set the web-pack enviroment( need to run everytime you change the frontend files)
+npm i react react-dom --save-dev
+
+check result, run python manage.py runserver
 
 Other commands:
 

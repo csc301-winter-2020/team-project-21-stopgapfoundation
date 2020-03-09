@@ -2,8 +2,8 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render
 from rest_framework import generics, viewsets, permissions
 
-from .models import ClientInformation, Waiver, Order
-from .serializers import UserSerializer, GroupSerializer, ClientInformationSerializer,OrderSerializer,WaiverSerializer
+from .models import Client, Waiver, Order
+from .serializers import UserSerializer, GroupSerializer, ClientSerializer, OrderSerializer, WaiverSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
@@ -19,21 +19,21 @@ class GroupViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
-class ClientInformationViewSet(viewsets.ModelViewSet):
-    queryset = ClientInformation.objects.all().order_by('user')
-    serializer_class = ClientInformationSerializer
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all().order_by('user')
+    serializer_class = ClientSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class OrderInformationViewSet(viewsets.ModelViewSet):
+class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all().order_by('date_created')
     serializer_class = OrderSerializer
     permission_classes =[
         permissions.IsAuthenticated
     ]
 
-class WaiverInformationViewSet(viewsets.ModelViewSet):
+class WaiverViewSet(viewsets.ModelViewSet):
     queryset = Waiver.objects.all().order_by('user')
     serializer_class = WaiverSerializer
     permission_classes =[

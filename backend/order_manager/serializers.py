@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import ClientInformation, Waiver, Order
+from .models import Client, Waiver, Order
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -26,9 +26,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
             'name'
         ]
 
-class ClientInformationSerializer(serializers.ModelSerializer):
+class ClientSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ClientInformation
+        model = Client
 
         fields = [
             'user',
