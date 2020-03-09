@@ -7,3 +7,12 @@
 
 # Folders to ignore
 **/__pycache__
+
+Ignore Idea file
+/.idea/*
+
+Ignore Python Lib files
+/backend/venv/*
+
+Ignore any Node modules
+**/node_modules
