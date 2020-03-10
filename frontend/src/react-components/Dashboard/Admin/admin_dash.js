@@ -2,6 +2,7 @@ import React from "react";
 import Grid from '@material-ui/core/Grid'
 import Navbar from "../../Navbar"
 import RampDimensions from "./RampDimensions"
+import ProgressBar from "../ProgressBar";
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -34,6 +35,8 @@ class AdminDashboard extends React.Component {
             grade: "22 deg",
             color: "#EFDA33"
           } } />
+
+          <ProgressBar progress={1.0}/>
         </div>
       </div>
     );
