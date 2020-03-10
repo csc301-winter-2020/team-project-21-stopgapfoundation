@@ -16,3 +16,11 @@
     font-size: large;
     color: white;
 }
+
+#logOutButton {
+    width: 150px;
+    height: 50px;
+    background-color: floralwhite;
+    display: block;
+    margin-top: 2%;
+}

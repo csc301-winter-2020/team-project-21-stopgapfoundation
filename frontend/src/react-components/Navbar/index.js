@@ -17,7 +17,7 @@ class Nav extends React.Component {
                         <span><img className='center' src={logo}></img></span>
                     </Grid>
                     <Grid item xs={3}>
-                        <Button onClick={this.props.logout}>Log Out</Button>
+                        <Button id='logOutButton' onClick={this.props.logout}>Log Out</Button>
                     </Grid>
                 </Grid>
             </div>
