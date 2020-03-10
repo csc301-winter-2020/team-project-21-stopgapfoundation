@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
 import Navbar from "../../Navbar"
+import RampDimensions from "./RampDimensions"
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -25,7 +26,7 @@ class AdminDashboard extends React.Component {
             </Grid>
           </Grid>
         </div>
-
+        <RampDimensions />
       </div>
     );
   }
