@@ -1,0 +1,32 @@
+/**
+* COLORS:
+* #615187   dark            indigo
+* #ED7369   dark accent     coral
+* #689BF0   main            sky blue
+* #AFA7D1   light accent    light purple
+* #F3F5F3   light           very close to white
+*
+* #212121   dark grey / almost black
+* #767676   medium grey
+* #BDBDBD   light grey / almost white
+**/
+
+.number-stat {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+    height: 100%;
+}
+
+.number-stat-num {
+    color: #689BF0;
+    font-size: 6em;
+    text-align: center;
+    display: block;
+}
+
+.number-stat-title {
+    color: #615187;
+    text-align: center;
+}
+

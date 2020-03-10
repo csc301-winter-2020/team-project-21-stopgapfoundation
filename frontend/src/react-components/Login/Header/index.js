@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "./static/logo.png"
+import logo from "../../../img/logo.png"
 
 import "./styles.css";
 
@@ -9,7 +9,7 @@ class Header extends React.Component {
 
     return (
       <div className="header">
-        <img src={logo}></img>
+        <img style={{display:'block', margin:'auto'}} src={logo}></img>
       </div>
     );
   }
