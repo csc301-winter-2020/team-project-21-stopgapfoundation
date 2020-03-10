@@ -11,17 +11,22 @@
 * #BDBDBD   light grey / almost white
 **/
 
-#navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 60px;
-    background-color: #615187;
-    color: #F3F5F3;
+.number-stat {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+    height: 100%;
 }
-.content {
-    padding-top: 60px; /* For navbar */
-    max-width: 1280px;
-    margin: auto;
+
+.number-stat-num {
+    color: #689BF0;
+    font-size: 6em;
+    text-align: center;
+    display: block;
 }
+
+.number-stat-title {
+    color: #615187;
+    text-align: center;
+}
+
