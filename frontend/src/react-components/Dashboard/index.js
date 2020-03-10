@@ -11,7 +11,7 @@ class Dashboard extends React.Component {
       return <Redirect to="/login" /> 
     return (
       <div>
-        {this.props.user.isAdmin ? <AdminDashboard /> : <ClientDashboard />}
+        {this.props.user.isAdmin ? <AdminDashboard logout={this.props.logout} /> : <ClientDashboard logout={this.props.logout}/>}
       </div>
     );
   }

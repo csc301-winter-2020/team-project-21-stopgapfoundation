@@ -36,6 +36,15 @@ class App extends React.Component {
     });
   }
 
+  logout = () => {
+    this.setState({
+      loggedIn: false,
+      user: {
+        isAdmin: false
+      }
+    })
+  }
+
   render() { 
       return (
         <div> 
@@ -43,7 +52,7 @@ class App extends React.Component {
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} />) } />
-              <Route path='/dashboard' render={() => (<Dashboard loggedIn={this.state.loggedIn} user={this.state.user} />) } />
+              <Route path='/dashboard' render={() => (<Dashboard loggedIn={this.state.loggedIn} user={this.state.user} logout={this.logout} />) } />
               <Route exact path='/form' render={() => (<RequestForm />)}/>
               <Redirect path='/' to={this.state.loggedIn ? "/dashboard" : "/login" } />
             </Switch>

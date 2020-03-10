@@ -8,7 +8,7 @@ class AdminDashboard extends React.Component {
   render () {
     return (
       <div>
-        <Navbar title="Admin Dashboard"/>
+        <Navbar title="Admin Dashboard" logout={this.props.logout}/>
         <div className={"content"}>
           <Grid container>
             <Grid item xs={3}>
