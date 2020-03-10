@@ -1,9 +1,6 @@
 import React from 'react';
 import Navbar from "../Navbar/index"
-import Form from 'muicss/lib/react/form';
-import Input from 'muicss/lib/react/input';
-import Textarea from 'muicss/lib/react/textarea';
-import Button from 'muicss/lib/react/button';
+import TextField from '@material-ui/core/TextField'
 import './styles.css';
 
 class RequestForm extends React.Component {
@@ -11,13 +8,85 @@ class RequestForm extends React.Component {
         return (
             <div>
                 <Navbar title="Request Form" />
-                <Form id='requestForm'>
-                    <legend>Ramp Request</legend>
-                    <Input placeholder="First Name" />
-                    <Input placeholder="Last Name" />
-                    <Textarea placeholder="Textarea" />
-                    <Button variant="raised">Submit</Button>
-                </Form>
+                    {/* <h3 style={{display:'inlineBlock'}}>Ramp Request Form</h3> */}
+                <form id='requestForm'>
+                    <div>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="First Name"
+                            variant="filled"
+                        />
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="Last Name"
+                            variant="filled"
+                        />
+                        </div>
+                        <div>
+                        <br/>
+                        <TextField
+                            optional
+                            id="filled-required"
+                            label="Optional"
+                            defaultValue="Company Email"
+                            variant="filled"
+                        />
+                        <br/><br/>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="Email"
+                            variant="filled"
+                        />
+                        <br/><br/>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="Phone Number"
+                            variant="filled"
+                        />
+                        <br/><br/>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="Delivery Address"
+                            variant="filled"
+                        />
+                        <br/><br/>
+                        <TextField
+                            optional
+                            id="filled-required"
+                            label="Optional"
+                            defaultValue="Website"
+                            variant="filled"
+                        />
+                                                <br/>
+                        <br/>
+                        <TextField
+                            required
+                            id="filled-required"
+                            label="Required"
+                            defaultValue="Delivery Type"
+                            variant="filled"
+                        />
+                        <br/>
+                        <br/>
+                        <TextField
+                            optional
+                            id="filled-required"
+                            label="Optional"
+                            defaultValue="Ramp Color"
+                            variant="filled"
+                        />
+                    </div>
+                </form>
 
 
 
