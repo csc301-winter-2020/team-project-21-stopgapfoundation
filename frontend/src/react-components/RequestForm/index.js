@@ -1,100 +1,65 @@
-import React from 'react';
-import Navbar from "../Navbar/index"
-import TextField from '@material-ui/core/TextField'
-import './styles.css';
+import React, { Component } from 'react'
+import FormUserDetails from './FormUserDetails';
 
-class RequestForm extends React.Component {
-    render() {
-        return (
-            <div>
-                <Navbar title="Request Form" />
-                    {/* <h3 style={{display:'inlineBlock'}}>Ramp Request Form</h3> */}
-                <form id='requestForm'>
-                    <div>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="First Name"
-                            variant="filled"
-                        />
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="Last Name"
-                            variant="filled"
-                        />
-                        </div>
-                        <div>
-                        <br/>
-                        <TextField
-                            optional
-                            id="filled-required"
-                            label="Optional"
-                            defaultValue="Company Email"
-                            variant="filled"
-                        />
-                        <br/><br/>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="Email"
-                            variant="filled"
-                        />
-                        <br/><br/>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="Phone Number"
-                            variant="filled"
-                        />
-                        <br/><br/>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="Delivery Address"
-                            variant="filled"
-                        />
-                        <br/><br/>
-                        <TextField
-                            optional
-                            id="filled-required"
-                            label="Optional"
-                            defaultValue="Website"
-                            variant="filled"
-                        />
-                                                <br/>
-                        <br/>
-                        <TextField
-                            required
-                            id="filled-required"
-                            label="Required"
-                            defaultValue="Delivery Type"
-                            variant="filled"
-                        />
-                        <br/>
-                        <br/>
-                        <TextField
-                            optional
-                            id="filled-required"
-                            label="Optional"
-                            defaultValue="Ramp Color"
-                            variant="filled"
-                        />
-                    </div>
-                </form>
-
-
-
-            </div>
-
-        )
+export class UserForm extends Component {
+    state = {
+        step: 1, 
+        firstName: '',
+        lastName: '',
+        email: '',
+        companyName: '',
+        phoneNumber: '', 
+        deliveryAddress: '',
+        deliveryType: '',
+        rampColor: ''
     }
 
+    nextStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step + 1
+        });
+    }
 
+    prevStep = () => {
+        const { step } = this.state;
+        this.setState({
+            step: step - 1
+        });
+    }
+    // Handle Field Changes
+    handleChange = input => e => {
+        this.setState({[input]: e.target.value})
+    }
+
+    render() {
+        const { step } = this.state;
+        const { firstName, lastName, email, companyName, phoneNumber, deliveryAddress, deliveryType, rampColor } = this.state;
+        const values = { firstName, lastName, email, companyName, phoneNumber,  deliveryAddress, deliveryType, rampColor}
+
+        switch(step) {
+            case 1: 
+                return (
+                    <FormUserDetails
+                        nextStep={this.nextStep}
+                        handleChange= {this.handleChange}
+                        values = {values} 
+                    
+                    />
+                )
+            case 2:
+                return <h1> Form Personal Details</h1>
+            case 3:
+                return <h1>Confirm</h1>
+            case 4:
+                return <h1>Success</h1>
+        }
+        return (
+            <div>
+                
+            </div>
+        )
+    }
 }
-export default RequestForm;
+
+export default UserForm
