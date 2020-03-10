@@ -1,3 +1,4 @@
+
 /**
 * COLORS:
 * #615187   dark            indigo
@@ -24,4 +25,12 @@
     padding-top: 60px; /* For navbar */
     max-width: 1280px;
     margin: auto;
+}
+
+.newRequestButton {
+   
+}
+
+.h1 {
+    text-align: center;
 }
