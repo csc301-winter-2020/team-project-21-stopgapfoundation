@@ -20,6 +20,7 @@
 .login__button {
   width: 250px;
   height: 80px;
+  padding: 10px;
 }
 
 /* Increase specificity to override component styles */
@@ -27,6 +28,7 @@
   background-color: transparent;
   border: 4px black solid;
   border-radius: 0;
+  margin: 5px;
 }
 
 .login__button .MuiButton-label {
@@ -39,8 +41,6 @@
   left: 50%;
   display: inline-block;
   position: relative;
-  padding-top: 70px;
-  margin-top: 50px;
 }
 
 p {
