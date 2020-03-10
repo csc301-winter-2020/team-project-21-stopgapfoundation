@@ -26,6 +26,21 @@
     text-align: center;
 }
 
+
+.block {
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+}
+
+.block-title{
+    color: #615187;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 1.7em;
+}
+
+
 .progress-bar {
     background-color: #BDBDBD;
     height: 20px;
@@ -36,4 +51,25 @@
     background-color: #689BF0;
     width: 100%; /* Overriden in component based on progress */
     height: 100%;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kv {
+    font-size: 1.15em;
+    margin-bottom: 10px;
+}
+
+.kv-key {
+    text-align: right;
+    padding: 0 10px;
+}
+
+.kv-value {
+    text-align: left;
+    padding: 0 10px;
 }

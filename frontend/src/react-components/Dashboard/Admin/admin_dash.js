@@ -11,7 +11,7 @@ class AdminDashboard extends React.Component {
       <div>
         <Navbar title="Admin Dashboard" logout={this.props.logout}/>
         <div className={"content"}>
-          <Grid container>
+          <Grid container justify={"space-evenly"}>
             <Grid item xs={3}>
               <NumberStat title="Total Requests " stat={120} />
             </Grid>
@@ -25,8 +25,16 @@ class AdminDashboard extends React.Component {
               <NumberStat title="Ready For Delivery" stat={10} />
             </Grid>
           </Grid>
+
+          <RampDimensions ramp={ {
+            len: "30cm",
+            width: "50cm",
+            height: "10cm",
+            depth: "40cm",
+            grade: "22 deg",
+            color: "#EFDA33"
+          } } />
         </div>
-        <RampDimensions />
       </div>
     );
   }
@@ -34,8 +42,8 @@ class AdminDashboard extends React.Component {
 
 function NumberStat(props){
   return (
-    <div className={"number-stat"}>
-      <h2 className={"number-stat-title"}>{props.title}</h2>
+    <div className={"number-stat block"}>
+      <h2 className={"block-title"}>{props.title}</h2>
       <span className={"number-stat-num"}>
         {props.stat}
       </span>
