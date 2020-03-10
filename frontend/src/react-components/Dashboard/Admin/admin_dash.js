@@ -12,10 +12,18 @@ class AdminDashboard extends React.Component {
         </div>
         <div className={"content"}>
           <Grid container>
-            <NumberStat item title="Total Requests" stat={120} />
-            <NumberStat item title="Ready For Build" stat={60} />
-            <NumberStat item title="Ready For Paint" stat={12} />
-            <NumberStat item title="Ready For Delivery" stat={10} />
+            <Grid item xs={3}>
+              <NumberStat title="Total Requests " stat={120} />
+            </Grid>
+            <Grid item xs={3}>
+              <NumberStat title="Ready For Build" stat={60} />
+            </Grid>
+            <Grid item xs={3}>
+              <NumberStat title="Ready For Paint" stat={12} />
+            </Grid>
+            <Grid item xs={3}>
+              <NumberStat title="Ready For Delivery" stat={10} />
+            </Grid>
           </Grid>
         </div>
 
