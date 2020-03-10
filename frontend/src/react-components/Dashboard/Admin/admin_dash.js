@@ -1,5 +1,6 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
+import Navbar from "../../Navbar"
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -7,9 +8,7 @@ class AdminDashboard extends React.Component {
   render () {
     return (
       <div>
-        <div id="navbar">
-          navbar {/*TODO: replace with actual navbar component */}
-        </div>
+        <Navbar title="Admin Dashboard"/>
         <div className={"content"}>
           <Grid container>
             <Grid item xs={3}>

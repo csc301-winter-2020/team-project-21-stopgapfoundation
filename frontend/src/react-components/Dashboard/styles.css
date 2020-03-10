@@ -12,17 +12,8 @@
 * #BDBDBD   light grey / almost white
 **/
 
-#navbar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 60px;
-    background-color: #615187;
-    color: #F3F5F3;
-}
 .content {
-    padding-top: 60px; /* For navbar */
+    padding-top: 100px; /* For navbar */
     max-width: 1280px;
     margin: auto;
 }
