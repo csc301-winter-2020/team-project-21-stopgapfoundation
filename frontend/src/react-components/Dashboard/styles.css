@@ -25,3 +25,15 @@
 .h1 {
     text-align: center;
 }
+
+.progress-bar {
+    background-color: #BDBDBD;
+    height: 20px;
+    outline: 5px solid #BDBDBD;
+}
+
+.progress-bar-inner {
+    background-color: #689BF0;
+    width: 100%; /* Overriden in component based on progress */
+    height: 100%;
+}
