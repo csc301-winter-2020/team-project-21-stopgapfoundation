@@ -25,10 +25,3 @@ class ClientDashboard extends React.Component {
 }
 
 export default ClientDashboard;
-
-
-/*
-
-            
-
-*/
