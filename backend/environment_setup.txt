@@ -49,7 +49,7 @@ Use same command :npm i packge-name  --save-dev
 
 
 Set the web-pack enviroment( need to run everytime you change the frontend files)
-npm i npm run dev     (folder where the frontend is )
+npm run dev     (folder where the frontend is )
 
 check result, run python manage.py runserver  (root folder of the django )
 
