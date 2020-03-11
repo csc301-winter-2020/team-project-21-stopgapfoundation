@@ -33,9 +33,9 @@ class AdminDashboard extends React.Component {
             </Grid>
           </Grid>
 
-          <RampDimensions ramp={ rampData } />
+          <RampDimensions ramp={ rampData } isAdmin />
 
-          <StatusBlock />
+          <StatusBlock isAdmin />
         </div>
       </div>
     );
