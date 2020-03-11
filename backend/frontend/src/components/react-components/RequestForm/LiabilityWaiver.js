@@ -5,7 +5,12 @@ import Button from '@material-ui/core/Button'
 
 
 export class LiabilityWaiver extends Component {
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();
+    }
     render() {
+        const { values } = this.props;
         return (
             <div>
                 <h1 style={{ textAlign: "center", textDecoration: "underline" }}>Liability Waiver, Assumption of Risk and Idemnity </h1>
