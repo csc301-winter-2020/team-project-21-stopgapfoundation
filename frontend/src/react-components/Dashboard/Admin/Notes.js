@@ -71,6 +71,9 @@ class Notes extends React.Component{
 
     return (
       <div className={"block"}>
+        <h2 className={"block-title"}>
+          Notes
+        </h2>
         <div className={"notes-container"}>
           {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
         </div>

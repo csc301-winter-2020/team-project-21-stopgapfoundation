@@ -45,6 +45,9 @@ class StatusBlock extends React.Component {
 
     return (
       <div className={"block"}>
+        <h2 className={"block-title"}>
+          Status
+        </h2>
         <ProgressBar progress={this.state.progress / 100} />
         <span className={"status-block-status"} style={{left: `${this.state.progress}%`}}>
           {this.state.status}
