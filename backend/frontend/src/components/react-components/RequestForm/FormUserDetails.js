@@ -88,7 +88,7 @@ export class FormUserDetails extends Component {
 
                         <br /> <br />
                         <Button
-                            color="primary" variant="contained" onClick={this.continue}> Submit!</Button>
+                            color="primary" variant="contained" onClick={this.continue}>Next</Button>
                         <h4>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
                             We require all the info as mentioned above in order to send you a quote. Upon quote approval, there’s typically an approximate 4-6 weeks turnover.
                             We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!</h4>

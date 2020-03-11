@@ -9,7 +9,9 @@ class ClientDashboard extends React.Component {
       <div>
         <Navbar title="Client Dashboard" logout={this.props.logout}/>
         <h1 style={{ textAlign: 'center' }}>Welcome to StopGap!</h1>
-            <Button onClick={onClickRequestForm} className="newRequestButton"
+            <Button 
+              onClick={onClickRequestForm} 
+              className="newRequestButton"
               color="primary" variant="contained" size='large'
               style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
               Create New Ramp Request

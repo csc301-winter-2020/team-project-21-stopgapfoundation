@@ -48,7 +48,7 @@ export class UserForm extends Component {
                     />
                 )
             case 2:
-                return <h1> Form Personal Details</h1>
+                return <h1> Thank you! We'll be in contact about your request. </h1>
             case 3:
                 return <h1>Confirm</h1>
             case 4:
