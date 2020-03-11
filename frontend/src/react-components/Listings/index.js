@@ -13,15 +13,13 @@ import "./styles.css"
 //Listing returns a button with the client/business names and status
 function Listing(props){    
         return(  
-        <div>
-            <Button className="listing_button">
+            <Button className="listing_button" onClick={props.click}>
                 <Grid container spacing={3}>
                     <Grid item xs>{props.client_name} </Grid>
                     <Grid item xs>{props.business_name} </Grid>
                     <Grid item xs>{props.status} </Grid>
                 </Grid>
-            </Button>
-        </div>      
+            </Button>    
         );
 }
 
@@ -33,12 +31,15 @@ class ListingBox extends React.Component{
         }
     }  
 
-    renderListing(){
-        //hard coded for now, need to figure out how to connect it
-        //probably use a counter and render x buttons 
-        var client = "John";
-        var business = "Apple";
-        var status = "75%";
+    //component will mount
+    //for now hard code the data 
+
+    renderListing(i){
+        //i not used for now, figure it will be used when iterating through requests
+        //variables as placeholders for the information when fetched from requests
+        var client = "";
+        var business = "";
+        var status = "";
         return (
             <Listing client_name = {client} business_name = {business} status = {status}>
             </Listing>
@@ -48,10 +49,7 @@ class ListingBox extends React.Component{
     render(){
         return(
             <div className="listing_box">
-                {this.renderListing()}
-                {this.renderListing()}
-                {this.renderListing()}
-                {this.renderListing()}
+                {this.renderListing(0)}
             </div>
         )
     }
