@@ -18,19 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from order_manager import views
+from .views import index
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
-    path('', include('frontend.urls')),
+    path('', index, name='index'),
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include('order_manager.urls')),
-  
-
-
 ]
