@@ -4,7 +4,7 @@ import Navbar from "../../Navbar";
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
-import KeyValue from "../../KeyValue";
+import GeneralInfo from "./GeneralInfo";
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -33,27 +33,13 @@ class AdminDashboard extends React.Component {
             <Grid item xs={2}>
               <NumberStat title="Ready For Delivery" stat={10} />
             </Grid>
-            <Grid item xs={2}>
-              <NumberStat title="Ready For Delivery" stat={10} />
-            </Grid>
           </Grid>
 
           <hr />
-          <br />
-          <br />
-          <br />
-          <br />
 
           <Grid container>
             <Grid item xs={4}>
-              <div className={"block"}>
-                <KeyValue className={"block"} data = {{
-                  "Liability Waiver": "Not Signed",
-                  "Delivery Address": "123 Street Road, Toronto, ON",
-                  "Business Name": "Regular Business Inc.",
-                  "Client Name": "John Smith"
-                }} />
-              </div>
+              <GeneralInfo />
             </Grid>
             <Grid item xs={4}>
               <RampDimensions ramp={ rampData } isAdmin />
