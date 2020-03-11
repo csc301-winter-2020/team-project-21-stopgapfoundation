@@ -12,13 +12,13 @@ function KeyValue(props){
 
   // }
 
-    const data = Object.entries(props.data).map( x => {
+    const data = Object.entries(props.data).map( (x, i) => {
       let key = x[0] === "len" ? "length" : x[0]; // special case for "length" key (as length is a keyword)
       key = key.charAt(0).toUpperCase() + key.slice(1)
       const value = x[1]
 
       return (
-        <Grid container className={"kv"}>
+        <Grid container className={"kv"} key={i}>
           <Grid item xs={6} className={"kv-key"}>
             <strong >
               {key}
