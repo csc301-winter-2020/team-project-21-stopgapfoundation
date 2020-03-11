@@ -11,7 +11,11 @@ export class UserForm extends Component {
         phoneNumber: '', 
         deliveryAddress: '',
         deliveryType: '',
-        rampColor: ''
+        rampColor: '',
+        managerFirst: '',
+        managerSig: '',
+        witnessName: '',
+        witnessSig: ''
     }
 
     nextStep = () => {
@@ -48,9 +52,15 @@ export class UserForm extends Component {
                     />
                 )
             case 2:
-                return <h1> Thank you! We'll be in contact about your request. </h1>
+                return(
+                    <LiabilityWaiver
+                        nextStep={this.nextStep}
+                        handleChange={this.handleChange}
+                        values = {values}
+                    />
+                )
             case 3:
-                return <h1>Confirm</h1>
+                return <h1> Thank you! We'll be in contact about your request. </h1>
             case 4:
                 return <h1>Success</h1>
         }
