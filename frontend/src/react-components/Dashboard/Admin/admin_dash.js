@@ -28,11 +28,8 @@ class AdminDashboard extends React.Component {
           </Grid>
 
           <RampDimensions ramp={ {
-            len: "30cm",
-            width: "50cm",
-            height: "10cm",
-            depth: "40cm",
-            grade: "22 deg",
+            l_height: 10,
+            r_height: 10,
             color: "#EFDA33"
           } } />
 
