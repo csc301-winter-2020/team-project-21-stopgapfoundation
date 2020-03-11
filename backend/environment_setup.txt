@@ -53,6 +53,8 @@ npm i npm run dev     (folder where the frontend is )
 
 check result, run python manage.py runserver  (root folder of the django )
 
+go to 127.0.0.1:8000 to see result
+
 Other commands:
 
 - Create a superuser for development purposes:

@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from "../../img/logo.png";
 import './styles.css';
 import { Button, Grid } from '@material-ui/core';
 import {Link} from "react-router-dom";
@@ -14,7 +13,7 @@ class Nav extends React.Component {
                         <span className="navTitle"><h3><b>{this.props.title}</b></h3></span>
                     </Grid>
                     <Grid item xs={6}>
-                        <span><img className='center' src={logo}></img></span>
+                        <span><img className='center' src={"/static/logo.png"}></img></span>
                     </Grid>
                     <Grid item xs={3}>
                         <Button id='logOutButton' onClick={this.props.logout}>Log Out</Button>
