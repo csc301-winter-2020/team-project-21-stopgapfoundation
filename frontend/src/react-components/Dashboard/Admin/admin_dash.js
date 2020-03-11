@@ -1,13 +1,19 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid'
-import Navbar from "../../Navbar"
-import RampDimensions from "./RampDimensions"
-import ProgressBar from "../ProgressBar";
+import Grid from '@material-ui/core/Grid';
+import Navbar from "../../Navbar";
+import RampDimensions from "./RampDimensions";
+import StatusBlock from "./StatusBlock";
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
   render () {
+    const rampData = {
+      l_height: 10,
+      r_height: 10,
+      color: "#EFDA33"
+    };
+
     return (
       <div>
         <Navbar title="Admin Dashboard" logout={this.props.logout}/>
@@ -27,13 +33,9 @@ class AdminDashboard extends React.Component {
             </Grid>
           </Grid>
 
-          <RampDimensions ramp={ {
-            l_height: 10,
-            r_height: 10,
-            color: "#EFDA33"
-          } } />
+          <RampDimensions ramp={ rampData } />
 
-          <ProgressBar progress={1.0}/>
+          <StatusBlock />
         </div>
       </div>
     );
