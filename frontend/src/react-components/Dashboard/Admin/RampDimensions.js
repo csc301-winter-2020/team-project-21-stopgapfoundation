@@ -1,6 +1,11 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
-import {ReactComponent as RampImage} from "./ramp.svg"
+import {ReactComponent as IconLeftGrade} from "./ramp-icons/left_grade.svg";
+import {ReactComponent as IconRightGrade} from "./ramp-icons/right_grade.svg";
+import {ReactComponent as IconLeftHeight} from "./ramp-icons/left-height.svg";
+import {ReactComponent as IconRightHeight} from "./ramp-icons/right-height.svg";
+import {ReactComponent as IconLength} from "./ramp-icons/length.svg";
+import {ReactComponent as IconWidth} from "./ramp-icons/width.svg";
 import KeyValue from "../../KeyValue";
 
 /** Component that will display dimensions for the ramp.
@@ -46,11 +51,13 @@ class RampDimensions extends React.Component{
             </h2>
           </Grid>
 
-          <Grid item xs={12}>
+          {/* Diagram not needed unless it matches ramp size. */}
+          {/* <Grid item xs={12}>
             <RampImage className={"ramp-dimensions-image center-block"} />
-          </Grid>
+          </Grid> */}
 
           <KeyValue data={data} />
+          {/* TODO: add icons to keys */}
           
         </Grid>   
       </div>
