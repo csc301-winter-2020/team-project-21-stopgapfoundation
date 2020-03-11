@@ -13,7 +13,11 @@ export class UserForm extends Component {
         phoneNumber: '', 
         deliveryAddress: '',
         deliveryType: '',
-        rampColor: ''
+        rampColor: '',
+        managerFirst: '',
+        managerSig: '',
+        witnessName: '',
+        witnessSig: ''
     }
 
     nextStep = () => {
@@ -55,11 +59,11 @@ export class UserForm extends Component {
                         nextStep={this.nextStep}
                     />
                 )
-
             case 3:
                 return (
                     <LiabilityWaiver
                         nextStep={this.nextStep}
+                        handleChange={this.handleChange}
                         values = {values}
                     />
                 )

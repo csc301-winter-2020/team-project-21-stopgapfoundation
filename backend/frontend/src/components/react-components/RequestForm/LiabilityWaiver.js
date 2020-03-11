@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 import Box from '@material-ui/core/Box'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
 
 export class LiabilityWaiver extends Component {
+    continue = e => {
+        e.preventDefault();
+        this.props.nextStep();
+    }
     render() {
+        const { values } = this.props;
         return (
             <div>
                 <h1 style={{ textAlign: "center", textDecoration: "underline" }}>Liability Waiver, Assumption of Risk and Idemnity </h1>
                 <div className='container' style={{ width: '900px' }}>
-                <Box style={{ float: "left" }} border={3} marginLeft='5vh' maxWidth="900px">Congratulations on joining The Ramp Project! By signing this document you waive certain legal rights, including the right to sue. Please read carefully before signing.
+                    <Box style={{ float: "left" }} border={3} marginLeft='5vh' maxWidth="900px">Congratulations on joining The Ramp Project! By signing this document you waive certain legal rights, including the right to sue. Please read carefully before signing.
                     <br></br><br></br>I understand that The StopGap Foundation (“StopGap”) will construct and provide my business with a temporary ramp to be used to access my single stepped storefront. Once StopGap delivers the ramp, it is my property and my sole responsibility.
                     <br></br><br></br>I understand that in order to participate in The Ramp Project, I must agree to and sign this waiver and indemnity.
                     <br></br><br></br>I know that this ramp is not intended to be a permanent ramp to my storefront and that the ramp should only be used when needed. When in use, the ramp should be level and flush against the step with no gaps present. When the ramp is not in use, it should be stored in a safe location.
@@ -16,7 +24,41 @@ export class LiabilityWaiver extends Component {
                     <br></br><br></br>I agree to indemnify StopGap, its employees, contractors, agents, directors or volunteers for any and all liabilities, damages, costs, claims, suits, and actions that are directly or indirectly related to my activities or my participation in The Ramp Project. I agree not to sue or bring legal action against anyone who could seek contribution or indemnity from StopGap, its employees, contractors, agents, directors or volunteers under the Negligence Act.
                 </Box>
                 </div>
-                <Box style={{float:'left', marginLeft: '30px'}} maxWidth='500px' border={3}>  </Box>
+                <Box style={{ float: 'left', marginLeft: '30px' }} maxWidth='500px' border={3}>
+                    <div>
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Owner / Manager First and Last Name"
+                            defaultValue=""
+                            onChange={this.props.handleChange('firstName')}
+                        /> 
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Owner / Manager Signature"
+                            defaultValue=""
+                            onChange={this.props.handleChange('lastName')}
+                        />
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Witness Name"
+                            defaultValue=""
+                            onChange={this.props.handleChange('lastName')}
+                        />
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Witness Signature"
+                            defaultValue=""
+                            onChange={this.props.handleChange('lastName')}
+                        />
+                    </div>
+                    <Button color="primary" variant="contained" onClick={this.continue}>
+                        Next
+                    </Button>
+                </Box>
             </div>
         )
     }
