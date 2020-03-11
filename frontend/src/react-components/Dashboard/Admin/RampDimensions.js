@@ -36,21 +36,24 @@ class RampDimensions extends React.Component{
     data["Right Grade"] = `${r_grade}deg`;
     data["Color"] = color;
 
-    return (
-      <Grid container className={"ramp-dimensions block"} >
-        <Grid item xs={12}>
-          <h2 className={"block-title"}>
-            Ramp Dimensions
-          </h2>
-        </Grid>
+    return ( 
+      <div className={"block"}>
+        {/* This div is seperate from the grid container because this needs the "block" class. If the class is on Grid, layout issues appear. */ }
+        <Grid container className={"ramp-dimensions"} >
+          <Grid item xs={12}>
+            <h2 className={"block-title"}>
+              Ramp Dimensions
+            </h2>
+          </Grid>
 
-        <Grid item xs={12}>
-          <RampImage className={"ramp-dimensions-image center-block"} />
-        </Grid>
+          <Grid item xs={12}>
+            <RampImage className={"ramp-dimensions-image center-block"} />
+          </Grid>
 
-        <KeyValue data={data} />
-        
-      </Grid>    
+          <KeyValue data={data} />
+          
+        </Grid>   
+      </div>
     );
   }
   
