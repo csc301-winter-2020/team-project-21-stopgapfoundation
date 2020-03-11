@@ -1,6 +1,7 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
 import {ReactComponent as RampImage} from "./ramp.svg"
+import KeyValue from "../../KeyValue";
 
 /** Component that will display dimensions for the ramp.
  *  Uses a 2D image for now, could potentially be updated to show a 3D model.
@@ -14,99 +15,20 @@ function RampDimensions(props) {
   console.log(props.ramp.len)
 
   return (
-    <div>
-      <Grid container className={"ramp-dimensions block"} >
-        <Grid item xs={12}>
-          <h2 className={"block-title"}>
-            Ramp Dimensions
-          </h2>
-        </Grid>
-
-        <Grid item xs={12}>
-          <RampImage className={"ramp-dimensions-image center-block"} />
-        </Grid>
-        
-        <Grid container className={"kv"}>
-          <Grid item xs={6} className={"kv-key"}>
-            <strong >
-              Length
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.len   }
-            </span>
-          </Grid>
-        </Grid>
-        
-        <Grid container className={"kv"}>
-          <Grid item xs={6} className={"kv-key"}>
-            <strong>
-              Width
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.width }
-            </span>
-          </Grid>
-        </Grid>
-        
-
-        <Grid container className={"kv"}>
-          <Grid item xs={6}  className={"kv-key"}>
-            <strong>
-              Height
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.height}
-            </span>
-          </Grid>
-        </Grid>
-
-        <Grid container className={"kv"}>
-          <Grid item xs={6} className={"kv-key"}>
-            <strong>
-              Depth 
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.depth }
-            </span>
-          </Grid>
-        </Grid>
-
-        <Grid container className={"kv"}>
-          <Grid item xs={6} className={"kv-key"}>
-            <strong>
-              Grade 
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.grade }
-            </span>
-          </Grid>
-        </Grid>
-
-        <Grid container className={"kv"}>
-          <Grid item xs={6} className={"kv-key"}>
-            <strong>
-              Color 
-            </strong>
-          </Grid>
-          <Grid item xs={6} className={"kv-value"}>
-            <span>
-              {props.ramp.color }
-            </span>
-          </Grid>
-        </Grid>
+    <Grid container className={"ramp-dimensions block"} >
+      <Grid item xs={12}>
+        <h2 className={"block-title"}>
+          Ramp Dimensions
+        </h2>
       </Grid>
-    </div>
-    
+
+      <Grid item xs={12}>
+        <RampImage className={"ramp-dimensions-image center-block"} />
+      </Grid>
+
+      <KeyValue data={props.ramp} />
+      
+    </Grid>    
   );
 }
 
