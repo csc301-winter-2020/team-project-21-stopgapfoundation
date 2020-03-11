@@ -4,6 +4,7 @@
 
 1) Change directory into the app folder
 2) Run:
+        
         yarn add package.json
 
 3) Execute:
