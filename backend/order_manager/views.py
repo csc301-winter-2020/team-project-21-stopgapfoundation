@@ -2,9 +2,11 @@ from django.contrib.auth.models import User, Group
 from django.shortcuts import render
 from rest_framework import generics, viewsets, permissions
 
-from .models import Client, Waiver, Order
-from .serializers import UserSerializer, GroupSerializer, ClientSerializer, OrderSerializer, WaiverSerializer
+from order_manager.models import Client, Waiver, Order
+from order_manager.serializers import UserSerializer, GroupSerializer, ClientSerializer, OrderSerializer, WaiverSerializer
 
+
+# Allows any authenticated user to access all user data
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('id')
     serializer_class = UserSerializer
@@ -12,11 +14,12 @@ class UserViewSet(viewsets.ModelViewSet):
         permissions.IsAuthenticated
     ]
 
+# Only admin users can access group information
 class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all().order_by('name')
     serializer_class = GroupSerializer
     permission_classes = [
-        permissions.IsAuthenticated
+        permissions.IsAdminUser
     ]
 
 class ClientViewSet(viewsets.ModelViewSet):
