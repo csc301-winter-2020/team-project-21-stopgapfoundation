@@ -1,23 +1,19 @@
 # Local Setup Guidelines
 
-## Starting the application
+## Starting/Updating the Application
 
-1) Run
+1) Change directory into the app folder
+2) Run:
+        yarn add package.json
 
-        export NODE_ENV="development"
-        
-        For Windows:
-        SET NODE_ENV="development"
-
-2) Change directory into the cloned repository
 3) Execute:
 
-        docker-compose -f docker-compose.yml up --build -d
+        yarn build
 
+3) Run:
 
-## After making changes:
+        python manage.py collectstatic
 
-1) Execute:
+4) Run:
 
-        docker-compose down
-        docker-compose -f docker-compose.yml up --build -d
+        python manage.py runserver

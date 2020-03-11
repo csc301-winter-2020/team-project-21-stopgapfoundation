@@ -17,3 +17,9 @@ Ignore Python Lib files
 
 Ignore any Node modules
 **/node_modules
+
+Ignore static files
+**/build
+
+Ignore yarn.lock
+**/yarn.lock
