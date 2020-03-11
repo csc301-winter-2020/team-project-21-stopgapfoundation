@@ -31,30 +31,33 @@ export class LiabilityWaiver extends Component {
                             id="standard-required"
                             label="Owner / Manager First and Last Name"
                             defaultValue=""
-                            onChange={this.props.handleChange('firstName')}
+                            onChange={this.props.handleChange('managerFirst')}
                         /> 
                         <TextField
                             required
                             id="standard-required"
                             label="Owner / Manager Signature"
                             defaultValue=""
-                            onChange={this.props.handleChange('lastName')}
+                            onChange={this.props.handleChange('managerLast')}
                         />
+                        <br></br>
+                        <br></br>
                         <TextField
                             required
                             id="standard-required"
                             label="Witness Name"
                             defaultValue=""
-                            onChange={this.props.handleChange('lastName')}
+                            onChange={this.props.handleChange('witnessName')}
                         />
                         <TextField
                             required
                             id="standard-required"
                             label="Witness Signature"
                             defaultValue=""
-                            onChange={this.props.handleChange('lastName')}
+                            onChange={this.props.handleChange('witnessSig')}
                         />
                     </div>
+                    <br></br>
                     <Button color="primary" variant="contained" onClick={this.continue}>
                         Next
                     </Button>
