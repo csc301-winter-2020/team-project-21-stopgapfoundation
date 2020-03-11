@@ -2,20 +2,24 @@
 
 ## Starting/Updating the Application
 
-1) Change directory into the app folder
-2) Run:
+1) Run:
+
+        export NODE_ENV=local
+        
+2) Change directory into the app folder
+3) Run:
         
         yarn add package.json
 
-3) Execute:
+4) Execute:
 
         yarn build
 
-3) Run:
+5) Run:
 
         python manage.py collectstatic
 
-4) Run:
+6) Run:
 
         python manage.py runserver
 
