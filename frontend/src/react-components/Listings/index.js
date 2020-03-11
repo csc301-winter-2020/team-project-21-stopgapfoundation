@@ -27,13 +27,12 @@ class ListingBox extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            listings: Array(3).fill(null),
+            listings: [],
+            error: null,
+            isLoaded: false,
         }
     }  
-
-    //component will mount
-    //for now hard code the data 
-
+    /*
     renderListing(i){
         //i not used for now, figure it will be used when iterating through requests
         //variables as placeholders for the information when fetched from requests
@@ -45,15 +44,48 @@ class ListingBox extends React.Component{
             </Listing>
         )
     }
+    */
 
-    render(){
-        return(
-            <div className="listing_box">
-                {this.renderListing(0)}
-            </div>
-        )
+    //pulls the information into 
+    componentDidMount() {
+        fetch("api here")
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true, 
+                    listings: result.items,
+                });
+            }
+        ),
+        (error) => {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+        }
     }
 
+    render(){
+        const {listings, error, isLoaded} = this.state;
+        if(error){
+            return <div> Error: {error.message}</div>
+        }
+        else if (!isLoaded){
+            return <div>Loading...</div>
+        }
+        else{
+            return(
+                <div className="listing_box">
+                    {listings.map(listing => 
+                    (<Listing client_name=
+                    {listings.client_name} business_name={listings.business_name} status={listings.status}> 
+                    </Listing>
+                    ))}
+                </div>
+            );
+        }
+    }
 }
 
 export default ListingBox;
