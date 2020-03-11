@@ -39,7 +39,7 @@ class AdminDashboard extends React.Component {
 
           <Grid container>
             <Grid item xs={4}>
-              <GeneralInfo />
+              <GeneralInfo isAdmin />
             </Grid>
             <Grid item xs={4}>
               <RampDimensions ramp={ rampData } isAdmin />

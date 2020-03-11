@@ -52,3 +52,15 @@
     font-size: 1.15em;
     overflow: auto;
 }
+
+.general-info-container {
+    display: flex;
+    flex-flow: column nowrap;
+    
+}
+
+.general-info-input {
+    margin-bottom: 15px !important;
+    font-size: 1em !important;
+}
+
