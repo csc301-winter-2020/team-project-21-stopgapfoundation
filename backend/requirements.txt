@@ -1,5 +1,0 @@
-
-django>=2.0,<2.1
-django-filter>=1.1,<1.2
-djangorestframework>=3.8,<3.9
-pillow==7.0.0
