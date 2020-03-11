@@ -4,6 +4,7 @@ import Navbar from "../../Navbar";
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
+import KeyValue from "../../KeyValue";
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -20,25 +21,53 @@ class AdminDashboard extends React.Component {
         <Navbar title="Admin Dashboard" logout={this.props.logout}/>
         <div className={"content"}>
           <Grid container justify={"space-evenly"}>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <NumberStat title="Total Requests " stat={120} />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <NumberStat title="Ready For Build" stat={60} />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
               <NumberStat title="Ready For Paint" stat={12} />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={2}>
+              <NumberStat title="Ready For Delivery" stat={10} />
+            </Grid>
+            <Grid item xs={2}>
               <NumberStat title="Ready For Delivery" stat={10} />
             </Grid>
           </Grid>
-          
+
+          <hr />
+          <br />
+          <br />
+          <br />
+          <br />
+
+          <Grid container>
+            <Grid item xs={4}>
+              <div className={"block"}>
+                <KeyValue className={"block"} data = {{
+                  "Liability Waiver": "Not Signed",
+                  "Delivery Address": "123 Street Road, Toronto, ON",
+                  "Business Name": "Regular Business Inc.",
+                  "Client Name": "John Smith"
+                }} />
+              </div>
+            </Grid>
+            <Grid item xs={4}>
+              <RampDimensions ramp={ rampData } isAdmin />
+            </Grid>
+            <Grid item xs={4}>
+              <StatusBlock isAdmin />
+            </Grid>
+          </Grid>
+
           <Notes />
 
-          <RampDimensions ramp={ rampData } isAdmin />
+          
 
-          <StatusBlock isAdmin />
+          
 
         </div>
       </div>
