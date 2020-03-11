@@ -66,5 +66,5 @@ class App extends React.Component {
 
 
 export default App;
-const container = document.getElementById("app");
+const container = document.getElementById("root");
 render(<App />, container);
