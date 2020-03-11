@@ -5,6 +5,11 @@
 1) Run:
 
         export NODE_ENV=local
+	
+	On Windows (powershell) instead run:
+	
+		$env:NODE_ENV="local"
+		
         
 2) Change directory into the app folder
 3) Run:
