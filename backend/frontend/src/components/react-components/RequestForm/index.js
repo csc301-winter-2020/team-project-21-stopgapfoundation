@@ -57,6 +57,8 @@ export class UserForm extends Component {
                 return (
                     <ImageUpload
                         nextStep={this.nextStep}
+                        handleChange= {this.handleChange}
+                        values = {values}
                     />
                 )
             case 3:
