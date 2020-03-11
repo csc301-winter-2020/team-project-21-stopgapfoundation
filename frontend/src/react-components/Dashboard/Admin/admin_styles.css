@@ -35,3 +35,18 @@
 .status-bar-textfield {
     width: 90%;
 }
+
+.note-block{
+    /* Default colors, but will be overridden in component */
+    background-color: #689BF0;
+    color: #F3F5F3;
+    border-radius: 15px;
+    max-width: 250px;
+    padding: 1em;
+    margin: 0 5px 10px;
+}
+
+.note-block-content {
+    font-weight: bold;
+    font-size: 1.15em;
+}

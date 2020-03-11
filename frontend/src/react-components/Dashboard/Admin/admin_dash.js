@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Navbar from "../../Navbar";
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
+import Notes from "./Notes";
 import "./admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -32,10 +33,13 @@ class AdminDashboard extends React.Component {
               <NumberStat title="Ready For Delivery" stat={10} />
             </Grid>
           </Grid>
+          
+          <Notes />
 
           <RampDimensions ramp={ rampData } isAdmin />
 
           <StatusBlock isAdmin />
+
         </div>
       </div>
     );
