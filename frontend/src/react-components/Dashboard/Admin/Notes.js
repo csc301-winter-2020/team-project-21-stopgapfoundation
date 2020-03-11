@@ -9,6 +9,16 @@ class Notes extends React.Component{
         date: "Mar 11",
         author: "StopGap Team",
         note: "This is an example note that comes with the component, for testing purposes."
+      }, {
+        title: "Same Author",
+        date: "Mar 11",
+        author: "StopGap Team",
+        note: "This note was also written by StopGap Team. Notice how the color is the same."
+      }, {
+        title: "Example Note",
+        date: "Mar 11",
+        author: "Another Admin",
+        note: "A note by a different admin and this a different color"
       }]
     }
   }
@@ -36,7 +46,9 @@ class Notes extends React.Component{
 
     return (
       <div className={"block"}>
-        {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+        <div className={"notes-container"}>
+          {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+        </div>
       </div>
     )
   }

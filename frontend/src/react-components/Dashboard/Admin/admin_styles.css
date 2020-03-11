@@ -38,6 +38,7 @@
 
 .note-block{
     /* Default colors, but will be overridden in component */
+    display: inline-block;
     background-color: #689BF0;
     color: #F3F5F3;
     border-radius: 15px;
@@ -49,4 +50,5 @@
 .note-block-content {
     font-weight: bold;
     font-size: 1.15em;
+    overflow: auto;
 }
