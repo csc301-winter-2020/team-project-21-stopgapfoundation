@@ -3,6 +3,8 @@ from rest_framework import serializers
 from .models import Client, Waiver, Order
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    client = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    
     class Meta:
         model = User
         fields = [
@@ -15,18 +17,24 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'is_staff',
             'is_active',
             'is_superuser',
-            'date_joined'
+            'date_joined',
+            'client'
         ]
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    members = serializers.StringRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Group
         fields =[
             'url',
-            'name'
+            'name',
+            'members'
         ]
 
 class ClientSerializer(serializers.ModelSerializer):
+    orders = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+
     class Meta:
         model = Client
 
@@ -35,7 +43,8 @@ class ClientSerializer(serializers.ModelSerializer):
             'company',
             'phone_number',
             'address',
-            'website'
+            'website',
+            'orders'
         ]
 
 class WaiverSerializer(serializers.ModelSerializer):
