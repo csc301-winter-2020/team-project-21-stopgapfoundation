@@ -40,7 +40,7 @@
     /* Default colors, but will be overridden in component */
     display: inline-block;
     background-color: #689BF0;
-    color: #F3F5F3;
+    color: black;
     border-radius: 15px;
     max-width: 250px;
     padding: 1em;

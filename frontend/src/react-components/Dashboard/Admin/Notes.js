@@ -1,4 +1,5 @@
 import React from "react";
+import { TextField, Grid, Button } from "@material-ui/core"
 
 class Notes extends React.Component{
   constructor(props){
@@ -19,7 +20,8 @@ class Notes extends React.Component{
         date: "Mar 11",
         author: "Another Admin",
         note: "A note by a different admin and this a different color"
-      }]
+      }],
+      newNote: ""
     }
   }
 
@@ -42,6 +44,29 @@ class Notes extends React.Component{
     return "#" + "00000".substring(0, 6 - c.length) + c;
   }
 
+  handleNewNoteInput = e => {
+    this.setState({
+      newNote: e.target.value
+    });
+  }
+
+  saveNote = e => {
+    e.preventDefault();
+    const {newNote} = this.state;
+    const newNotesArr = [...this.state.notes];
+    newNotesArr.push({
+      title: "New Note",
+      date: "Mar 11",
+      author: "user",
+      note: newNote
+    });
+
+    this.setState({
+      newNote: "",
+      notes: newNotesArr
+    });
+  }
+
   render() {
 
     return (
@@ -49,6 +74,26 @@ class Notes extends React.Component{
         <div className={"notes-container"}>
           {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
         </div>
+        <Grid container>
+          <Grid item md={10}>
+            <TextField
+              value={this.state.newNote}
+              onChange={this.handleNewNoteInput}
+              fullWidth
+              variant="outlined"
+              label="Create a New Note"
+              type="text"
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
+          </Grid>
+          <Grid item md={2}>
+            <Button fullWidth variant="contained" color="primary" disabled={this.state.newNote.length == 0} onClick={this.saveNote}>
+              Save
+            </Button>
+          </Grid>
+        </Grid>
       </div>
     )
   }
