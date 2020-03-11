@@ -31,58 +31,58 @@ export class FormUserDetails extends Component {
                             <TextField
                                 required
                                 id="standard-required"
-                                label="Required"
-                                defaultValue="First Name"
+                                label="First Name"
+                                defaultValue=""
                                 onChange={this.props.handleChange('firstName')}
                             />
                             <TextField
                                 required
                                 id="standard-required"
-                                label="Required"
-                                defaultValue="Last Name"
+                                label="Last Name"
+                                defaultValue=""
                                 onChange={this.props.handleChange('lastName')}
                             />
                         </div> <br />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Email"
+                            label="Email"
+                            defaultValue=""
                             onChange={this.props.handleChange('email')}
                         />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Company Name"
+                            label="Company Name"
+                            defaultValue=""
                             onChange={this.props.handleChange('companyName')}
                         />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Phone Number"
+                            label="Phone Number"
+                            defaultValue=""
                             onChange={this.props.handleChange('phoneNumber')}
                         />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Delivery Address"
+                            label="Delivery Address"
+                            defaultValue=""
                             onChange={this.props.handleChange('deliveryAddress')}
                         />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Delivery Type"
+                            label="Delivery Type"
+                            defaultValue=""
                             onChange={this.props.handleChange('deliveryType')}
                         />
                         <TextField
                             required
                             id="standard-required"
-                            label="Required"
-                            defaultValue="Ramp Color"
+                            label="Ramp Color"
+                            defaultValue=""
                             onChange={this.props.handleChange('rampColor')}
                         />
 
