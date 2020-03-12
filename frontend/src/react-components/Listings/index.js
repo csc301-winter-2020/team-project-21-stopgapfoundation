@@ -6,38 +6,100 @@ import {
   Link
 } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import Grid from "@material-ui/core/Grid"
 import ReactDOM from 'react-dom';
 import "./styles.css"
-import {Container, Row, Col} from 'react-bootstrap';
 
+//Listing returns a button with the client/business names and status
+function Listing(props){    
+        return(  
+            <Button className="listing_button" onClick={props.click}>
+                <Grid container spacing={3}>
+                    <Grid item xs>
+                        {props.client_name} 
+                    </Grid>
+                    <Grid item xs>{props.business_name} </Grid>
+                    <Grid item xs>{props.status} </Grid>
+                </Grid>
+            </Button>    
+        );
+}
 
-class Listing extends React.Component{
+class ListingBox extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            client_name: "clent name",
-            business_name: "business name",
-            status: "status bar",
-        };
+            listings: [],
+            error: null,
+            isLoaded: false,
+        }
+    }  
+    /*
+    renderListing(i){
+        //i not used for now, figure it will be used when iterating through requests
+        //variables as placeholders for the information when fetched from requests
+        var client = "";
+        var business = "";
+        var status = "";
+        return (
+            <Listing client_name = {client} business_name = {business} status = {status}>
+            </Listing>
+        )
+    }
+    */
+
+    //pulls the information into 
+    componentDidMount() {
+        // fetch("api here")
+        // .then(res => res.json())
+        // .then(
+        //     (result) => {
+        //         this.setState({
+        //             isLoaded: true, 
+        //             listings: result.items,
+        //         });
+        //     }
+        // ),
+        // (error) => {
+        //     this.setState({
+        //         isLoaded: true,
+        //         error
+        //     });
+        // }
+        this.setState({
+            isLoaded: true, 
+            listings: [
+                {
+                    client_name: "John Smith",
+                    business_name: "Business Inc.",
+                    status: "Paint Phase"
+                }
+            ],
+        });
     }
 
-    //do something when clicked 
-
     render(){
-        //the html to return 
-        return(  
-        //how to style a button to actually make it block
-        <div>
-            <Button classname="listing_button" size="lg" block>
-                <Container>
-                        <Col>{this.state.client_name}</Col>
-                        <Col>{this.state.business_name}</Col>
-                        <Col>{this.state.status}</Col>
-                </Container>
-            </Button>
-        </div>      
-        );
+        const {listings, error, isLoaded} = this.state;
+        if(error){
+            return <div> Error: {error.message}</div>
+        }
+        else if (!isLoaded){
+            return <div>Loading...</div>
+        }
+        else{
+            return(
+                <div className="listing_box">
+                    {listings.map(listing => (
+                        <Listing 
+                            client_name={listing.client_name} 
+                            business_name={listing.business_name} 
+                            status={listing.status} 
+                        />
+                    ))}
+                </div>
+            );
+        }
     }
 }
 
-export default Listing;
+export default ListingBox;
