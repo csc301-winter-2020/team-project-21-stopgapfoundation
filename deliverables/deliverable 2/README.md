@@ -31,6 +31,9 @@
 #### As a StopGap employee, I want to create a dashboard that will show me the  total number of ramp requests, how many in next build, how many ramps scheduled for next paint day, total revenue for selected time period and delivered ramps, so that I can be up-to-date on business affairs.
 * The dashboard has been set up to show some of this information, although the information displayed currently has been hard-coded. The information that can currently be displayed includes number of ramp requests, number of requests ready for build, number of completed requests, number of requests ready for paint, and number of requests ready for delivery.
 
+#### As a StopGap client I want to be able to see the progress of my ramp request, so that I can have an idea of how long until it is completed.
+* The client view has a list of requests from that account, and the progress for a request can be seen by clicking on that request in the list
+
 ## Instructions
  
 The app is deployed and can be found at this link: http://stopgap-project.herokuapp.com/
@@ -41,7 +44,9 @@ Starting at client view, you are taken to a login page. The account system isn't
 There is also a page allowing account creation, although this is also not fully set up outside of the text validation, ensuring you enter a proper email and matching
 password.
  
-At this point the client can press the large button that appears to submit a ramp request. They are also able to log out of their account, or go back to the home screen with those buttons. Information can be entered into the text boxes in order to submit the request, and there are multiple pages
+At this point the client can press the large button that appears to submit a ramp request. They can also see a list of ramp requests they have currently submitted, and can click on them to see more details. Currently, the information displayed here is hardcoded.
+
+They are also able to log out of their account, or go back to the home screen with those buttons. Information can be entered into the text boxes in order to submit the request, and there are multiple pages
 of infomation to enter. Note that although the back-end is set up to be able to recieve and store this information, this front-end has not yet been tied to it, 
 so information entered will not be stored in the database at this time.
 
