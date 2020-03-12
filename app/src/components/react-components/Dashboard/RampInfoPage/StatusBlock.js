@@ -18,9 +18,9 @@ class StatusBlock extends React.Component {
     ];
 
     this.state = {
-      statusInput: this.statuses[0],
-      progress: (0 / (this.statuses.length - 1)) * 100,
-      status: this.statuses[0]
+      statusInput: this.statuses[3],
+      progress: (3 / (this.statuses.length - 1)) * 100,
+      status: this.statuses[3]
     };
   }  
 
