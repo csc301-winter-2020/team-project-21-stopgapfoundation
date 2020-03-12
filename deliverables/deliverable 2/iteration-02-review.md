@@ -19,11 +19,11 @@ Our use of the Kanban framework for organization was successful. Since many of u
 
 2. Communication Methods
 
-Using Discord for voice meetings, and Facebook messenger for text communication, was also a decision that turned out well. We were all reasonably active on messenger, so information was communicated to all members quickly and consistently. While some members were unfamiliar with discord at first, it’s voice communication functions ended up being very easy to learn, so all members were able to participate in online meetings.
+Using Discord for voice meetings, and Facebook messenger for text communication was also a decision that turned out well. We were all reasonably active on messenger, so information was communicated to all members quickly and consistently. While some members were unfamiliar with Discord at first, its voice communication functions ended up being very easy to learn, so all members were able to participate in online meetings.
 
 3. GitHub Organization
 
-The decision to have individual branches, made on deliverable 1, in question 8, definitely worked out favourably for the group. Since work was able to be split up into relatively isolated chunks, the ability for each group member to focus on the specific work they needed to complete without worrying about the action of other group members was very helpful for ensuring work got done.
+The decision to have individual branches from deliverable 1 question 8 definitely worked out favourably for our group. Since we were able to split up work into relatively isolated chunks, each member was able to focus on a specific piece of our project without worrying about the action of other group members. This combined with weekly meetings where we merged to our master branch was extremely helpful in ensuring all our changes were correct and up to date.
 
 
 #### Q2. Decisions that did not turn out as well as we hoped
