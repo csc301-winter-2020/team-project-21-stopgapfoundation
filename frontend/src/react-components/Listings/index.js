@@ -15,7 +15,9 @@ function Listing(props){
         return(  
             <Button className="listing_button" onClick={props.click}>
                 <Grid container spacing={3}>
-                    <Grid item xs>{props.client_name} </Grid>
+                    <Grid item xs>
+                        {props.client_name} 
+                    </Grid>
                     <Grid item xs>{props.business_name} </Grid>
                     <Grid item xs>{props.status} </Grid>
                 </Grid>
@@ -48,22 +50,32 @@ class ListingBox extends React.Component{
 
     //pulls the information into 
     componentDidMount() {
-        fetch("api here")
-        .then(res => res.json())
-        .then(
-            (result) => {
-                this.setState({
-                    isLoaded: true, 
-                    listings: result.items,
-                });
-            }
-        ),
-        (error) => {
-            this.setState({
-                isLoaded: true,
-                error
-            });
-        }
+        // fetch("api here")
+        // .then(res => res.json())
+        // .then(
+        //     (result) => {
+        //         this.setState({
+        //             isLoaded: true, 
+        //             listings: result.items,
+        //         });
+        //     }
+        // ),
+        // (error) => {
+        //     this.setState({
+        //         isLoaded: true,
+        //         error
+        //     });
+        // }
+        this.setState({
+            isLoaded: true, 
+            listings: [
+                {
+                    client_name: "John Smith",
+                    business_name: "Business Inc.",
+                    status: "Paint Phase"
+                }
+            ],
+        });
     }
 
     render(){
@@ -77,10 +89,12 @@ class ListingBox extends React.Component{
         else{
             return(
                 <div className="listing_box">
-                    {listings.map(listing => 
-                    (<Listing client_name=
-                    {listings.client_name} business_name={listings.business_name} status={listings.status}> 
-                    </Listing>
+                    {listings.map(listing => (
+                        <Listing 
+                            client_name={listing.client_name} 
+                            business_name={listing.business_name} 
+                            status={listing.status} 
+                        />
                     ))}
                 </div>
             );
