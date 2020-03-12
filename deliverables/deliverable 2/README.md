@@ -1,9 +1,7 @@
-# StopGap Foundation / TEAM 21
-
-> _Note:_ This document is intended to be relatively short. Be concise and precise. Assume the reader has no prior knowledge of your application and is non-technical. 
+# StopGap Foundation Ramp Request System / TEAM 21
 
 ## Description 
- 
+
  At this stage, our product allows a user to log in and submit ramp request information through a series of forms that they can fill out. They can also view the submitted information in a list-like format, in which clicking on an element of the list will bring up more detailed information regarding that request. 
  
  This system provides automatic storage and organization of ramp requests. Previously, StopGap collected this information through a form on their website, which simply placed the information given into a document. This was a hassle to work with, as trying to find specific information in this mess of data was difficult and time consuming. Our app organizes ramp requests in a way that makes them easy and intuitive to look through, and finding specific information on a request is as simple as picking that request out of a list and clicking on it.
