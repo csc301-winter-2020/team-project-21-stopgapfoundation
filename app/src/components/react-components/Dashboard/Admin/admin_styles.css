@@ -1,0 +1,88 @@
+/**
+* COLORS:
+* #615187   dark            indigo
+* #ED7369   dark accent     coral
+* #689BF0   main            sky blue
+* #AFA7D1   light accent    light purple
+* #F3F5F3   light           very close to white
+*
+* #212121   dark grey / almost black
+* #767676   medium grey
+* #BDBDBD   light grey / almost white
+**/
+
+.number-stat {
+    height: calc(100% - 40px);
+}
+
+.number-stat-num {
+    color: #689BF0;
+    font-size: 6em;
+    text-align: center;
+    display: block;
+}
+
+.ramp-dimensions-image {
+    margin-bottom: 1.33em;
+}
+
+.status-block-status {
+    /* display: inline-block; */
+    display: block;
+    position: relative;
+    /* transform-origin: center;
+    transform: translateX(-50%); */
+    text-align: center;
+    margin: 5px 0px 16px;
+    font-weight: bold;
+}
+
+.status-block-last-updated {
+    text-align: center;
+    display: block;
+    margin-bottom: 10px;
+    color: #615187;
+    font-style: italic;
+}
+
+.status-bar-textfield {
+    width: 90%;
+}
+
+.notes-container {
+    margin-top: 15px;
+}
+
+.note-block{
+    flex-grow: 2;
+    display: inline-block;
+    /* Default colors, but will be overridden in component */
+    background-color: #689BF0;
+    color: black;
+    border-radius: 15px;
+    max-width: 250px;
+    padding: 1em;
+    margin: 0 5px 10px;
+}
+
+.note-block-content {
+    font-weight: bold;
+    font-size: 1.15em;
+}
+
+.notes-container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.general-info-container {
+    display: flex;
+    flex-flow: column nowrap;
+    
+}
+
+.general-info-input {
+    margin-bottom: 15px !important;
+    font-size: 1em !important;
+}
+
