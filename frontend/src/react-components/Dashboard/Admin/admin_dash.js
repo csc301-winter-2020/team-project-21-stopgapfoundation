@@ -6,6 +6,7 @@ import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
 import GeneralInfo from "./GeneralInfo";
 import "./admin_styles.css";
+import ListingBox from "../../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
@@ -37,6 +38,8 @@ class AdminDashboard extends React.Component {
               <NumberStat title="Completed Ramps" stat={2} />
             </Grid>
           </Grid>
+
+          <ListingBox />
 
           <hr />
 

@@ -88,7 +88,10 @@ class ListingBox extends React.Component{
         }
         else{
             return(
-                <div className="listing_box">
+                <div className="listing_box block">
+                    <h2 className="block-title">
+                        Ramp Requests
+                    </h2>
                     {listings.map(listing => (
                         <Listing 
                             client_name={listing.client_name} 
