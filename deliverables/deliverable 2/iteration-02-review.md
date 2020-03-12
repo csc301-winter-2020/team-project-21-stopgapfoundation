@@ -34,11 +34,11 @@ Instead of the weekly group meetings that we intended on having, we were just co
 
 2. Wanting to Use Docker to Assist in Deployment
 
-We initially intended on using Docker to deploy the project along with Heroku, but we found out that we could only have one Docker container inside the Heroku project, making the process of deployment much more difficult. There were also some issues having docker work consistently on all group members machines, so we decided to move to just using django with heroku for the deployment set up, making it easier for the entire group to use.
+We initially intended on using Docker to deploy the project along with Heroku, but we found out that we could only have one Docker container inside the Heroku project, making the process of deployment much more difficult. There were also some issues having docker work consistently on all group members machines, so we decided to move to just using Django with Heroku for the deployment set up, making it easier for the entire group to use.
 
 3. Wanting to Use A CI/CD Pipeline
 
-We initially planned on using Circle-CI for our pipeline for the project, however we realized that it would not be free for what we needed, similarly looking through the CI/CD integrated in Heroku. Thus we decided to not usre a CI/CD piplele for the assignment, our deployment is done through one script and we will insure that it is properly done every time we need to make a change to our deployed application.
+We initially planned on using Circle-CI for our pipeline for the project, however we realized that it would not be free for what we needed, similarly looking through the CI/CD integrated in Heroku. Thus we decided to not use a CI/CD pipeline for the assignment, our deployment is done through one script and we will insure that it is properly done every time we need to make a change to our deployed application.
 
 
 #### Q3. Planned changes
