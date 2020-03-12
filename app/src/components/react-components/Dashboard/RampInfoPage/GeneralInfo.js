@@ -13,13 +13,13 @@ class GeneralInfo extends React.Component {
     this.state = {
       data: { // default data
         "Ramp #": {
-          value: "",
+          value: "1",
           options: [],
           clientEditable: false,
           adminEditable: true,
         },
         "Project #": {
-          value: "",
+          value: "1",
           options: [],
           clientEditable: false,
           adminEditable: true,
@@ -28,13 +28,13 @@ class GeneralInfo extends React.Component {
           value: "John Smith",
           options: [],
           clientEditable: true,
-          adminEditable: false,
+          adminEditable: true,
         },
         "Business Name": {
           value: "Regular Business Inc.",
           options: [],
           clientEditable: true,
-          adminEditable: false,
+          adminEditable: true,
         },
         "Nickname": {
           value: "Regular Business Inc.",
@@ -95,7 +95,7 @@ class GeneralInfo extends React.Component {
               return (
                 <div>
                   <InputLabel id={`geninfo-select-${i}`} shrink>
-                    {key}
+                    {`${key}${!editable ? " (Read-Only)" : ""}`}
                   </InputLabel>
                   {options.length > 0 ? 
                     (
@@ -112,7 +112,7 @@ class GeneralInfo extends React.Component {
                           }}
                         >
                           {
-                            options.map(opt => <MenuItem value={opt}>{opt}</MenuItem>)
+                            options.map(opt => (editable || opt == value) ? <MenuItem value={opt}>{opt}</MenuItem> : null)
                           }
                         </Select>
                     ) : (
