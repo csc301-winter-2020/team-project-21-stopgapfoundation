@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormUserDetails from './FormUserDetails';
 import ImageUpload from './ImageUpload';
 import LiabilityWaiver from './LiabilityWaiver';
+import {Link} from "react-router-dom";
 
 export class UserForm extends Component {
     state = {
@@ -70,7 +71,14 @@ export class UserForm extends Component {
                     />
                 )
             case 4:
-                return <h1> Thank you! We'll be in contact about your request. </h1>
+                return (
+                    <div>
+                        <h1> Thank you! We'll be in contact about your request. </h1>
+                        <Link to="/dashboard">
+                            Go back home.
+                        </Link>
+                    </div>
+                )
         }
         return (
             <div>
