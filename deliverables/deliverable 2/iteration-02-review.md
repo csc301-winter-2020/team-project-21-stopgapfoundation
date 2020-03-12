@@ -52,6 +52,7 @@ Easily the biggest change we need to make is to start setting and enforcing stri
 Another planned change will be to better communicate what work has been done in the master branch, and why, to the rest of the group. We had an incident where some work was done by one person, but the rest of the group didn’t know what the function of this work was. This took some time to resolve, so we would like to avoid this situation going forward.
 
 3. Meeting Scheduling
+
 We also plan on improving how we organize group meetings Currently, we plan meetings very last minute, which can of course impact how many of us can attend each meeting, as last minute commitments are difficult to plan around. In order to ensure maximum group participation in meetings we will schedule them earlier.
 
 ## Product - Review
