@@ -1,12 +1,9 @@
 import React from "react";
+import "./admin_styles.css";
 import Grid from '@material-ui/core/Grid';
 import Navbar from "../../Navbar";
-import RampDimensions from "./RampDimensions";
-import StatusBlock from "./StatusBlock";
-import Notes from "./Notes";
-import GeneralInfo from "./GeneralInfo";
-import "./admin_styles.css";
 import ListingBox from "../../Listings";
+import RampInfoPage from "./RampInfoPage"
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
@@ -43,27 +40,7 @@ class AdminDashboard extends React.Component {
 
           <hr />
 
-          <Grid container>
-            <Grid item xs={4}>
-              <GeneralInfo isAdmin />
-            </Grid>
-            <Grid item container xs={8}>
-              <Grid container>
-                <Grid item xs={6}>
-                  <RampDimensions ramp={ rampData } isAdmin />
-                </Grid>
-                <Grid item xs={6}>
-                  <StatusBlock isAdmin />
-                </Grid>
-              </Grid>
-              <Notes />
-            </Grid>
-          </Grid>
-
-          
-
-          
-
+          <RampInfoPage />
         </div>
       </div>
     );
