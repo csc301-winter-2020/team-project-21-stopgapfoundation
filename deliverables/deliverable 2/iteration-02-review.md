@@ -1,10 +1,12 @@
 # StopGap Foundation / Team 21
 
 
-## Iteration XX - Review & Retrospect (incompete)
+## Iteration 02 - Review & Retrospect 
 
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
+ * When: Monday March 9
+ * Where: In-class tutorial
+
+ There has also been communication online between the team about the process
 
 ## Process - Reflection 
 
@@ -29,6 +31,9 @@ Instead of the weekly group meetings that we intended on having, we were just co
 2. Wanting to Use Docker to Assist in Deployment
 We initially intended on using Docker to deploy the project along with Heroku, but we found out that we could only have one Docker container inside the Heroku project, making the process of deployment much more difficult. There were also some issues having docker work consistently on all group members machines, so we decided to move to just using django with heroku for the deployment set up, making it easier for the entire group to use.
 
+3. Wanting to Use A CI/CD Pipeline
+We initially planned on using Circle-CI for our pipeline for the project, however we realized that it would not be free for what we needed, similarly looking through the CI/CD integrated in Heroku. Thus we decided to not usre a CI/CD piplele for the assignment, our deployment is done through one script and we will insure that it is properly done every time we need to make a change to our deployed application.
+
 
 #### Q3. Planned changes
 
@@ -43,6 +48,8 @@ We also plan on improving how we organize group meetings Currently, we plan meet
 
 ## Product - Review
 
-#### Q4. How was your product demo? (incomplete)
-
+#### Q4. How was your product demo?
+For the demo we had prepared the initial website and request process. Startng with the Admin dashboard, we showed the screen that the Admins would see which lists the current ramp requests, as well as other information requested by the partner. We also showed the ramp request process which took them through the form and the full application process. 
+The partner really enjoyed the demo, and also had some valuable feedback for us in terms of the design as well as some structure changes. 
+From the demo, we learned that despite multiple conversations about vision of what the project will be, there will always be some differences in exactly the features that are wanted, and where exactly they should be. This teaches us that consistent, strong communication is key for the team to create the ideal product for the partner. 
 
