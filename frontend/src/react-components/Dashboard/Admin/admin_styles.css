@@ -11,6 +11,10 @@
 * #BDBDBD   light grey / almost white
 **/
 
+.number-stat {
+    height: calc(100% - 40px);
+}
+
 .number-stat-num {
     color: #689BF0;
     font-size: 6em;
