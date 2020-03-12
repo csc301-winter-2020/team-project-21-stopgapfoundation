@@ -32,7 +32,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={this.props.gotoFuncs.ramp_info}/>
+        <ListingBox click={() => this.props.gotoFuncs.ramp_info(true)} isAdmin/>
       </div>
     );
   }
