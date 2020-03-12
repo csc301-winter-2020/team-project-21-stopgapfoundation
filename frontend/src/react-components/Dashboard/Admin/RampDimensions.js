@@ -32,21 +32,43 @@ class RampDimensions extends React.Component{
     const r_grade = (Math.atan(r_height / len) * (180 / Math.PI)).toFixed(2);
     const l_grade = (Math.atan(l_height / len) * (180 / Math.PI)).toFixed(2);
 
-    const data= {};
-    data["Length"] = `${len}"`;
-    data["Width"] = `${width}"`;
-    data["Left Height"] = `${l_height}"`;
-    data["Right Height"] = `${r_height}"`;
-    data["Left Grade"] = `${l_grade}deg`;
-    data["Right Grade"] = `${r_grade}deg`;
-    data["Color"] = color;
+    const data = {
+      "Length": {
+        value: `${len}"`,
+        icon: < IconLength style={{width: "24px", height: "auto"}}/>
+      },
+      "Width": {
+        value: `${width}"`,
+        icon: < IconWidth style={{width: "24px", height: "auto"}}/>
+      },
+      "Left Height": {
+        value: `${l_height}"`,
+        icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
+      },
+      "Right Height": {
+        value: `${r_height}"`,
+        icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
+      },
+      "Left Grade": {
+        value: `${l_grade}deg`,
+        icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
+      },
+      "Right Grade": {
+        value: `${r_grade}deg`,
+        icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
+      },
+      "Color": {
+        value: color,
+        icon: null
+      },
+    };
 
     return ( 
       <div className={"block"}>
         {/* This div is seperate from the grid container because this needs the "block" class. If the class is on Grid, layout issues appear. */ }
         <Grid container className={"ramp-dimensions"} >
           <Grid item xs={12}>
-            <h2 className={"block-title"}>
+            <h2 className="block-title">
               Ramp Dimensions
             </h2>
           </Grid>
@@ -55,10 +77,33 @@ class RampDimensions extends React.Component{
           {/* <Grid item xs={12}>
             <RampImage className={"ramp-dimensions-image center-block"} />
           </Grid> */}
+          {
+            Object.entries(data).map((x, i) => {
+              const key = x[0];
+              const {value, icon} = x[1];
 
-          <KeyValue data={data} />
+              return (
+                <Grid container className={"kv"} key={i}>
+                  <Grid item xs={1} className={"kv-key"}>
+                    {icon && icon}
+                  </Grid>
+                  <Grid item xs={5} className={"kv-key"}>
+                    <strong >
+                      {key}
+                    </strong>
+                  </Grid>
+                  <Grid item xs={6} className={"kv-value"}>
+                    <span>
+                      {value}
+                    </span>
+                  </Grid>
+                </Grid>
+              );
+            })
+          }
+
           {/* TODO: add icons to keys */}
-          
+
         </Grid>   
       </div>
     );
