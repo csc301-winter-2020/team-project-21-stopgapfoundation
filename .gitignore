@@ -9,17 +9,18 @@
 **/__pycache__
 **/migrations
 
-Ignore Idea file
+# Ignore Idea file
 /.idea/*
 
-Ignore Python Lib files
+# Ignore Python Lib files
 /backend/venv/*
+venv/
 
-Ignore any Node modules
+# Ignore any Node modules
 **/node_modules
 
-Ignore static files
+# Ignore static files
 **/build
 
-Ignore yarn.lock
+# Ignore yarn.lock
 **/yarn.lock
