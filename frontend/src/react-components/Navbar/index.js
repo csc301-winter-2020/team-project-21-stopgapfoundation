@@ -2,7 +2,6 @@ import React from 'react';
 import logo from "../../img/logo.png";
 import './styles.css';
 import { Button, Grid } from '@material-ui/core';
-import {Link} from "react-router-dom";
 
 class Nav extends React.Component {
     /*Will need to use states to change the title of the navbar*/
@@ -18,6 +17,8 @@ class Nav extends React.Component {
                     </Grid>
                     <Grid item xs={3}>
                         <Button onClick={this.props.logout}>Log Out</Button>
+                        <br />
+                        <Button onClick={this.props.goBack}>GO BACK</Button>
                     </Grid>
                 </Grid>
             </div>

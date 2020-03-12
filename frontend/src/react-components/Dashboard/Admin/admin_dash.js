@@ -5,12 +5,6 @@ import ListingBox from "../../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
-
-
-  goToRampInfo = id => {
-      
-  }
-
   render () {
     const rampData = {
       l_height: 10,
@@ -38,7 +32,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={this.goToRampInfo}/>
+        <ListingBox click={this.props.gotoFuncs.ramp_info}/>
       </div>
     );
   }
