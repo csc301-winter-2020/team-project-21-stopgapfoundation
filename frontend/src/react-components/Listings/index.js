@@ -92,11 +92,15 @@ class ListingBox extends React.Component{
                     <h2 className="block-title">
                         Ramp Requests
                     </h2>
-                    {listings.map(listing => (
+                    {listings.map((listing, i) => (
                         <Listing 
                             client_name={listing.client_name} 
                             business_name={listing.business_name} 
                             status={listing.status} 
+                            click={e => {
+                                e.preventDefault();
+                                this.props.click(i);
+                            }}
                         />
                     ))}
                 </div>
