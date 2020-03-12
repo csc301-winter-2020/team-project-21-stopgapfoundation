@@ -20,6 +20,16 @@ class Notes extends React.Component{
         date: "Mar 11",
         author: "Another Admin",
         note: "A note by a different admin and this a different color"
+      }, {
+        title: "Quick Note",
+        date: "Mar 11",
+        author: "another-auth",
+        note: "test"
+      }, {
+        title: "Quick Note",
+        date: "Mar 11",
+        author: "another-auth",
+        note: "test"
       }],
       newNote: ""
     }
@@ -74,9 +84,7 @@ class Notes extends React.Component{
         <h2 className={"block-title"}>
           Notes
         </h2>
-        <div className={"notes-container"}>
-          {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
-        </div>
+        
         <Grid container>
           <Grid item md={10}>
             <TextField
@@ -97,6 +105,10 @@ class Notes extends React.Component{
             </Button>
           </Grid>
         </Grid>
+
+        <div className={"notes-container"}>
+          {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+        </div>
       </div>
     )
   }

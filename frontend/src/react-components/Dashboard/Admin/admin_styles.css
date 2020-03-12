@@ -49,9 +49,14 @@
     width: 90%;
 }
 
+.notes-container {
+    margin-top: 15px;
+}
+
 .note-block{
-    /* Default colors, but will be overridden in component */
+    flex-grow: 2;
     display: inline-block;
+    /* Default colors, but will be overridden in component */
     background-color: #689BF0;
     color: black;
     border-radius: 15px;
@@ -63,7 +68,11 @@
 .note-block-content {
     font-weight: bold;
     font-size: 1.15em;
-    overflow: auto;
+}
+
+.notes-container {
+    display: flex;
+    flex-flow: row wrap;
 }
 
 .general-info-container {
