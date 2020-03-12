@@ -9,7 +9,6 @@ class ClientDashboard extends React.Component {
   render() {
     return (
       <div>
-        <Navbar title="Client Dashboard" logout={this.props.logout}/>
         <h1 style={{ textAlign: 'center' }}>Welcome to StopGap!</h1>
           <Link to='/form'>
             <Button
