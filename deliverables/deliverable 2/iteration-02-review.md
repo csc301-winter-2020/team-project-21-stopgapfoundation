@@ -1,10 +1,12 @@
 # StopGap Foundation / Team 21
 
 
-## Iteration XX - Review & Retrospect (incompete)
+## Iteration 02 - Review & Retrospect 
 
- * When: FILL IN THE DATE WHEN YOU ACTUALLY HAD YOUR REVIEW MEETING
- * Where: PHYSICAL LOCATION AND/OR ONLINE
+ * When: Monday March 9
+ * Where: In-class tutorial
+
+ There has also been communication online between the team about the process
 
 ## Process - Reflection 
 
@@ -43,6 +45,8 @@ We also plan on improving how we organize group meetings Currently, we plan meet
 
 ## Product - Review
 
-#### Q4. How was your product demo? (incomplete)
-
+#### Q4. How was your product demo?
+For the demo we had prepared the initial website and request process. Startng with the Admin dashboard, we showed the screen that the Admins would see which lists the current ramp requests, as well as other information requested by the partner. We also showed the ramp request process which took them through the form and the full application process. 
+The partner really enjoyed the demo, and also had some valuable feedback for us in terms of the design as well as some structure changes. 
+From the demo, we learned that despite multiple conversations about vision of what the project will be, there will always be some differences in exactly the features that are wanted, and where exactly they should be. This teaches us that consistent, strong communication is key for the team to create the ideal product for the partner. 
 
