@@ -10,9 +10,9 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: true,
+      loggedIn: false,
       user: {
-        isAdmin: true
+        isAdmin: false
       }
     };
   }
