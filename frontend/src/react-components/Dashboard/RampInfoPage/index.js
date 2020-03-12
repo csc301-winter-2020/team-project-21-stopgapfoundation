@@ -1,12 +1,10 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid';
-import Navbar from "../../Navbar";
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
 import GeneralInfo from "./GeneralInfo";
-import "./admin_styles.css";
-import ListingBox from "../../Listings";
+import "../Admin/admin_styles.css"; // TODO: update w/ different css file
 
 /* Primary Component for the Admin Dashboard page */
 class RampInfoPage extends React.Component {
