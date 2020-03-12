@@ -51,6 +51,7 @@
 .progress-bar-inner {
     background-color: #689BF0;
     width: 100%; /* Overriden in component based on progress */
+    transition: width 0.25s ease-out;
     height: 20px;
     border-radius: 10px;
 }
