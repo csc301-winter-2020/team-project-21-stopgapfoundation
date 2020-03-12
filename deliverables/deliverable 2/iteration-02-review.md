@@ -13,7 +13,7 @@
 
 #### Q1. Decisions that turned out well
 
-1. The Kannab Agile Framework
+1. The Kanban Agile Framework
 Our use of the Kanban framework for organization was successful. Since many of us were busy with other school commitments, it was unreasonable to use a more rigid framework, as many of us wouldn't be able to make the commitments that such a method would require. Kanban, being very loose, allowed us to still work on the project, while being able to tend to our other commitments reasonably.
 
 2. Communication Methods
@@ -49,7 +49,9 @@ We also plan on improving how we organize group meetings Currently, we plan meet
 ## Product - Review
 
 #### Q4. How was your product demo?
-For the demo we had prepared the initial website and request process. Startng with the Admin dashboard, we showed the screen that the Admins would see which lists the current ramp requests, as well as other information requested by the partner. We also showed the ramp request process which took them through the form and the full application process. 
-The partner really enjoyed the demo, and also had some valuable feedback for us in terms of the design as well as some structure changes. 
-From the demo, we learned that despite multiple conversations about vision of what the project will be, there will always be some differences in exactly the features that are wanted, and where exactly they should be. This teaches us that consistent, strong communication is key for the team to create the ideal product for the partner. 
+To prepare for our demo, our team organized a group meeting during the tutorial session. Usually we split half the session reviewing where we are and the second half on critical meetings. During weeks of our demo we used that time to review what we had to demo and indicate who was available to present it. 
+
+For our first demo, we created a set of wireframes for the layout of our application and sent those to our partner. We decided to email our partner the wireframes so our partner and their team could provide thoughtful feedback. Choosing to email our demo had this advantage over showing them in-person which would provide rushed feedback. With our partner’s feedback, we decided that a messaging system between a client and an admin was meaningless to the focus of the application. As a result, we scrapped the idea and pushed without it for D2. Also, we received feedback on the workflow for our application. Our partner suggested a better way to position views in our application. Our second demo consisted of us showcasing our front-end design for the project and its workflow. Our partner was generally very accepting of our design which matched the wireframes from demo 1. 
+
+The feedback from our partner provided us a greater understanding of where the ramp request team was coming from and how they would go on-to use our application. In terms of the process, we learn that despite multiple conversations about vision of what the project will be, there will always be some differences in exactly the features that are wanted, and where exactly they should be. This teaches us that consistent, strong communication is key for the team to create the ideal product for the partner. 
 
