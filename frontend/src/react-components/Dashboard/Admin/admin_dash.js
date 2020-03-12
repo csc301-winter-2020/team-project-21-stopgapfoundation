@@ -20,17 +20,17 @@ class AdminDashboard extends React.Component {
       <div>
         <Navbar title="Admin Dashboard" logout={this.props.logout}/>
         <div className={"content"}>
-          <Grid container justify={"space-evenly"}>
-            <Grid item xs={2}>
+          <Grid container justify={"center"}>
+            <Grid item xs >
               <NumberStat title="Total Requests " stat={120} />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs >
               <NumberStat title="Ready For Build" stat={60} />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs >
               <NumberStat title="Ready For Paint" stat={12} />
             </Grid>
-            <Grid item xs={2}>
+            <Grid item xs >
               <NumberStat title="Ready For Delivery" stat={10} />
             </Grid>
           </Grid>
