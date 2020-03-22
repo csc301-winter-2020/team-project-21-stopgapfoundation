@@ -12,6 +12,12 @@ export class ImageUpload extends Component {
         this.props.nextStep();
     }
 
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
+    
+
     render() {
         const { values } = this.props;
 
@@ -72,6 +78,8 @@ export class ImageUpload extends Component {
                         />
                         <br /> <br />
                         <Button
+                            style={{ right: 10 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
+                        <Button                        
                             color="primary" variant="contained" onClick={this.continue}>Next
                         </Button>
                     </div>

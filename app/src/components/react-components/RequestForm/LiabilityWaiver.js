@@ -9,6 +9,11 @@ export class LiabilityWaiver extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
     render() {
         const { values } = this.props;
         return (
@@ -58,7 +63,9 @@ export class LiabilityWaiver extends Component {
                         />
                     </div>
                     <br></br>
-                    <Button color="primary" variant="contained" onClick={this.continue}>
+                    <Button
+                        style={{ right: 1 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
+                    <Button style={{ left: 6 }} color="primary" variant="contained" onClick={this.continue}>
                         Next
                     </Button>
                 </Box>

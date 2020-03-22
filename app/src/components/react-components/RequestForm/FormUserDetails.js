@@ -12,6 +12,10 @@ export class FormUserDetails extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
     render() {
         const { values } = this.props;
 
@@ -87,6 +91,8 @@ export class FormUserDetails extends Component {
                         />
 
                         <br /> <br />
+                        <Button
+                            style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>
                         <Button
                             color="primary" variant="contained" onClick={this.continue}>Next</Button>
                         <h4>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.

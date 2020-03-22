@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import FormUserDetails from './FormUserDetails';
 import ImageUpload from './ImageUpload';
 import LiabilityWaiver from './LiabilityWaiver';
-import {Link} from "react-router-dom";
+import { Redirect, Link } from 'react-router-dom';
 
 export class UserForm extends Component {
     state = {
@@ -44,11 +44,15 @@ export class UserForm extends Component {
         const { firstName, lastName, email, companyName, phoneNumber, deliveryAddress, deliveryType, rampColor } = this.state;
         const values = { firstName, lastName, email, companyName, phoneNumber,  deliveryAddress, deliveryType, rampColor}
 
-        switch(step) {
+        switch (step) {
+            case 0:
+                return <Redirect to="/dashboard" />
+
             case 1: 
                 return (
                     <FormUserDetails
                         nextStep={this.nextStep}
+                        prevStep={this.prevStep}
                         handleChange= {this.handleChange}
                         values = {values} 
                     
@@ -58,6 +62,7 @@ export class UserForm extends Component {
                 return (
                     <ImageUpload
                         nextStep={this.nextStep}
+                        prevStep={this.prevStep}
                         handleChange= {this.handleChange}
                         values = {values}
                     />
@@ -66,6 +71,7 @@ export class UserForm extends Component {
                 return (
                     <LiabilityWaiver
                         nextStep={this.nextStep}
+                        prevStep={this.prevStep}
                         handleChange={this.handleChange}
                         values = {values}
                     />
