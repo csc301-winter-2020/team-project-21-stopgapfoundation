@@ -42,18 +42,14 @@ class Login extends React.Component {
 function AccountTypeSelector(props) {
   return (
     <div>
-      <Link to='/form'>
         <Button
-          className="newRequestButton"
+           className="newRequestButton"
+          onClick={() => props.clickHandler(false)}
           color="primary" variant="contained" size='large'
           style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
           Create New Ramp Request
         </Button>
-      </Link>
       <div className="buttons center">
-        <Button className="login__button" onClick={() => props.clickHandler(false) }>
-          Client
-        </Button>
         <Button className="login__button" onClick={() => props.clickHandler(true) }>
           Admin
         </Button>

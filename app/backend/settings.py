@@ -22,10 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&#1!h&^bqctsdx9hu1p^k+rh=$$0(j-)!+&(l%ne#@5!r4)=qf'
+#SECRET_KEY = '&#1!h&^bqctsdx9hu1p^k+rh=$$0(j-)!+&(l%ne#@5!r4)=qf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1', 'http://stopgap-project.herokuapp.com']
 
@@ -77,14 +77,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
+SECRET_KEY = '&#1!h&^bqctsdx9hu1p^k+rh=$$0(j-)!+&(l%ne#@5!r4)=qf'
 
+DEBUG = dj_database_url.config('DEBUG', default=False)
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'default': dj_database_url.config(
+        default=dj_database_url.config('DATABASE_URL')
+    )
 }
 
 if str(os.environ['NODE_ENV']) == "heroku":
