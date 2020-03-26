@@ -38,6 +38,10 @@ export class UserForm extends Component {
     handleChange = input => e => {
         this.setState({[input]: e.target.value})
     }
+	
+	submitField = input => {
+		
+	}
 
     render() {
         const { step } = this.state;
