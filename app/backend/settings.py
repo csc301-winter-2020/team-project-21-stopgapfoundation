@@ -78,15 +78,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 SECRET_KEY = '&#1!h&^bqctsdx9hu1p^k+rh=$$0(j-)!+&(l%ne#@5!r4)=qf'
-
-DEBUG = dj_database_url.config('DEBUG', default=False)
+DEBUG = True
+#DEBUG = dj_database_url.config('DEBUG', default=False)
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+# DATABASES = {
+#         'default': dj_database_url.config(
+#         default=dj_database_url.config('DATABASE_URL')
+#     )
+# }
+
 DATABASES = {
-        'default': dj_database_url.config(
-        default=dj_database_url.config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
 
 if str(os.environ['NODE_ENV']) == "heroku":
    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)

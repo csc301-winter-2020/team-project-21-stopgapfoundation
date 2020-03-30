@@ -18,10 +18,11 @@ class Client(models.Model):
     )
 
     # Additional information
+    email = models.CharField(max_length=180)
     company = models.CharField(max_length=180)
     phone_number = models.CharField(max_length=15)
     address = models.CharField(max_length=180)
-    website = models.CharField(max_length=180)
+
 
 
 # Store a single waiver instance with this model
@@ -75,6 +76,9 @@ class Order(models.Model):
     step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
     step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
     ramp_colour = models.CharField(max_length=50)
+
+    # #status
+    status = models.CharField(max_length=20)
     
     # Additional information
     delivery_method = models.CharField(max_length=50)
