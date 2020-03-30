@@ -43,8 +43,7 @@ class ClientSerializer(serializers.ModelSerializer):
             'company',
             'phone_number',
             'address',
-            'website',
-            'orders'
+            'email',
         ]
 
 class WaiverSerializer(serializers.ModelSerializer):
@@ -81,5 +80,7 @@ class OrderSerializer(serializers.ModelSerializer):
             'step_right_height',
             'ramp_colour',
             'delivery_method',
-            'subsidize'
+            'subsidize',
+            'status'
+
         ]

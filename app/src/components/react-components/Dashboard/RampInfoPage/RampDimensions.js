@@ -16,51 +16,121 @@ class RampDimensions extends React.Component{
 
   constructor(props) {
     super(props);
-    console.log(this.props);
+    this.state = {
+      
+       data : {
+       
+        // "Length": {
+        //   value: "",
+        //   icon: < IconLength style={{width: "24px", height: "auto"}}/>
+        // },
+        // "Width": {
+        //   value: "",
+        //   icon: < IconWidth style={{width: "24px", height: "auto"}}/>
+        // },
+        "Left Height": {
+          value: "",
+          icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
+        },
+        "Right Height": {
+          value: "",
+          icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
+        },
+        // "Left Grade": {
+        //   value: "",
+        //   icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
+        // },
+        // "Right Grade": {
+        //   value: "",
+        //   icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
+        // },
+        "Color": {
+          value: "",
+          icon: null
+        },
+      },
+      error: null,
+      isLoaded: false,
+
+    }
+
+  }
+
+  componentDidMount() {
+    fetch("/order-information/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const orders = result["results"][0];
+          this.setState({
+            //values: orders, 
+            data : {
+              
+              // "Length": {
+              //   value: "",
+              //   icon: < IconLength style={{width: "24px", height: "auto"}}/>
+              // },
+              // "Width": {
+              //   value: "",
+              //   icon: < IconWidth style={{width: "24px", height: "auto"}}/>
+              // },
+              "Left Height": {
+                value: orders["step_left_height"],
+                icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
+              },
+              "Right Height": {
+                value: orders["step_right_height"],
+                icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
+              },
+              // "Left Grade": {
+              //   value: "",
+              //   icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
+              // },
+              // "Right Grade": {
+              //   value: "",
+              //   icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
+              // },
+              "Color": {
+                value: orders["ramp_colour"],
+                icon: null
+              },
+            },
+            isLoaded: true,
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
 
   render() {
-    const { ramp } = this.props;
+    const { listings, error, isLoaded } = this.state;
+    if (error) {
+      return <div> Error: {error.message}</div>
+    }
+    else if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else {
+    // const { ramp } = this.props;
 
-    const l_height = ramp.l_height;
-    const r_height = ramp.r_height;
-    const color = ramp.color;
-    const len = Math.max(l_height, r_height) * 6;
-    const width = 34;
-    const r_grade = (Math.atan(r_height / len) * (180 / Math.PI)).toFixed(2);
-    const l_grade = (Math.atan(l_height / len) * (180 / Math.PI)).toFixed(2);
+    // const l_height = ramp.l_height;
+    // const r_height = ramp.r_height;
+    // const color = ramp.color;
+    // const len = Math.max(l_height, r_height) * 6;
+    // const width = 34;
+    // const r_grade = (Math.atan(r_height / len) * (180 / Math.PI)).toFixed(2);
+    // const l_grade = (Math.atan(l_height / len) * (180 / Math.PI)).toFixed(2);
 
-    const data = {
-      "Length": {
-        value: `${len}"`,
-        icon: < IconLength style={{width: "24px", height: "auto"}}/>
-      },
-      "Width": {
-        value: `${width}"`,
-        icon: < IconWidth style={{width: "24px", height: "auto"}}/>
-      },
-      "Left Height": {
-        value: `${l_height}"`,
-        icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
-      },
-      "Right Height": {
-        value: `${r_height}"`,
-        icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
-      },
-      "Left Grade": {
-        value: `${l_grade}deg`,
-        icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
-      },
-      "Right Grade": {
-        value: `${r_grade}deg`,
-        icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
-      },
-      "Color": {
-        value: color,
-        icon: null
-      },
-    };
+ 
 
     return ( 
       <div className={"block"}>
@@ -77,7 +147,7 @@ class RampDimensions extends React.Component{
             <RampImage className={"ramp-dimensions-image center-block"} />
           </Grid> */}
           {
-            Object.entries(data).map((x, i) => {
+            Object.entries(this.state.data).map((x, i) => {
               const key = x[0];
               const {value, icon} = x[1];
 
@@ -107,7 +177,7 @@ class RampDimensions extends React.Component{
       </div>
     );
   }
-  
+}
 }
 
 export default RampDimensions;

@@ -18,29 +18,70 @@ class StatusBlock extends React.Component {
     ];
 
     this.state = {
-      statusInput: this.statuses[3],
-      progress: (3 / (this.statuses.length - 1)) * 100,
-      status: this.statuses[3]
+    error: null,
+    isLoaded: false,
+    date:"",
+    // statusInput: this.statuses[3],
+    // progress: (3 / (this.statuses.length - 1)) * 100,
+    // status: this.statuses[3]
+    progress: (0 / (this.statuses.length - 1)) * 100,
+    status: ""
     };
   }  
 
-  handleStatusInput = e => {
-    this.setState({
-      statusInput: e.target.value
-    });
+  // handleStatusInput = e => {
+  //   this.setState({
+  //     statusInput: e.target.value
+  //   });
+  // }
+
+  componentDidMount() {
+    fetch("/order-information/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const orders = result["results"][0];
+
+          const new_progress = (this.statuses.indexOf(orders["status"]) / (this.statuses.length - 1)) * 100
+          this.setState({
+            status: orders["status"],
+            date: orders["date_created"],
+            isLoaded: true,
+            progress:new_progress
+            
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
   }
 
-  saveData = e => {
-    e.preventDefault();
-    const status = this.state.statusInput;
-    const progress = (this.statuses.indexOf(status) / (this.statuses.length - 1)) * 100
-    this.setState({
-      progress,
-      status
-    })
-  }
+  // saveData = e => {
+  //   e.preventDefault();
+  //   const status = this.state.statusInput;
+  //   const progress = (this.statuses.indexOf(status) / (this.statuses.length - 1)) * 100
+  //   this.setState({
+  //     progress,
+  //     status
+  //   })
+  // }
 
   render() {
+    const { listings, error, isLoaded } = this.state;
+    if (error) {
+      return <div> Error: {error.message}</div>
+    }
+    else if (!isLoaded) {
+      return <div>Loading...</div>
+    }
+    else{
 
     const dirtyBit = this.state.statusInput != this.state.status;
 
@@ -50,8 +91,8 @@ class StatusBlock extends React.Component {
           Status
         </h2>
         <span className={"status-block-last-updated"}>
-          Last Updated: <strong>
-            {"March 11" /*TODO: get actual date */}
+          Date Created: <strong>
+            {this.state.date}
           </strong>
         </span>
         <ProgressBar progress={this.state.progress / 100} />
@@ -82,6 +123,7 @@ class StatusBlock extends React.Component {
       </div>
     );
   }
+}
 }
 
 export default StatusBlock;
