@@ -77,7 +77,9 @@ class App extends React.Component {
       user: {
         isAdmin: true
       }
-    })
+    });
+    localStorage.removeItem('token-access');
+    localStorage.removeItem('token-refresh');
   }
 
   componentDidMount() {
@@ -121,7 +123,11 @@ class App extends React.Component {
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
               <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} />) } />
-              <Route path='/dashboard' render={() => (<Dashboard loggedIn={this.state.loggedIn} user={this.state.user} logout={this.logout} />) } />
+              <Route path='/dashboard' render={() => (
+                this.state.loggedIn 
+                  ? <Dashboard loggedIn={this.state.loggedIn} user={this.state.user} logout={this.logout} />
+                  : <Redirect to='/login' />
+              )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>
               <Redirect path='/' to={this.state.loggedIn ? "/dashboard" : "/login" } />
             </Switch>

@@ -37,7 +37,8 @@ class Dashboard extends React.Component {
 
   render () {
     if (!this.props.loggedIn) // user is not logged in.
-      return <Redirect to="/login" /> 
+      return <Redirect to="/" /> 
+    
     return (
       <div>
         <Navbar title={this.props.user.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} goBack={this.goBack}/>
