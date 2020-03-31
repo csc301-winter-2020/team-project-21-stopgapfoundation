@@ -6,7 +6,8 @@ import {
   Link
 } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid"
+import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import ReactDOM from 'react-dom';
 import "./styles.css"
 
@@ -16,13 +17,39 @@ function Listing (props) {
     <Button className="listing_button" onClick={props.click}>
       <Grid container spacing={3}>
         <Grid item xs>
-          {props.date}
+          {props.fullName}
         </Grid>
-        <Grid item xs>{props.address} </Grid>
+        <Grid item xs>{props.business} </Grid>
         <Grid item xs>{props.status} </Grid>
       </Grid>
     </Button>
   );
+}
+
+class FilterBox extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      listingFilter: ""
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({
+      listingFilter: e.target.value
+    })
+    this.props.onChange(event.target.value)
+  }
+
+  render(){
+    <TextField 
+      id="filled-basic" 
+      label="Filter Client" 
+      variant="filled"
+      defaultValue=""
+      onChange={this.props.handleChange}
+    />
+  }
 }
 
 class ListingBox extends React.Component {
@@ -30,53 +57,11 @@ class ListingBox extends React.Component {
     super(props);
     this.state = {
       listings: [],
+      filteredListings: [],
       error: null,
       isLoaded: false,
     }
   }
-  /*
-  renderListing(i){
-      //i not used for now, figure it will be used when iterating through requests
-      //variables as placeholders for the information when fetched from requests
-      var client = "";
-      var business = "";
-      var status = "";
-      return (
-          <Listing client_name = {client} business_name = {business} status = {status}>
-          </Listing>
-      )
-  }
-  */
-
-  //pulls the information into 
-  // componentDidMount= () => {
-  //     fetch("/order-information")
-  //     .then(res => {res.json()})
-  //     .then(
-  //         (result) => {
-  //             this.setState({
-  //                 isLoaded: true, 
-  //                 listings: result["results"],
-  //             });
-  //         }
-  //     ),
-  //     (error) => {
-  //         this.setState({
-  //             isLoaded: true,
-  //             error
-  //         });
-  //     }
-  //     // this.setState({
-  //     //     isLoaded: true, 
-  //     //     listings: [
-  //     //         {
-  //     //             client_name: "John Smith",
-  //     //             business_name: "Business Inc.",
-  //     //             status: "Paint Phase"
-  //     //         }
-  //     //     ],
-  //     // });
-  //}
 
   componentDidMount() {
     fetch("/order-information/")
@@ -101,12 +86,20 @@ class ListingBox extends React.Component {
       )
   }
 
-
-      
-  
+  filterListings = (listingFilter) => {
+    let filteredListings = this.state.listings
+    filteredListings = filteredListings.filter((listing) =>{
+      let client_name = listing.client_name
+      return client_name.indexOf(
+        listingFilter) !== -1
+    })
+    this.setState ({
+      filteredListings
+    })
+  }
 
   render () {
-    const { listings, error, isLoaded } = this.state;
+    const { filteredListings, error, isLoaded } = this.state;
     if (error) {
       return <div> Error: {error.message}</div>
     }
@@ -119,11 +112,12 @@ class ListingBox extends React.Component {
           <h2 className="block-title">
             Ramp Requests
                     </h2>
-          {listings.map((listing, i) => (
+          <FilterBox></FilterBox>
+          {filteredListings.map((listing, i) => (
             <Listing
-              date={listing["date_created"]}
-              address={listing["shipping_address"]}
-              color={listing["ramp_colour"]}
+              fullName={listing["firstName"] + " " + listing["lastName"]}
+              business={listing["companyName"]}
+              status={listing["status"]}
               click={e => {
                 e.preventDefault();
                 this.props.click(i);
