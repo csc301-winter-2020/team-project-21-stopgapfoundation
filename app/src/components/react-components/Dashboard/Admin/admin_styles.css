@@ -12,7 +12,10 @@
 **/
 
 .number-stat {
-    height: calc(100% - 40px);
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #212121;
+    height: 100%;
 }
 
 .number-stat-num {
@@ -22,67 +25,8 @@
     display: block;
 }
 
-.ramp-dimensions-image {
-    margin-bottom: 1.33em;
-}
-
-.status-block-status {
-    /* display: inline-block; */
-    display: block;
-    position: relative;
-    /* transform-origin: center;
-    transform: translateX(-50%); */
-    text-align: center;
-    margin: 5px 0px 16px;
-    font-weight: bold;
-}
-
-.status-block-last-updated {
-    text-align: center;
-    display: block;
-    margin-bottom: 10px;
+.number-stat-title {
     color: #615187;
-    font-style: italic;
-}
-
-.status-bar-textfield {
-    width: 90%;
-}
-
-.notes-container {
-    margin-top: 15px;
-}
-
-.note-block{
-    flex-grow: 2;
-    display: inline-block;
-    /* Default colors, but will be overridden in component */
-    background-color: #689BF0;
-    color: black;
-    border-radius: 15px;
-    max-width: 250px;
-    padding: 1em;
-    margin: 0 5px 10px;
-}
-
-.note-block-content {
-    font-weight: bold;
-    font-size: 1.15em;
-}
-
-.notes-container {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-.general-info-container {
-    display: flex;
-    flex-flow: column nowrap;
-    
-}
-
-.general-info-input {
-    margin-bottom: 15px !important;
-    font-size: 1em !important;
+    text-align: center;
 }
 
