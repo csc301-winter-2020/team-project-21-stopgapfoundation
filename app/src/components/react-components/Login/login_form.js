@@ -15,8 +15,8 @@ class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      pwd: ""
+      username: "",
+      password: ""
     }
     this.form = React.createRef();
   }
@@ -33,26 +33,24 @@ class LoginForm extends React.Component {
       <div className="buttons center">
         <form ref={this.form} onSubmit={this.validateAndSubmit}>
           <TextField
-            value={this.state.email}
+            value={this.state.username}
             onChange = { e => this.setState({
-              email: e.target.value
+              username: e.target.value
             })}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            type="email"
-            autoComplete="email"
-            autoFocus
+            id="username"
+            label="User Name"
+            name="username"
+            type="username"
           />
   
           <TextField
             value = {this.state.pwd}
             onChange = { e => this.setState({
-              pwd: e.target.value
+              password: e.target.value
             })}
             variant="outlined"
             margin="normal"
