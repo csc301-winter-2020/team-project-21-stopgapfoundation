@@ -3,6 +3,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
+import { Alert } from '@material-ui/lab';
 
 /**
  * Form for filling in login credentials.
@@ -63,6 +64,8 @@ class LoginForm extends React.Component {
             autoComplete="current-password"
           />
   
+          {this.props.invalidLogin && <Alert severity="error">Unable to authenticate credentials.</Alert> }
+
           <Button
             type="submit"
             fullWidth
@@ -70,6 +73,7 @@ class LoginForm extends React.Component {
           >
               Sign in
           </Button>
+
   
           <Grid container>
             <Grid item xs>

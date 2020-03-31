@@ -122,7 +122,7 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
-              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} />) } />
+              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} invalidLogin={this.state.invalidLogin} />) } />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
                   ? <Dashboard loggedIn={this.state.loggedIn} user={this.state.user} logout={this.logout} />

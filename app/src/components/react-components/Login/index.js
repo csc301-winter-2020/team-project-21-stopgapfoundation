@@ -30,7 +30,7 @@ class Login extends React.Component {
           (
             this.state.inRegisterForm ? 
               <RegisterForm login={this.props.login} goBack = {() => this.setState({ inRegisterForm: false })}/> :
-              <LoginForm login={this.props.login} register={() => this.setState({inRegisterForm: true })} isAdmin={this.state.isAdmin} goBack = {() => this.setState({ inLoginForm: false })} />
+              <LoginForm login={this.props.login} register={() => this.setState({inRegisterForm: true })} isAdmin={this.state.isAdmin} goBack = {() => this.setState({ inLoginForm: false })} invalidLogin={this.props.invalidLogin} />
           )
         }
       </div>
