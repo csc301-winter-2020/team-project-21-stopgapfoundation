@@ -34,6 +34,23 @@ class RegisterForm extends React.Component {
     return (
       <div className="buttons center">
         <form ref={this.form} onSubmit={this.validateAndSubmit}>
+        <TextField
+            value={this.state.email}
+            onChange = { e => this.setState({
+              username: e.target.value
+            })}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="username"
+            label="User Name"
+            name="username"
+            type="username"
+            autoComplete="username"
+            autoFocus
+          />
+  
           <TextField
             value = {this.state.email}
             onChange = { e => this.setState({

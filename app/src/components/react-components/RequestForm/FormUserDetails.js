@@ -68,12 +68,20 @@ export class FormUserDetails extends Component {
                             defaultValue=""
                             onChange={this.props.handleChange('phoneNumber')}
                         />
+                        <br />
                         <TextField
                             required
                             id="standard-required"
                             label="Delivery Address"
                             defaultValue=""
                             onChange={this.props.handleChange('deliveryAddress')}
+                        />
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Billing Address"
+                            defaultValue=""
+                            onChange={this.props.handleChange('billingAddress')}
                         />
                         <TextField
                             required
