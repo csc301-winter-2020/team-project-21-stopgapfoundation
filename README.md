@@ -23,8 +23,8 @@
 	
 5) Apply any database changes:
 
-	python manage.py makemigrations
-	python manage.py migrate
+        python manage.py makemigrations
+        python manage.py migrate
 
 6) Run:
 
