@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import generics, viewsets, permissions, status
 from order_manager.models import  Waiver, Order
-from order_manager.serializers import UserSerializer, GroupSerializer,  OrderSerializer, WaiverSerializer
+from order_manager.serializers import UserSerializer, GroupSerializer, OrderSerializer, WaiverSerializer
 
 
 # Allows any authenticated user to access all user data
@@ -19,13 +19,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [
         permissions.IsAdminUser
     ]
-
-# class ClientViewSet(viewsets.ModelViewSet):
-#     queryset = Client.objects.all().order_by('user')
-#     serializer_class = ClientSerializer
-#     permission_classes =[
-#         permissions.IsAuthenticated
-#     ]
 
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all().order_by('date_created')
