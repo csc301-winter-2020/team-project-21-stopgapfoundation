@@ -10,17 +10,20 @@ class App extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      loggedIn: false,
+      loggedIn: false, // by default, no one is logged in
+      invalidLogin: false,
       user: {
-        isAdmin: false
-      }
+        isAdmin: true
+      },
+      flag: false
     };
   }
 
-  login = (user) => {
+  login = (user, pwd) => {
     console.log("Stopgap: Logging in . . .");
     if (this.state.user.loggedIn){ //already logged in.
       console.error("Stopgap: user already logged in.");
+      // Refreshes the page
       this.setState({
         loggedIn: false
       });
@@ -29,21 +32,86 @@ class App extends React.Component {
       });
       return;
     }
-    const newUser = { ... this.state.user}
-    Object.assign(newUser, user);
-    this.setState({
-      loggedIn: true,
-      user: newUser
-    });
+    // validate token
+    fetch("http://localhost:8000/api/token/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        "username": user,
+        "password": pwd
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+      console.log(res)
+      if ('detail' in res){
+        localStorage.removeItem('token-access')
+        localStorage.removeItem('token-refresh')
+        this.setState({
+          loggedIn: false,
+          invalidLogin: true
+        });
+      } else if ('access' in res && 'refresh' in res){
+        localStorage.setItem('token-access', res.access);
+        localStorage.setItem('token-refresh', res.refresh);
+        this.setState({
+          loggedIn: true,
+          invalidLogin: false
+        });
+      }
+    }, err => {
+      this.setState({
+        loggedIn: false,
+        invalidLogin: true
+      });
+      console.error(err);
+    })
   }
 
   logout = () => {
     this.setState({
       loggedIn: false,
       user: {
-        isAdmin: false
+        isAdmin: true
       }
     })
+  }
+
+  componentDidMount() {
+    if (localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh")) {
+      // check if the existing token is valid.
+      fetch("http://localhost:8000/api/token/refresh/", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          refresh: localStorage.getItem("token-refresh")
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+          if ('access' in res){
+            localStorage.setItem("token-access", res.access)
+            this.setState({
+              loggedIn: true
+            })
+          } else {
+            this.setState({
+              loggedIn: false
+            })
+          }
+      }, error => {
+        console.error(error)
+        this.setState({
+          loggedIn: false
+        })
+      })
+    }
   }
 
   render() { 

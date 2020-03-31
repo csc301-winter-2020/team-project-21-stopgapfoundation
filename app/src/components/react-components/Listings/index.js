@@ -79,26 +79,26 @@ class ListingBox extends React.Component {
   //}
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"];
-          this.setState({
-            listings: orders, 
-            isLoaded: true,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    // fetch("/order-information/")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       const orders = result["results"];
+    //       this.setState({
+    //         listings: orders, 
+    //         isLoaded: true,
+    //       });
+    //     },
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
   }
 
 
@@ -107,6 +107,7 @@ class ListingBox extends React.Component {
 
   render () {
     const { listings, error, isLoaded } = this.state;
+    console.log(`listings: ${listings}`)
     if (error) {
       return <div> Error: {error.message}</div>
     }
