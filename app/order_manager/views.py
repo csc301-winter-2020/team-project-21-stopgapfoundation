@@ -33,6 +33,3 @@ class WaiverViewSet(viewsets.ModelViewSet):
     permission_classes =[
         permissions.IsAuthenticated
     ]
-
-
-
