@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid"
+import {Skeleton} from '@material-ui/lab';
 import ReactDOM from 'react-dom';
 import "./styles.css"
 
@@ -109,10 +110,10 @@ class ListingBox extends React.Component {
     const { listings, error, isLoaded } = this.state;
     console.log(`listings: ${listings}`)
     if (error) {
-      return <div> Error: {error.message}</div>
+      return <div className="block"> Error: {error.message}</div>
     }
     else if (!isLoaded) {
-      return <div>Loading...</div>
+      return <Skeleton className="block" variant="rect" height={220}/>
     }
     else {
       return (
