@@ -7,21 +7,22 @@ def user_directory_path(instance, filename):
     return "data/user_{0}/step_photos/{1}".format(instance.user.id, filename)
 
 
-# Expand the standard user class provided by Django Auth
-# Store any additional information about client in this model
-class Client(models.Model):
-    # Reference to base user model
-    user = models.OneToOneField(
-        User,
-        on_delete=models.CASCADE,
-        primary_key=True
-    )
+# # Expand the standard user class provided by Django Auth
+# # Store any additional information about client in this model
+# class Client(models.Model):
+#     # Reference to base user model
+#     user = models.OneToOneField(
+#         User,
+#         on_delete=models.CASCADE,
+#         primary_key=True
+#     )
+#
+#     # Additional information
+#     email = models.CharField(max_length=180)
+#     company = models.CharField(max_length=180)
+#     phone_number = models.CharField(max_length=15)
+#     address = models.CharField(max_length=180)
 
-    # Additional information
-    company = models.CharField(max_length=180)
-    phone_number = models.CharField(max_length=15)
-    address = models.CharField(max_length=180)
-    website = models.CharField(max_length=180)
 
 
 # Store a single waiver instance with this model
@@ -54,6 +55,14 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
 
+    #User information
+    firstName =  models.CharField(max_length=30)
+    lastName = models.CharField(max_length=30)
+    email = models.CharField(max_length=30)
+    companyName =   models.CharField(max_length=30)
+    phoneNumber  =  models.CharField(max_length=30)
+
+
     # Date of order creation
     date_created = models.DateField(auto_now_add=True)
 
@@ -75,6 +84,9 @@ class Order(models.Model):
     step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
     step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
     ramp_colour = models.CharField(max_length=50)
+
+    # #status
+    status = models.CharField(max_length=20)
     
     # Additional information
     delivery_method = models.CharField(max_length=50)

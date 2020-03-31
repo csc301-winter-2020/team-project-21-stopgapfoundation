@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Client, Waiver, Order
+from rest_framework_jwt.settings import api_settings
+# from .models import Client, Waiver, Order
+from .models import Waiver, Order
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     client = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
@@ -21,6 +23,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             'client'
         ]
 
+
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     members = serializers.StringRelatedField(many=True, read_only=True)
 
@@ -32,20 +35,19 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
             'members'
         ]
 
-class ClientSerializer(serializers.ModelSerializer):
-    orders = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
-
-    class Meta:
-        model = Client
-
-        fields = [
-            'user',
-            'company',
-            'phone_number',
-            'address',
-            'website',
-            'orders'
-        ]
+# class ClientSerializer(serializers.ModelSerializer):
+#     orders = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
+#
+#     class Meta:
+#         model = Client
+#
+#         fields = [
+#             'user',
+#             'company',
+#             'phone_number',
+#             'address',
+#             'email',
+#         ]
 
 class WaiverSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,5 +83,12 @@ class OrderSerializer(serializers.ModelSerializer):
             'step_right_height',
             'ramp_colour',
             'delivery_method',
-            'subsidize'
+            'subsidize',
+            'status',
+            "firstName",
+            "lastName",
+            "email",
+            "companyName",
+            "phoneNumber"
+
         ]

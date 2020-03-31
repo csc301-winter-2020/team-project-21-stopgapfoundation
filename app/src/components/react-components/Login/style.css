@@ -52,3 +52,11 @@ p {
   margin-right: 5px;
   width: 100%;
 }
+
+.buttons center{
+    bottom: 10px;
+}
+
+.newRequestButton{
+    bottom:100px;
+}

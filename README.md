@@ -1,23 +1,49 @@
 # Local Setup Guidelines
 
-## Starting the application
+## Starting/Updating the Application
 
-1) Run
+1) Run:
 
-        export NODE_ENV="development"
+        export NODE_ENV=local
+
+	
+	On Windows (powershell) instead run:
+	
+		$env:NODE_ENV="local"
+		
+                
+2) Change directory into the app folder
+3) Run:
         
-        For Windows:
-        SET NODE_ENV="development"
+        yarn add package.json
 
-2) Change directory into the cloned repository
-3) Execute:
+4) Execute:
 
-        docker-compose -f docker-compose.yml up --build -d
+        yarn build
 
+5) Run:
 
-## After making changes:
+        python manage.py collectstatic
 
-1) Execute:
+6) Run:
 
-        docker-compose down
-        docker-compose -f docker-compose.yml up --build -d
+        python manage.py runserver
+
+## Deployment instructions
+1) Run:
+
+        heroku login
+
+2) Login to heroku
+
+3) Change directory into app and run:
+
+        yarn add package.json
+        
+to make sure there is a yarn.lock file
+
+4) Change directory back into the root dir
+
+5) Run:
+
+        sudo deploy_app.sh

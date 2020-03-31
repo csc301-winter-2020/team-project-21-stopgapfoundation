@@ -12,6 +12,10 @@ export class FormUserDetails extends Component {
         e.preventDefault();
         this.props.nextStep();
     }
+    back = e => {
+        e.preventDefault();
+        this.props.prevStep();
+    }
     render() {
         const { values } = this.props;
 
@@ -64,12 +68,20 @@ export class FormUserDetails extends Component {
                             defaultValue=""
                             onChange={this.props.handleChange('phoneNumber')}
                         />
+                        <br />
                         <TextField
                             required
                             id="standard-required"
                             label="Delivery Address"
                             defaultValue=""
                             onChange={this.props.handleChange('deliveryAddress')}
+                        />
+                        <TextField
+                            required
+                            id="standard-required"
+                            label="Billing Address"
+                            defaultValue=""
+                            onChange={this.props.handleChange('billingAddress')}
                         />
                         <TextField
                             required
@@ -87,6 +99,8 @@ export class FormUserDetails extends Component {
                         />
 
                         <br /> <br />
+                        <Button
+                            style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>
                         <Button
                             color="primary" variant="contained" onClick={this.continue}>Next</Button>
                         <h4>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
