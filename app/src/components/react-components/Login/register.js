@@ -8,6 +8,8 @@ class RegisterForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      firstName:"", 
+      lastName: "",
       email: "",
       pwd: "",
       pwdConfirm: "",
@@ -35,19 +37,35 @@ class RegisterForm extends React.Component {
       <div className="buttons center">
         <form ref={this.form} onSubmit={this.validateAndSubmit}>
         <TextField
-            value={this.state.email}
+            value={this.state.firstName}
             onChange = { e => this.setState({
-              username: e.target.value
+              firstName: e.target.value
             })}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="User Name"
-            name="username"
-            type="username"
-            autoComplete="username"
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            type="name"
+            autoComplete="firstName"
+            autoFocus
+          />
+          <TextField
+            value={this.state.lastName}
+            onChange = { e => this.setState({
+              lastName: e.target.value
+            })}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="lastName"
+            label="Last Name"
+            name="lastName"
+            type="name"
+            autoComplete="lastName"
             autoFocus
           />
   
