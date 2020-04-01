@@ -145,7 +145,7 @@ class GeneralInfo extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          const orders = result["results"][0];
+          const orders = this.props.data
           this.setState({
             //values: orders, 
             data: { // default data

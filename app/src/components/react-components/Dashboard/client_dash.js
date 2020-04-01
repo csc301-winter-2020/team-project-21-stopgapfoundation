@@ -22,7 +22,7 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={() => this.props.gotoFuncs.ramp_info(false)} />
+        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} />
       </div>
     );
   }

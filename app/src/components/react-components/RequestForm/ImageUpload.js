@@ -27,7 +27,7 @@ export class ImageUpload extends Component {
         <React.Fragment>
           <AppBar position="static">
             <Typography variant="h6" >
-              StopGap - Request A Ramp Form
+              Ramp Request Form
                         </Typography>
           </AppBar>
           <br />

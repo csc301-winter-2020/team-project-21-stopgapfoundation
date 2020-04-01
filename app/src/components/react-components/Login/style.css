@@ -9,7 +9,7 @@
   background-size: cover;
   width: 100%;
   height: 100%;
-  background-color: floralwhite;
+  background-color: #F9F9F8;
 }
 
 .login__button-link {
@@ -18,8 +18,8 @@
 }
 
 .login__button {
-  width: 250px;
-  height: 80px;
+  width: 400px;
+  height: 100px;
   padding: 10px;
 }
 
@@ -32,15 +32,12 @@
 }
 
 .login__button .MuiButton-label {
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: black;
 }
 
 .buttons {
-  top: 50%;
-  left: 50%;
-  display: inline-block;
-  position: relative;
+  padding-top: 20px;
 }
 
 p {
@@ -53,10 +50,7 @@ p {
   width: 100%;
 }
 
-.buttons center{
-    bottom: 10px;
-}
 
 .newRequestButton{
-    bottom:100px;
+    bottom: 30px;
 }

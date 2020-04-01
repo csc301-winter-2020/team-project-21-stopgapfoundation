@@ -14,7 +14,8 @@ class StatusBlock extends React.Component {
       "Request Accepted",
       "Build Phase",
       "Paint Phase",
-      "Out for Delivery"
+      "Out for Delivery",
+      "Completed"
     ];
 
     this.state = {
@@ -40,7 +41,7 @@ class StatusBlock extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          const orders = result["results"][0];
+          const orders = this.props.data
 
           const new_progress = (this.statuses.indexOf(orders["status"]) / (this.statuses.length - 1)) * 100
           this.setState({

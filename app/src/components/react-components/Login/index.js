@@ -41,19 +41,17 @@ class Login extends React.Component {
 /* Component to select a different kind of account */
 function AccountTypeSelector(props) {
   return (
-    <div>
+    <div className="buttons center">
         <Button
-           className="newRequestButton"
+           className="newRequestButton login__button"
           onClick={() => props.clickHandler(false)}
-          color="primary" variant="contained" size='large'
+           variant="contained" size='large'
           style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
           Create New Ramp Request
         </Button>
-      <div className="buttons center">
         <Button className="login__button" onClick={() => props.clickHandler(true) }>
           Admin
         </Button>
-      </div>
     </div>
   );
 }

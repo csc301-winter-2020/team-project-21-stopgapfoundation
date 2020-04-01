@@ -5,34 +5,103 @@ import ListingBox from "../../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
-  render () {
-    const rampData = {
-      l_height: 10,
-      r_height: 10,
-      color: "#EFDA33"
-    };
 
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: null,
+      isLoaded: false,
+      total: 0,
+      build:0,
+      paint:0,
+      delivery:0,
+      complete:0
+    }
+  }
+
+
+  componentDidMount() {
+    fetch("/order-information/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const orders = result["results"];
+          const total_num = orders.length
+          var build_num = 0
+          var paint_num = 0
+          var delivery_num = 0
+          var complete_num = 0
+          if(total_num > 0){
+            var order
+            for  (var i = 0; i < total_num; i++) {
+              const phase = orders[i]["status"]
+              if (phase == "Build Phase"){
+                build_num += 1
+
+              }
+              if (phase == "Paint Phase"){
+                paint_num += 1
+
+              }
+              if (phase ==  "Out for Delivery"){
+                delivery_num += 1
+
+              }
+              if (phase ==  "Completed"){
+                complete_num += 1
+
+              }
+
+            }
+
+         
+          }
+          this.setState({
+            isLoaded: true,
+            total: total_num,
+            build: build_num,
+            paint:paint_num,
+            delivery: delivery_num,
+            complete:complete_num
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+
+
+  render () {
+  
     return (
       <div>
         <Grid container justify={"center"}>
           <Grid item xs >
-            <NumberStat title="Total Requests" stat={120} />
+            <NumberStat title="Total Requests" stat={this.state.total} />
           </Grid>
           <Grid item xs >
-            <NumberStat title="Ready For Build" stat={60} />
+            <NumberStat title="Ready For Build" stat={this.state.build} />
           </Grid>
           <Grid item xs >
-            <NumberStat title="Ready For Paint" stat={12} />
+            <NumberStat title="Ready For Paint" stat={this.state.paint} />
           </Grid>
           <Grid item xs >
-            <NumberStat title="Ready For Delivery" stat={10} />
+            <NumberStat title="Out for Delivery" stat={this.state.delivery} />
           </Grid>
           <Grid item xs >
-            <NumberStat title="Completed Ramps" stat={2} />
+            <NumberStat title="Completed Ramps" stat={this.state.complete} />
           </Grid>
         </Grid>
 
-        <ListingBox click={() => this.props.gotoFuncs.ramp_info(true)} isAdmin/>
+        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(true,id)} isAdmin/>
       </div>
     );
   }
