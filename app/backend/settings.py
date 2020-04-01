@@ -96,7 +96,7 @@ DATABASES = {
 }
 
 
-if str(os.environ['NODE_ENV']) == "heroku":
+if str(os.getenv('NODE_ENV')) == "heroku":
    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 
@@ -146,9 +146,9 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ),
     # Enable JWT
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework_simplejwt.authentication.JWTAuthentication'
-    ],
+    #'DEFAULT_AUTHENTICATION_CLASSES': [
+    #    'rest_framework_simplejwt.authentication.JWTAuthentication'
+    #],
 }
 
 # Static files (CSS, JavaScript, Images)

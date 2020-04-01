@@ -20,12 +20,17 @@
 4) Execute:
 
         yarn build
+	
+5) Apply any database changes:
 
-5) Run:
+        python manage.py makemigrations
+        python manage.py migrate
+
+6) Run:
 
         python manage.py collectstatic
 
-6) Run:
+7) Run:
 
         python manage.py runserver
 
