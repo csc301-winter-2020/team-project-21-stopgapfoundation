@@ -73,7 +73,6 @@ class App extends React.Component {
 
   register = (username, password, first_name, last_name, isAdmin) => {
     console.log("StopGap: Registering new user...");
-    console.log(username, password, first_name, last_name, isAdmin)
 
     // User already logged in.
     if (this.state.loggedIn){
@@ -104,8 +103,6 @@ class App extends React.Component {
         "is_staff": isAdmin
       })
     }).then(res => {
-      console.log(res);
-
       // Login user with newly created credentials
       this.login(username, password, isAdmin);
     });
