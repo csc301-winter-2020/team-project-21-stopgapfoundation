@@ -48,9 +48,15 @@ function AccountTypeSelector(props) {
            variant="contained" size='large'
           style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
           Create New Ramp Request
+          <br/>
+          Or
+          <br/>
+          Check Status of Existing Ramp Request
         </Button>
         <Button className="login__button" onClick={() => props.clickHandler(true) }>
           Admin
+          <br/>
+          (StopGap Staff Only)
         </Button>
     </div>
   );
