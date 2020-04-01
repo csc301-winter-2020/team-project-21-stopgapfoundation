@@ -19,7 +19,7 @@ class AdminDashboard extends React.Component {
   
 
   componentDidMount() {
-    fetch("http://localhost:8000/order-information/", {
+    fetch("/order-information/", {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
