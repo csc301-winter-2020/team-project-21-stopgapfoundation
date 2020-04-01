@@ -146,6 +146,7 @@ export class UserForm extends Component {
             case 2:
                 return (
                     <ImageUpload
+						prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange= {this.handleChange}
                     />

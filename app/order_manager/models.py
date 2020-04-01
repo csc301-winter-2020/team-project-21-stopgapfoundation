@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 
 # Use this method to get the directory to store a user's photos
@@ -17,17 +18,17 @@ class Waiver(models.Model):
     )
 
     # Date of waiver creation/completion (assumed to be at the same time)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True, default=datetime.date.today)
 
     # Name and signature of owner or manager
-    signatory_first_name = models.CharField(max_length=30)
-    signatory_last_name = models.CharField(max_length=150)
-    signatory_signature = models.CharField(max_length=180)  # Use full name as e-signature
+    signatory_first_name = models.CharField(max_length=30, default="")
+    signatory_last_name = models.CharField(max_length=150, default="")
+    signatory_signature = models.CharField(max_length=180, default="")  # Use full name as e-signature
 
     # Name and signature of witness
-    witness_first_name = models.CharField(max_length=30)
-    witness_last_name = models.CharField(max_length=150)
-    witness_signature = models.CharField(max_length=180)    # Use full name as e-signature
+    witness_first_name = models.CharField(max_length=30, default="")
+    witness_last_name = models.CharField(max_length=150, default="")
+    witness_signature = models.CharField(max_length=180, default="")    # Use full name as e-signature
 
 class Order(models.Model):
     # Reference to associated client
@@ -37,18 +38,18 @@ class Order(models.Model):
     )
 
     # User information
-    first_name =  models.CharField(max_length=30)
-    last_name = models.CharField(max_length=150)
-    email = models.CharField(max_length=180)
-    company = models.CharField(max_length=180)
-    phone_number = models.CharField(max_length=15)
+    first_name =  models.CharField(max_length=30, default="")
+    last_name = models.CharField(max_length=150, default="")
+    email = models.CharField(max_length=180, default="")
+    company = models.CharField(max_length=180, default="")
+    phone_number = models.CharField(max_length=15, default="")
 
     # Date of order creation
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True, default=datetime.date.today)
 
     # Address information
-    billing_address = models.CharField(max_length=180)
-    shipping_address = models.CharField(max_length=180)
+    billing_address = models.CharField(max_length=180, default="")
+    shipping_address = models.CharField(max_length=180, default="")
 
     # Waiver information
     waiver = models.OneToOneField(
