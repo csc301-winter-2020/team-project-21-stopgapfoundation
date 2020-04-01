@@ -12,11 +12,12 @@ class AdminDashboard extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      total: 0,
+      total:0,
       build:0,
       paint:0,
       delivery:0,
-      complete:0
+      complete:0,
+      orders: []
     }
   }
 
@@ -29,7 +30,11 @@ class AdminDashboard extends React.Component {
         'Authorization': `Bearer ${localStorage.getItem('token-access')}`
       }
     })
-    .then(res => res.json())
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
     .then(
       (result) => {
         const orders = result["results"];
@@ -56,12 +61,8 @@ class AdminDashboard extends React.Component {
             }
             if (phase ==  "Completed"){
               complete_num += 1
-
             }
-
           }
-
-        
         }
         this.setState({
           isLoaded: true,
@@ -69,7 +70,8 @@ class AdminDashboard extends React.Component {
           build: build_num,
           paint:paint_num,
           delivery: delivery_num,
-          complete:complete_num
+          complete:complete_num,
+          orders: orders
         });
       },
       // Note: it's important to handle errors here
@@ -107,7 +109,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(true,id)} isAdmin/>
+        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(true,id)} orders={this.state.orders} isAdmin isLoaded/>
       </div>
     );
   }
