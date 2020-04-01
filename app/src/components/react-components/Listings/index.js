@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid"
+import {Skeleton} from '@material-ui/lab';
 import TextField from "@material-ui/core/TextField";
 import "./styles.css"
 
@@ -51,17 +52,17 @@ class Listing extends React.Component {
       )
   }
   render(){
-    return (
-      <Button className="listing_button" onClick={this.props.click}>
-        <Grid container spacing={3}>
-          <Grid item xs>
-            {this.props.fullName}
-          </Grid>
-          <Grid item xs>{this.props.business} </Grid>
-          <Grid item xs>{this.props.status} </Grid>
-        </Grid>
-      </Button>
-    );
+
+  return (
+    <Button className="listing_button" onClick={this.props.click}>
+      <Grid container spacing={4}>
+      <Grid item xs>{this.props.id} </Grid>
+        <Grid item xs>{this.props.fullName}</Grid>
+        <Grid item xs>{this.props.business} </Grid>
+        <Grid item xs>{this.props.status} </Grid>
+      </Grid>
+    </Button>
+  );
   }
 }
 
@@ -105,26 +106,26 @@ class ListingBox extends React.Component {
   }
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"];
-          this.setState({
-            listings: orders, 
-            isLoaded: true,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    // fetch("/order-information/")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       const orders = result["results"];
+    //       this.setState({
+    //         listings: orders, 
+    //         isLoaded: true,
+    //       });
+    //     },
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
   }
 
   filterListings = (listingFilter) => {
@@ -140,12 +141,13 @@ class ListingBox extends React.Component {
   }
 
   render () {
-    const {listings, error, isLoaded } = this.state;
+    const { listings, error, isLoaded } = this.state;
+    console.log(`listings: ${listings}`)
     if (error) {
-      return <div> Error: {error.message}</div>
+      return <div className="block"> Error: {error.message}</div>
     }
     else if (!isLoaded) {
-      return <div>Loading...</div>
+      return <Skeleton className="block" variant="rect" height={220}/>
     }
     else {
       return (
@@ -154,10 +156,16 @@ class ListingBox extends React.Component {
             Ramp Requests
                     </h2>
           <FilterBox onChange={this.filterListings}></FilterBox>
-          {listings.map((listing, i) => (
+          <Grid container spacing={4}>
+          <  Grid  align="center" item xs>        Order Number</Grid>
+           < Grid   align="center" item xs>        Full Name</Grid>
+            <Grid  align="center" item xs>        Company </Grid>
+            <Grid  align="center"item xs>        Status</Grid>
+          </Grid>
+          {listings.map((listing,i) => (
             <Listing
 
-
+              id={listing["pk"] }
               fullName={listing["firstName"] + " " + listing["lastName"]}
               business={listing["companyName"]}
               status={listing["status"]}

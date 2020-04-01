@@ -31,12 +31,13 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage id = {id} isAdmin={isAdmin}/>)
+    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage goBack = {this.goBack} id = {id} isAdmin={isAdmin}/>)
   }
 
   render () {
     if (!this.props.loggedIn) // user is not logged in.
-      return <Redirect to="/login" /> 
+      return <Redirect to="/" /> 
+    
     return (
       <div>
         {this.props.user.isAdmin ? <AdminDashboard logout={this.props.logout} /> : <ClientDashboard logout={this.props.logout}/>}

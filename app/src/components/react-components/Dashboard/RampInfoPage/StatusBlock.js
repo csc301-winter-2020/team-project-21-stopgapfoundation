@@ -41,7 +41,6 @@ class StatusBlock extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log(this.props)
           const orders = this.props.data
 
           const new_progress = (this.statuses.indexOf(orders["status"]) / (this.statuses.length - 1)) * 100

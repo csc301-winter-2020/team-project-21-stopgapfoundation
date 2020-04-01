@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid';
+import { Button, Grid } from '@material-ui/core';
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
@@ -58,8 +58,6 @@ class RampInfoPage extends React.Component {
 
   render () {
 
-    console.log(this.state.data)
-
     return (
       <Grid container>
         <Grid item xs={4}>
@@ -73,10 +71,14 @@ class RampInfoPage extends React.Component {
             <Grid item xs={6}>
               <StatusBlock isAdmin={this.props.isAdmin} data={ this.state.data } />
             </Grid>
+            <Grid item xs={3}>
+            <   Button  variant="outlined" id="backButton" onClick={this.props.goBack}>Go Back</Button>
+          </Grid>
           </Grid>
           {this.props.isAdmin && <Notes />}
         </Grid>
       </Grid>
+
     );
   }
 }

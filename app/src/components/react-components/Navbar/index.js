@@ -15,7 +15,7 @@ class Nav extends React.Component {
                         <span><img className='center' style={{ display: 'block', margin: 'auto', width: 300, height: 100 }} src={"/static/logo.png"}></img></span>
                     </Grid>
                     <Grid item xs={3}>
-                        <Button variant="outlined" id="backButton" onClick={this.props.goBack}>Go Back</Button>
+                        
                         <Button style={{marginTop: '10px'}} color="secondary" variant="contained" onClick={this.props.logout}>Log Out</Button>
                     </Grid>
                 </Grid>

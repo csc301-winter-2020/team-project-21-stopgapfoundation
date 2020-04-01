@@ -122,7 +122,6 @@ class Notes extends React.Component{
  */
 function NoteBlock(props) {
 
-  console.log(props.color);
 
   const {title, date, author, note} = props.note;
   return (
