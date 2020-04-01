@@ -47,7 +47,7 @@ class WaiverSerializer(serializers.ModelSerializer):
             'signatory_signature',
             'witness_first_name',
             'witness_last_name',
-            'witness_signature'
+            'witness_signature',
             'order'
         ]
 

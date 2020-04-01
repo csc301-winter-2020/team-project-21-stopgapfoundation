@@ -19,18 +19,25 @@ class RegisterForm extends React.Component {
   }
 
   validateAndSubmit = e => {
-    /* TODO: feed in actual new user data */
     e.preventDefault();
+
+    // Form incomplete
     if(!this.form.current.reportValidity())
       return;
+    // Passwords do not match
     if (this.state.pwd != this.state.pwdConfirm){
       this.setState({passwordsMatch: false});
       return;
     }
-    
-    // TODO: fix this
-    this.props.login({isAdmin: this.props.isAdmin})
-    
+    console.log(this.props)
+    // No issues; sign user up
+    this.props.register(
+      this.state.email,
+      this.state.pwd,
+      this.state.firstName,
+      this.state.lastName,
+      this.props.isAdmin
+    );
   }
 
   render() {
