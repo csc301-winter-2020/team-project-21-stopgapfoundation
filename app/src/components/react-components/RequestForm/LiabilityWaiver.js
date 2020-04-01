@@ -32,23 +32,23 @@ export class LiabilityWaiver extends Component {
                 </Box>
           <FormControlLabel
             control={<Checkbox onChange={this.handleChange} name="check" />}
-            label="I understand and agree the terms"
+            label="I understand and agree to the Liability Waiver."
             style={{ marginLeft: '40px' }}
           />
         </div>
-        <Box style={{ marginTop: '40px', marginLeft: '40px' }} maxWidth='500px' border={3}>
+        <Box style={{ float:'left', marginTop: '40px', marginLeft: '40px' }} maxWidth='500px' border={3}>
           <div>
             <TextField
               required
               id="standard-required"
-              label="Owner / Manager First and Last Name"
+              label="Owner First/Last Name"
               defaultValue=""
               onChange={this.props.handleChange('managerFirst')}
             />
             <TextField
               required
               id="standard-required"
-              label="Owner / Manager Signature"
+              label="Owner Signature"
               defaultValue=""
               onChange={this.props.handleChange('managerSig')}
             />

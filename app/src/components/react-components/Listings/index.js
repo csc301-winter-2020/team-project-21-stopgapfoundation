@@ -13,18 +13,65 @@ import "./styles.css"
 import {Container, Row, Col} from 'react-bootstrap';
 
 //Listing returns a button with the client/business names and status
-function Listing (props) {
+class Listing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data:{}
+    }
+  }
+
+
+  componentDidMount() {
+    fetch("/order-information/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const orders = result["results"];
+          const total_num = orders.length
+          if(total_num > 0){
+            for  (var i = 0; i < total_num; i++) {
+              const id = this.props.id
+              const check = orders[i]["pk"]
+              if (id == check){
+                this.setState({
+                  data:orders[i]
+                });
+
+              }
+              
+
+            }
+
+         
+          }
+   
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+  render(){
+
   return (
-    <Button className="listing_button" onClick={props.click}>
+    <Button className="listing_button" onClick={this.props.click}>
       <Grid container spacing={3}>
         <Grid item xs>
-          {props.fullName}
+          {this.props.fullName}
         </Grid>
-        <Grid item xs>{props.business} </Grid>
-        <Grid item xs>{props.status} </Grid>
+        <Grid item xs>{this.props.business} </Grid>
+        <Grid item xs>{this.props.status} </Grid>
       </Grid>
     </Button>
   );
+  }
 }
 
 class FilterBox extends React.Component{
@@ -118,12 +165,15 @@ class ListingBox extends React.Component {
           <FilterBox onChange={this.filterListings}></FilterBox>
           {listings.map((listing, i) => (
             <Listing
+
+
               fullName={listing["firstName"] + " " + listing["lastName"]}
               business={listing["companyName"]}
               status={listing["status"]}
               click={e => {
+
                 e.preventDefault();
-                this.props.click(i);
+                this.props.click(listing);
               }}
             />
           ))}
