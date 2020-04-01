@@ -113,7 +113,7 @@ class RegisterForm extends React.Component {
             required
             fullWidth
             name="repeatpassword"
-            label="RepeatPassword"
+            label="Confirm Password"
             type="password"
             id="repeatpassword"
             autoComplete="current-password"
