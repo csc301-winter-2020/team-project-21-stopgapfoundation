@@ -59,18 +59,17 @@ class Listing extends React.Component {
       )
   }
   render(){
-
-  return (
-    <Button className="listing_button" onClick={this.props.click}>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          {this.props.fullName}
+    return (
+      <Button className="listing_button" onClick={this.props.click}>
+        <Grid container spacing={3}>
+          <Grid item xs>
+            {this.props.fullName}
+          </Grid>
+          <Grid item xs>{this.props.business} </Grid>
+          <Grid item xs>{this.props.status} </Grid>
         </Grid>
-        <Grid item xs>{this.props.business} </Grid>
-        <Grid item xs>{this.props.status} </Grid>
-      </Grid>
-    </Button>
-  );
+      </Button>
+    );
   }
 }
 
@@ -180,6 +179,7 @@ class ListingBox extends React.Component {
         </div>
       );
     }
+  }
 }
 
 export default Listing;
