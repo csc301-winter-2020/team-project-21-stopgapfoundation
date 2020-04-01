@@ -5,7 +5,7 @@ class Notes extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      notes: JSON.parse(props.notes),
+      notes: JSON.parse(props.data.notes),
       newNote: ""
     }
   }
@@ -66,10 +66,31 @@ class Notes extends React.Component{
       note: newNote
     }); // Send post request
 
-    this.setState({
-      newNote: "",
-      notes: newNotesArr
-    });
+    fetch(`/order-information/${this.props.data['pk']}/`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      },
+      body: JSON.stringify({
+        "notes": JSON.stringify(newNotesArr)
+      })
+    }).then(res => {
+      if (res.ok){
+        return res.json()
+      }
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(res => {
+      this.setState({
+        newNote: "",
+        notes: newNotesArr
+      });
+    }, err => {
+      console.error("Unable to update note");
+      console.error(err);
+    })
   }
 
   render() {
