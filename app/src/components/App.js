@@ -5,6 +5,7 @@ import './App.css';
 import Login from './react-components/Login';
 import Dashboard from './react-components/Dashboard';
 import UserForm from './react-components/RequestForm';
+import { LinearProgress } from '@material-ui/core';
 class App extends React.Component {
 
   constructor(props){
@@ -15,7 +16,7 @@ class App extends React.Component {
       user: {
         isAdmin: true
       },
-      flag: false
+      isCurrentlyCheckingStorageForLogin: true
     };
   }
 
@@ -83,37 +84,41 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    if (localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh")) {
-      // check if the existing token is valid.
-      fetch("http://localhost:8000/api/token/refresh/", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          refresh: localStorage.getItem("token-refresh")
-        })
+    const refreshToken = localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh") 
+      ? localStorage.getItem("token-refresh")
+      : "";
+    // check if the existing token is valid.
+    fetch("http://localhost:8000/api/token/refresh/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        refresh: refreshToken
       })
-      .then(res => res.json())
-      .then(res => {
-          if ('access' in res){
-            localStorage.setItem("token-access", res.access)
-            this.setState({
-              loggedIn: true
-            })
-          } else {
-            this.setState({
-              loggedIn: false
-            })
-          }
-      }, error => {
-        console.error(error)
-        this.setState({
-          loggedIn: false
-        })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if ('access' in res){
+          localStorage.setItem("token-access", res.access)
+          this.setState({
+            loggedIn: true,
+            isCurrentlyCheckingStorageForLogin: false
+          })
+        } else {
+          this.setState({
+            loggedIn: false,
+            isCurrentlyCheckingStorageForLogin: false
+          })
+        }
+    }, error => {
+      console.error(error)
+      this.setState({
+        loggedIn: false,
+        isCurrentlyCheckingStorageForLogin: false
       })
-    }
+    });
   }
 
   render() { 
@@ -129,7 +134,14 @@ class App extends React.Component {
                   : <Redirect to='/login' />
               )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>
-              <Redirect path='/' to={this.state.loggedIn ? "/dashboard" : "/login" } />
+              <Route path='/' render={() => (
+                this.state.isCurrentlyCheckingStorageForLogin 
+                  ? (<div>
+                      <h1>Loading . . .</h1>
+                      <LinearProgress />
+                    </div>)
+                  : <Redirect path='/' to={this.state.loggedIn ? "/dashboard" : "/login" } />
+              )} />
             </Switch>
             
           </BrowserRouter>
