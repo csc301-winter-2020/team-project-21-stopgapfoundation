@@ -9,60 +9,20 @@ import "./styles.css"
 class Listing extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      data:{}
-    }
   }
 
-
-  componentDidMount() {
-    // fetch("/order-information/")
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       const orders = result["results"];
-    //       const total_num = orders.length
-    //       if(total_num > 0){
-    //         for  (var i = 0; i < total_num; i++) {
-    //           const id = this.props.id
-    //           const check = orders[i]["pk"]
-    //           if (id == check){
-    //             this.setState({
-    //               data:orders[i]
-    //             });
-
-    //           }
-              
-
-    //         }
-
-         
-    //       }
-   
-    //     },
-    //     // Note: it's important to handle errors here
-    //     // instead of a catch() block so that we don't swallow
-    //     // exceptions from actual bugs in components.
-    //     (error) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error
-    //       });
-    //     }
-    //   )
-  }
   render(){
-
-  return (
-    <Button className="listing_button" onClick={this.props.click}>
-      <Grid container spacing={4}>
-      <Grid item xs>{this.props.id} </Grid>
-        <Grid item xs>{this.props.fullName}</Grid>
-        <Grid item xs>{this.props.business} </Grid>
-        <Grid item xs>{this.props.status} </Grid>
-      </Grid>
-    </Button>
-  );
+    const {listing, click} = this.props;
+    return (
+      <Button className="listing_button" onClick={click}>
+        <Grid container spacing={4}>
+        <Grid item xs>{listing["pk"]} </Grid>
+          <Grid item xs>{`${listing['first_name']} ${listing['last_name']}`}</Grid>
+          <Grid item xs>{listing['company']} </Grid>
+          <Grid item xs>{listing['status']} </Grid>
+        </Grid>
+      </Button>
+    );
   }
 }
 
@@ -138,11 +98,8 @@ class ListingBox extends React.Component {
         </Grid>
         {orders.map((listing,i) => (
           <Listing
-
-            id={listing["pk"] }
-            fullName={listing["firstName"] + " " + listing["lastName"]}
-            business={listing["companyName"]}
-            status={listing["status"]}
+            listing={listing}
+            key={i}
             click={e => {
 
               e.preventDefault();
