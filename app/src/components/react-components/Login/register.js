@@ -13,7 +13,8 @@ class RegisterForm extends React.Component {
       email: "",
       pwd: "",
       pwdConfirm: "",
-      passwordsMatch: true
+      passwordsMatch: true,
+      isAdmin: false
     }
     this.form = React.createRef();
   }
@@ -29,14 +30,14 @@ class RegisterForm extends React.Component {
       this.setState({passwordsMatch: false});
       return;
     }
-    console.log(this.props)
+    console.log(this.state)
     // No issues; sign user up
     this.props.register(
       this.state.email,
       this.state.pwd,
       this.state.firstName,
       this.state.lastName,
-      this.props.isAdmin
+      this.state.isAdmin
     );
   }
 

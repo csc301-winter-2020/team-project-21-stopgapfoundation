@@ -73,6 +73,7 @@ class App extends React.Component {
 
   register = (username, password, first_name, last_name, isAdmin) => {
     console.log("StopGap: Registering new user...");
+    console.log(username, password, first_name, last_name, isAdmin)
 
     // User already logged in.
     if (this.state.loggedIn){
@@ -97,6 +98,7 @@ class App extends React.Component {
       body: JSON.stringify({
         "username": username,
         "password": password,
+        "email": username,
         "first_name": first_name,
         "last_name": last_name,
         "is_staff": isAdmin

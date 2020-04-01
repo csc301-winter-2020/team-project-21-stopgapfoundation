@@ -3,6 +3,7 @@ from rest_framework import generics, viewsets, permissions, status
 from order_manager.models import  Waiver, Order
 from order_manager.serializers import UserSerializer, GroupSerializer, OrderSerializer, WaiverSerializer
 
+# TODO: Need to limit viewset access based on user pk
 
 # Allows any authenticated user to access all user data
 class UserViewSet(viewsets.ModelViewSet):
@@ -31,5 +32,5 @@ class WaiverViewSet(viewsets.ModelViewSet):
     queryset = Waiver.objects.all().order_by('user')
     serializer_class = WaiverSerializer
     permission_classes =[
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
