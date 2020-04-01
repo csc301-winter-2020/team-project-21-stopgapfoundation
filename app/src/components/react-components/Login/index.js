@@ -29,7 +29,7 @@ class Login extends React.Component {
           <AccountTypeSelector clickHandler={ (isAdmin) =>  this.setState({inLoginForm: true, isAdmin: isAdmin}) }/> : 
           (
             this.state.inRegisterForm ? 
-              <RegisterForm login={this.props.login} goBack = {() => this.setState({ inRegisterForm: false })}/> :
+              <RegisterForm register={this.props.register} goBack = {() => this.setState({ inRegisterForm: false })}/> :
               <LoginForm login={this.props.login} register={() => this.setState({inRegisterForm: true })} isAdmin={this.state.isAdmin} goBack = {() => this.setState({ inLoginForm: false })} invalidLogin={this.props.invalidLogin} />
           )
         }
@@ -48,9 +48,15 @@ function AccountTypeSelector(props) {
            variant="contained" size='large'
           style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
           Create New Ramp Request
+          <br/>
+          Or
+          <br/>
+          Check Status of Existing Ramp Request
         </Button>
         <Button className="login__button" onClick={() => props.clickHandler(true) }>
           Admin
+          <br/>
+          (StopGap Staff Only)
         </Button>
     </div>
   );

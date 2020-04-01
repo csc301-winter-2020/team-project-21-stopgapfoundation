@@ -1,8 +1,8 @@
 import React from "react";
 import "./styles.css";
 import Button from "@material-ui/core/Button";
-import ListingBox from '../Listings';
-import Link from "react-router-dom/Link"
+import Link from "react-router-dom/Link";
+import ListingBox from "../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class ClientDashboard extends React.Component {
