@@ -11,11 +11,7 @@ class Notes extends React.Component{
       notes = []
     }
     this.state = {
-<<<<<<< HEAD
       notes: notes,
-=======
-      notes: JSON.parse(props.data.notes),
->>>>>>> admin-dash-patch
       newNote: ""
     }
   }
