@@ -22,9 +22,9 @@ export class FormUserDetails extends Component {
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar position="static">
+                    <AppBar position="static" style={{ background: '#2F4858' }}>
                         <Typography variant="h6" >
-                            StopGap - Request A Ramp Form
+                             Ramp Request Form
                         </Typography>
                     </AppBar>
                     <br />
@@ -103,9 +103,10 @@ export class FormUserDetails extends Component {
                             style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>
                         <Button
                             color="primary" variant="contained" onClick={this.continue}>Next</Button>
-                        <h4>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
+                        <p>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
                             We require all the info as mentioned above in order to send you a quote. Upon quote approval, there’s typically an approximate 4-6 weeks turnover.
-                            We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!</h4>
+                            We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!
+                            </p>
                     </div>
                 </React.Fragment>
             </MuiThemeProvider>
