@@ -81,7 +81,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 SECRET_KEY = '&#1!h&^bqctsdx9hu1p^k+rh=$$0(j-)!+&(l%ne#@5!r4)=qf'
-DEBUG = True
+DEBUG = False
 #DEBUG = dj_database_url.config('DEBUG', default=False)
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
