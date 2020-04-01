@@ -31,3 +31,5 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include('order_manager.urls')),
 ]
+
+handler404 = 'backend.views.view_404'
