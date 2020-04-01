@@ -11,18 +11,63 @@ import ReactDOM from 'react-dom';
 import "./styles.css"
 
 //Listing returns a button with the client/business names and status
-function Listing (props) {
+class Listing extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data:{}
+    }
+  }
+
+
+  componentDidMount() {
+    fetch("/order-information/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          const orders = result["results"];
+          const total_num = orders.length
+          if(total_num > 0){
+            for  (var i = 0; i < total_num; i++) {
+              const id = this.props.id
+              const check = orders[i]["pk"]
+              if (id == check){
+                this.setState({
+                  data:orders[i]
+                });
+
+              }
+              
+
+            }
+
+         
+          }
+   
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+  }
+  render(){
+
   return (
-    <Button className="listing_button" onClick={props.click}>
+    <Button className="listing_button" onClick={this.props.click}>
       <Grid container spacing={3}>
-        <Grid item xs>
-          {props.date}
-        </Grid>
-        <Grid item xs>{props.address} </Grid>
-        <Grid item xs>{props.status} </Grid>
+        <Grid item xs>{this.props.id} </Grid>
+        <Grid item xs>{this.props.date}</Grid>
+        <Grid item xs>{this.props.address} </Grid>
       </Grid>
     </Button>
   );
+  }
 }
 
 class ListingBox extends React.Component {
@@ -121,12 +166,13 @@ class ListingBox extends React.Component {
                     </h2>
           {listings.map((listing, i) => (
             <Listing
+              id={listing["pk"]}
               date={listing["date_created"]}
               address={listing["shipping_address"]}
-              color={listing["ramp_colour"]}
-              click={e => {
+              click={ (e) => {
+              
                 e.preventDefault();
-                this.props.click(i);
+                this.props.click(listing);
               }}
             />
           ))}

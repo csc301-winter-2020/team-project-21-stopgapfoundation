@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: isAdmin => this.pushToStack(<RampInfoPage isAdmin={isAdmin}/>)
+    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage id = {id} isAdmin={isAdmin}/>)
   }
 
   render () {
