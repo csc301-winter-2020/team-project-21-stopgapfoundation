@@ -61,10 +61,9 @@ class Listing extends React.Component {
 
   return (
     <Button className="listing_button" onClick={this.props.click}>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          {this.props.fullName}
-        </Grid>
+      <Grid container spacing={4}>
+      <Grid item xs>{this.props.id} </Grid>
+        <Grid item xs>{this.props.fullName}</Grid>
         <Grid item xs>{this.props.business} </Grid>
         <Grid item xs>{this.props.status} </Grid>
       </Grid>
@@ -162,10 +161,16 @@ class ListingBox extends React.Component {
             Ramp Requests
                     </h2>
           <FilterBox onChange={this.filterListings}></FilterBox>
-          {listings.map((listing, i) => (
+          <Grid container spacing={4}>
+          <  Grid  align="center" item xs>        Order Number</Grid>
+           < Grid   align="center" item xs>        Full Name</Grid>
+            <Grid  align="center" item xs>        Company </Grid>
+            <Grid  align="center"item xs>        Status</Grid>
+          </Grid>
+          {listings.map((listing,i) => (
             <Listing
 
-
+              id={listing["pk"] }
               fullName={listing["firstName"] + " " + listing["lastName"]}
               business={listing["companyName"]}
               status={listing["status"]}
