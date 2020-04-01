@@ -4,8 +4,14 @@ import { TextField, Grid, Button } from "@material-ui/core"
 class Notes extends React.Component{
   constructor(props){
     super(props);
+    var notes;
+    try {
+      notes = JSON.parse(props.notes)
+    } catch {
+      notes = []
+    }
     this.state = {
-      notes: JSON.parse(props.notes),
+      notes: notes,
       newNote: ""
     }
   }
