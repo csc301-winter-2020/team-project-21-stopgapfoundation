@@ -43,11 +43,7 @@ export class UserForm extends Component {
         this.setState({[input]: e.target.value})
     }
 	
-	submitField = input => {
-		
-	}
-
-    componentDidMount() {
+    handleSubmit = () => {
         const data ={
         "billing_address":this.state.deliveryAddress,
         "shipping_address":this.state.billingAddress,
@@ -58,7 +54,7 @@ export class UserForm extends Component {
         "step_left_height":this.state.leftStepHeight,
         "step_right_height":this.state.rightStepHeight,
         "ramp_colour":this.state.ramp_colour,
-        "delivery_method":this.state.ramp_colour,
+        "delivery_method":this.state.deliveryType,
         "subsidize":false,
         "status":"Request Recieved",
         "firstName":this.state.firstName,
@@ -71,7 +67,7 @@ export class UserForm extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         };
-        fetch('/form', requestOptions)
+        fetch('/order-information/', requestOptions)
             .then(async response => {
                 const data = await response.json();
     
@@ -81,19 +77,19 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-    
+				console.log(data.id)
                 this.setState({ postId: data.id })
             })
             .catch(error => {
                 this.setState({ errorMessage: error });
                 console.error('There was an error!', error);
-            });
+            }); 
     }
 
     render() {
         const { step } = this.state;
         const { firstName, lastName, email, companyName, phoneNumber,billingAddress, deliveryAddress, deliveryType, rampColor,rightStepHeight, leftStepHeight } = this.state;
-        const values = { firstName, lastName, email, companyName, phoneNumber,billingAddress,  deliveryAddress, deliveryType, rampColor,rightStepHeight, leftStepHeight}
+   
 
         switch (step) {
             case 0:
@@ -105,7 +101,6 @@ export class UserForm extends Component {
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         handleChange= {this.handleChange}
-                        values = {values} 
                     
                     />
                 )
@@ -115,7 +110,6 @@ export class UserForm extends Component {
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
                         handleChange= {this.handleChange}
-                        values = {values}
                     />
                 )
             case 3:
@@ -123,14 +117,14 @@ export class UserForm extends Component {
                     <LiabilityWaiver
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
+						handleSubmit={this.handleSubmit}
                         handleChange={this.handleChange}
-                        values = {values}
                     />
                 )
-            case 4:
+            case 4: 
                 return (
                     <div>
-                        <h1> Thank you! We'll be in contact about your request. </h1>
+                        <h1> Thank you! We'll be in contact about your request.</h1>
                         <Link to="/dashboard">
                             Go back home.
                         </Link>

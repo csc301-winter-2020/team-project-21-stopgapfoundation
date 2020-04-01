@@ -9,7 +9,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 export class LiabilityWaiver extends Component {
   continue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    this.props.handleSubmit();
+	this.props.nextStep();
   }
 
   back = e => {
@@ -17,11 +18,7 @@ export class LiabilityWaiver extends Component {
     this.props.prevStep();
   }
 
-  handleChange = e => {
-
-  }
   render () {
-    const { values } = this.props;
     return (
       <div>
         <h1 style={{ textAlign: "center", textDecoration: "underline" }}>Liability Waiver, Assumption of Risk and Idemnity </h1>
