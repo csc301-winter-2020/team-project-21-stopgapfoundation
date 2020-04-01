@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import FormUserDetails from './FormUserDetails';
 import ImageUpload from './ImageUpload';
 import LiabilityWaiver from './LiabilityWaiver';
+import { Redirect, Link } from 'react-router-dom';
 
 export class UserForm extends Component {
     state = {

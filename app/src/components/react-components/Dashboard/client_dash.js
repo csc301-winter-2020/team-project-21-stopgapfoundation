@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 import Button from "@material-ui/core/Button";
-import Navbar from "../Navbar/index"
+import ListingBox from '../Listings';
 import Link from "react-router-dom/Link"
 
 /* Primary Component for the Admin Dashboard page */

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import "./styles.css";
 import AdminDashboard from "./Admin/admin_dash";
 import ClientDashboard from "./client_dash";
+import RampInfoPage from "./RampInfoPage";
 
 /* Primary Component for the Admin Dashboard page */
 class Dashboard extends React.Component {

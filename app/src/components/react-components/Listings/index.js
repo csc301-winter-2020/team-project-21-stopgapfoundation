@@ -1,16 +1,8 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
-import ReactDOM from 'react-dom';
 import "./styles.css"
-import {Container, Row, Col} from 'react-bootstrap';
 
 //Listing returns a button with the client/business names and status
 class Listing extends React.Component {
