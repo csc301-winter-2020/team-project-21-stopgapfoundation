@@ -38,17 +38,19 @@ class FilterBox extends React.Component{
     this.setState({
       listingFilter: e.target.value
     })
-    this.props.onChange(event.target.value)
+    this.props.onChange(e.target.value)
   }
 
   render(){
-    <TextField 
-      id="filled-basic" 
-      label="Filter Client" 
-      variant="filled"
-      defaultValue=""
-      onChange={this.props.handleChange}
-    />
+    return (
+      <TextField 
+        id="filled-basic" 
+        label="Filter Client" 
+        variant="filled"
+        defaultValue=""
+        onChange={this.props.handleChange}
+      />
+    )
   }
 }
 
@@ -99,7 +101,7 @@ class ListingBox extends React.Component {
   }
 
   render () {
-    const { filteredListings, error, isLoaded } = this.state;
+    const {listings, error, isLoaded } = this.state;
     if (error) {
       return <div> Error: {error.message}</div>
     }
@@ -112,8 +114,8 @@ class ListingBox extends React.Component {
           <h2 className="block-title">
             Ramp Requests
                     </h2>
-          <FilterBox></FilterBox>
-          {filteredListings.map((listing, i) => (
+          <FilterBox onChange={this.filterListings}></FilterBox>
+          {listings.map((listing, i) => (
             <Listing
               fullName={listing["firstName"] + " " + listing["lastName"]}
               business={listing["companyName"]}
