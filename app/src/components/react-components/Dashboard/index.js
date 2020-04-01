@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import "./styles.css";
+import Navbar from "../Navbar";
 import AdminDashboard from "./Admin/admin_dash";
 import ClientDashboard from "./client_dash";
 import RampInfoPage from "./RampInfoPage";
@@ -10,7 +11,9 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageStack: [] // when we navigate to a "sub-page", push to stack. When we "go back", pop from stack
+      pageStack: [], // when we navigate to a "sub-page", push to stack. When we "go back", pop from stack
+      isLoaded: false, // 
+      orders: [] // list of all orders TODO: don't load ALL orders here, since then clients can view it via dev tools
     }
   }
 
@@ -31,8 +34,11 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage goBack = {this.goBack} id = {id} isAdmin={isAdmin}/>)
+    ramp_info: (isAdmin,data) => this.pushToStack(<RampInfoPage goBack = {this.goBack} data = {data} isAdmin={isAdmin} />)
   }
+
+  
+  
 
   render () {
     if (!this.props.loggedIn) // user is not logged in.
@@ -40,7 +46,15 @@ class Dashboard extends React.Component {
     
     return (
       <div>
-        {this.props.user.isAdmin ? <AdminDashboard logout={this.props.logout} /> : <ClientDashboard logout={this.props.logout}/>}
+        <Navbar title={this.props.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} goBack={this.goBack} stackSize={this.state.pageStack.length}/>
+        <div className={"content"}>
+          {this.state.pageStack.length == 0 ? 
+            this.props.isAdmin 
+              ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+            this.state.pageStack[this.state.pageStack.length - 1]
+          }
+        </div>
       </div>
     );
   }

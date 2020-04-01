@@ -13,13 +13,13 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
-      isAdmin: false,
+      isAdmin: true, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true
     };
   }
 
   login = (user, pwd, isAdmin) => {
-    console.log("Stopgap: Logging in . . .");
+    console.log("StopGap: Logging in...");
     if (this.state.loggedIn){ //already logged in.
       console.error("Stopgap: user already logged in.");
       // Refreshes the page
@@ -71,6 +71,46 @@ class App extends React.Component {
     })
   }
 
+  register = (username, password, first_name, last_name, isAdmin) => {
+    console.log("StopGap: Registering new user...");
+    console.log(username, password, first_name, last_name, isAdmin)
+
+    // User already logged in.
+    if (this.state.loggedIn){
+      console.error("Stopgap: user already logged in.");
+      // Refreshes the page
+      this.setState({
+        loggedIn: false
+      });
+      this.setState({
+        loggedIn: true
+      });
+      return;
+    }
+
+    // Register user using Django API
+    fetch("http://localhost:8000/users/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        "username": username,
+        "password": password,
+        "email": username,
+        "first_name": first_name,
+        "last_name": last_name,
+        "is_staff": isAdmin
+      })
+    }).then(res => {
+      console.log(res);
+
+      // Login user with newly created credentials
+      this.login(username, password, isAdmin);
+    });
+  }
+
   logout = () => {
     this.setState({
       loggedIn: false,
@@ -81,6 +121,7 @@ class App extends React.Component {
     localStorage.removeItem('token-refresh');
   }
 
+  
   componentDidMount() {
     const refreshToken = localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh") 
       ? localStorage.getItem("token-refresh")
@@ -125,7 +166,16 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
-              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} isAdmin={this.state.isAdmin} invalidLogin={this.state.invalidLogin} />) } />
+              <Route
+                path='/login'
+                render={() => (
+                  <Login loggedIn={this.state.loggedIn}
+                  login={this.login}
+                  register={this.register}
+                  isAdmin={this.state.isAdmin}
+                  invalidLogin={this.state.invalidLogin} />
+                )}
+              />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
                   ? <Dashboard loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />

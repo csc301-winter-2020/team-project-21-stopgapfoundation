@@ -10,232 +10,53 @@ class GeneralInfo extends React.Component {
 
   constructor(props) {
     super(props);
+    const {data} = props;
     this.state = {
-       
-        data: { // default data
-          "Ramp #": {
-          value: "",
+      data: { // default data
+        "Ramp #": {
+          value: data["pk"],
+          options: [],
+          clientEditable: false, // TODO: make editable
+          adminEditable: false,
+        },
+        "Client Name": {
+          value: `${data["first_name"]} ${data["last_name"]}`,
           options: [],
           clientEditable: false,
-          adminEditable: true,
+          adminEditable: false,
         },
-        // "Project #": {
-        //   value: values["pk"],
-        //   options: [],
-        //   clientEditable: false,
-        //   adminEditable: true,
-        // },
-        "Client ID": {
-          value: "",
-          options: [],
-          clientEditable: true,
-          adminEditable: true,
-        },
-        // "Business Name": {
-        //   value: "",
-        //   options: [],
-        //   clientEditable: true,
-        //   adminEditable: true,
-        // },
-        // "Nickname": {
-        //   value: "",
-        //   options: [],
-        //   clientEditable: true,
-        //   adminEditable: true,
-        // },
         "Delivery Address": {
-          options: "",
-          clientEditable: true,
-          adminEditable: true,
+          value: data["shipping_address"],
+          options: [],
+          clientEditable: false,
+          adminEditable: false,
         },
         "Billing Address": {
-          value: "",
+          value: data["billing_address"],
           options: [],
-          clientEditable: true,
-          adminEditable: true,
-        },
-        "Liability Waiver": {
-          value: "",
-          options: ["Not Signed", "Signed"],
-          link: "", //exlusive to liability waiver
           clientEditable: false,
-          adminEditable: true,
+          adminEditable: false,
         },
+        // "Liability Waiver": { 
+        //   value: "",
+        //   options: ["Not Signed", "Signed"],
+        //   link: "", //exlusive to liability waiver
+        //   clientEditable: false,
+        //   adminEditable: false,
+        // },
         "Subsidy Info": {
-          value: "",
-          options: [],
+          value: data["subsidize"] ? "Subsidized" : "Not Subsidized",
+          options: ["Subsidized", "Not Subsidized"],
           clientEditable: false,
-          adminEditable: true,
+          adminEditable: false,
         },
-
-      },
-      error: null,
-      isLoaded: false,
-      
+      }
     };
-    //   data: { // default data
-    //     "Ramp #": {
-    //       value: "1",
-    //       options: [],
-    //       clientEditable: false,
-    //       adminEditable: true,
-    //     },
-    //     "Project #": {
-    //       value: "1",
-    //       options: [],
-    //       clientEditable: false,
-    //       adminEditable: true,
-    //     },
-    //     "Client Name": {
-    //       value: "John Smith",
-    //       options: [],
-    //       clientEditable: true,
-    //       adminEditable: true,
-    //     },
-    //     "Business Name": {
-    //       value: "Regular Business Inc.",
-    //       options: [],
-    //       clientEditable: true,
-    //       adminEditable: true,
-    //     },
-    //     "Nickname": {
-    //       value: "Regular Business Inc.",
-    //       options: [],
-    //       clientEditable: true,
-    //       adminEditable: true,
-    //     },
-    //     "Delivery Address": {
-    //       value: "123 Street Road, Toronto, ON",
-    //       options: [],
-    //       clientEditable: true,
-    //       adminEditable: true,
-    //     },
-    //     "Billing Address": {
-    //       value: "4567 Boulavard Lane, Toronto, ON",
-    //       options: [],
-    //       clientEditable: true,
-    //       adminEditable: true,
-    //     },
-    //     "Liability Waiver": {
-    //       value: "Not Signed",
-    //       options: ["Not Signed", "Signed"],
-    //       link: "", //exlusive to liability waiver
-    //       clientEditable: false,
-    //       adminEditable: true,
-    //     },
-    //     "Subsidy Info": {
-    //       value: "No subsidies",
-    //       options: [],
-    //       clientEditable: false,
-    //       adminEditable: true,
-    //     }
-    //   }
-    // };
-  }
-
-  // componentDidMount() {
-  //   console.log(this.state);
-  //   // TODO: this will retrieve data from backend to update the frontend
-  //   this.setState({
-      
-  //   })
-  // }
-  componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = this.props.data
-          this.setState({
-            //values: orders, 
-            data: { // default data
-              "Ramp #": {
-              value: orders['pk'],
-              options: [],
-              clientEditable: false,
-              adminEditable: true,
-            },
-            // "Project #": {
-            //   value: values["pk"],
-            //   options: [],
-            //   clientEditable: false,
-            //   adminEditable: true,
-            // },
-            "Client ID": {
-              value: orders['user'],
-              options: [],
-              clientEditable: true,
-              adminEditable: true,
-            },
-            // "Business Name": {
-            //   value: "",
-            //   options: [],
-            //   clientEditable: true,
-            //   adminEditable: true,
-            // },
-            // "Nickname": {
-            //   value: "",
-            //   options: [],
-            //   clientEditable: true,
-            //   adminEditable: true,
-            // },
-            "Delivery Address": {
-              value: orders["shipping_address"],
-              options: [],
-              clientEditable: true,
-              adminEditable: true,
-            },
-            "Billing Address": {
-              value: orders['billing_address'],
-              options: [],
-              clientEditable: true,
-              adminEditable: true,
-            },
-            "Liability Waiver": {
-              value: "Not Signed",
-              options: ["Not Signed", "Signed"],
-              link: "", //exlusive to liability waiver
-              clientEditable: false,
-              adminEditable: true,
-            },
-            "Subsidy Info": {
-              value: orders['subsidize'],
-              options: [],
-              clientEditable: false,
-              adminEditable: true,
-            },
-            "Deliver method": {
-              value: orders["delivery_method"],
-              options: [],
-              clientEditable: false,
-              adminEditable: true,
-            },
-    
-          },
-          isLoaded: true,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
   }
 
   render() {
-    const { listings, error, isLoaded } = this.state;
-    if (error) {
-      return <div> Error: {error.message}</div>
-    }
-    else if (!isLoaded) {
-      return <div>Loading...</div>
-    }
-    else {
+    const dataCopy = {...this.state.data};
+    
     return (
       <div className={"block"}>
         <h2 className={"block-title"}>
@@ -288,16 +109,14 @@ class GeneralInfo extends React.Component {
                   }
                 </div>
               )
-              
-              
             })
           }
         </div>
-        <Button fullWidth variant="contained" color="primary" >Save</Button>
+        {/* // TODO: add back in, im just tired right now. */}
+        {/* <Button fullWidth variant="contained" color="primary" >Save</Button> */}
       </div>
-    );
+    );  
   }
-}
 }
 
 

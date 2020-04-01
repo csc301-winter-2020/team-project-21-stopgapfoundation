@@ -41,9 +41,10 @@ export class UserForm extends Component {
 	
     handleSubmitOrder = () => {
         const data ={
+		"user":1,
         "billing_address":this.state.deliveryAddress,
         "shipping_address":this.state.billingAddress,
-        // "waiver":1,
+        "waiver":1,
         // "entryway_photo":"http://localhost:8000/order-information/data/user_2/step_photos/200XY_hnIn8xv.png",
         // "step_left_photo":"http://localhost:8000/order-information/data/user_2/step_photos/15000.png",
         // "step_right_photo":"http://localhost:8000/order-information/data/user_2/step_photos/gan1.png",
@@ -53,14 +54,20 @@ export class UserForm extends Component {
         "delivery_method":this.state.deliveryType,
         "subsidize":false,
         "status":"Request Recieved",
+		"notes":"",
         "firstName":this.state.firstName,
         "lastName":this.state.lastName,
         "email":this.state.email,
         "companyName":this.state.companyName,
         "phoneNumber":this.state.phoneNumber}
+		
+		const token = localStorage.getItem('token-access')
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			},
             body: JSON.stringify(data)
         };
         fetch('/order-information/', requestOptions)
@@ -84,15 +91,21 @@ export class UserForm extends Component {
 	
 	handleSubmitWaiver = () => {
 		const data ={
+		//"pk":1,
+		"user":1,
         "signatory_first_name":this.state.managerFirst,
         "signatory_last_name":this.state.managerFirst,
         "signatory_signature":this.state.witnessSig,
-        "witness_first_name":this.state.managerFirst,
-        "witness_last_name":this.state.managerFirst,
+        "witness_first_name":this.state.witnessName,
+        "witness_last_name":this.state.witnessName,
         "witness_signature":this.state.witnessSig}
+		const token = localStorage.getItem('token-access')
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			},
             body: JSON.stringify(data)
         };
         fetch('/waiver-information/', requestOptions)

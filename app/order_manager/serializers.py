@@ -1,14 +1,30 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import Waiver, Order
 
+
+UserModel = get_user_model()
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    def create(self, data):
+        user = UserModel.objects.create(
+            username = data['username']
+        )
+        user.set_password(data['password'])
+        user.save()
+
+        return user
+
     class Meta:
         model = User
         fields = [
             'pk',
             'username',
+            'password',
             'first_name',
             'last_name',
             'email',
@@ -47,7 +63,7 @@ class WaiverSerializer(serializers.ModelSerializer):
             'signatory_signature',
             'witness_first_name',
             'witness_last_name',
-            'witness_signature'
+            'witness_signature',
             'order'
         ]
 
