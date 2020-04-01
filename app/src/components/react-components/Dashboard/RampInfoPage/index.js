@@ -31,7 +31,7 @@ class RampInfoPage extends React.Component {
               <StatusBlock isAdmin={this.props.isAdmin} data={ data } />
             </Grid>
           </Grid>
-          {this.props.isAdmin && <Notes />}
+          {this.props.isAdmin && <Notes notes={data["notes"]}/>}
         </Grid>
       </Grid>
 
