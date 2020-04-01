@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import AppBar from '@material-ui/core/AppBar'
 import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Select from '@material-ui/core/Select'
@@ -17,7 +18,6 @@ export class FormUserDetails extends Component {
         this.props.prevStep();
     }
     render() {
-        const { values } = this.props;
 
         return (
             <MuiThemeProvider>
@@ -97,7 +97,14 @@ export class FormUserDetails extends Component {
                             defaultValue=""
                             onChange={this.props.handleChange('rampColor')}
                         />
-
+						<label>
+							<Checkbox
+								onClick={this.props.handleCheck('subsidize')}
+								name="check"
+								style={{ marginLeft: '40px' }}
+							/>
+							<span>Subsidize</span>
+						</label>
                         <br /> <br />
                         <Button
                             style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>

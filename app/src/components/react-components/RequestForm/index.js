@@ -18,7 +18,8 @@ export class UserForm extends Component {
         managerFirst: '',
         managerSig: '',
         witnessName: '',
-        witnessSig: ''
+        witnessSig: '',
+		subsidize: false
     }
 
     nextStep = () => {
@@ -39,6 +40,10 @@ export class UserForm extends Component {
         this.setState({[input]: e.target.value})
     }
 	
+	handleCheck = input => e => {
+        this.setState({[input]: !this.state.subsidize})
+    }
+	
     handleSubmitOrder = () => {
         const data ={
 		"user":1,
@@ -52,7 +57,7 @@ export class UserForm extends Component {
         "step_right_height":this.state.rightStepHeight,
         "ramp_colour":this.state.ramp_colour,
         "delivery_method":this.state.deliveryType,
-        "subsidize":false,
+        "subsidize":this.state.subsidize,
         "status":"Request Recieved",
 		"notes":"",
         "firstName":this.state.firstName,
@@ -129,7 +134,7 @@ export class UserForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { firstName, lastName, email, companyName, phoneNumber,billingAddress, deliveryAddress, deliveryType, rampColor,rightStepHeight, leftStepHeight } = this.state;
+        const { firstName, lastName, email, companyName, phoneNumber,billingAddress, deliveryAddress, deliveryType, rampColor,rightStepHeight, leftStepHeight, subsidize } = this.state;
    
 
         switch (step) {
@@ -140,6 +145,7 @@ export class UserForm extends Component {
                     <FormUserDetails
                         nextStep={this.nextStep}
                         handleChange= {this.handleChange}
+						handleCheck= {this.handleCheck}
                     
                     />
                 )
