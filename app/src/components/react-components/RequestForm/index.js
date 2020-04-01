@@ -43,7 +43,7 @@ export class UserForm extends Component {
         this.setState({[input]: e.target.value})
     }
 	
-    handleSubmit = () => {
+    handleSubmitOrder = () => {
         const data ={
         "billing_address":this.state.deliveryAddress,
         "shipping_address":this.state.billingAddress,
@@ -77,14 +77,46 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-				console.log(data.id)
-                this.setState({ postId: data.id })
+				console.log(data.pk)
+                this.setState({ postId: data.pk })
             })
             .catch(error => {
                 this.setState({ errorMessage: error });
                 console.error('There was an error!', error);
             }); 
     }
+	
+	handleSubmitWaiver = () => {
+		const data ={
+        "signatory_first_name":this.state.managerFirst,
+        "signatory_last_name":this.state.managerFirst,
+        "signatory_signature":this.state.witnessSig,
+        "witness_first_name":this.state.managerFirst,
+        "witness_last_name":this.state.managerFirst,
+        "witness_signature":this.state.witnessSig}
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        };
+        fetch('/waiver-information/', requestOptions)
+            .then(async response => {
+                const data = await response.json();
+    
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+				console.log(data.pk)
+                this.setState({ postId: data.pk })
+            })
+            .catch(error => {
+                this.setState({ errorMessage: error });
+                console.error('There was an error!', error);
+            }); 
+	}
 
     render() {
         const { step } = this.state;
@@ -117,7 +149,8 @@ export class UserForm extends Component {
                     <LiabilityWaiver
                         nextStep={this.nextStep}
                         prevStep={this.prevStep}
-						handleSubmit={this.handleSubmit}
+						handleSubmitWaiver={this.handleSubmitWaiver}
+						handleSubmitOrder={this.handleSubmitOrder}
                         handleChange={this.handleChange}
                     />
                 )

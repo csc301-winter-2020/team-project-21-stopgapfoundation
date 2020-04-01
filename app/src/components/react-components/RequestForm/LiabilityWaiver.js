@@ -9,7 +9,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 export class LiabilityWaiver extends Component {
   continue = e => {
     e.preventDefault();
-    this.props.handleSubmit();
+	this.props.handleSubmitWaiver();
+    this.props.handleSubmitOrder();
 	this.props.nextStep();
   }
 
@@ -51,7 +52,7 @@ export class LiabilityWaiver extends Component {
               id="standard-required"
               label="Owner / Manager Signature"
               defaultValue=""
-              onChange={this.props.handleChange('managerLast')}
+              onChange={this.props.handleChange('managerSig')}
             />
             <br></br>
             <br></br>
