@@ -32,7 +32,7 @@ class App extends React.Component {
       return;
     }
     // validate token
-    fetch("http://localhost:8000/api/token/", {
+    fetch("/api/token/", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -89,7 +89,7 @@ class App extends React.Component {
     }
 
     // Register user using Django API
-    fetch("http://localhost:8000/users/", {
+    fetch("/users/", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -127,7 +127,7 @@ class App extends React.Component {
       ? localStorage.getItem("token-refresh")
       : "";
     // check if the existing token is valid.
-    fetch("http://localhost:8000/api/token/refresh/", {
+    fetch("/api/token/refresh/", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
