@@ -94,13 +94,13 @@ class AdminDashboard extends React.Component {
           </Grid>
           <Grid item xs >
             <NumberStat title="Out for Delivery" stat={delivery_num} />
-          </Grid>+
+          </Grid>
           <Grid item xs >
             <NumberStat title="Completed Ramps" stat={complete_num} />
           </Grid>
         </Grid>
 
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
       </div>
     );
   }
