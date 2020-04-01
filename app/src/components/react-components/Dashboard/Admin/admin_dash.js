@@ -100,7 +100,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
       </div>
     );
   }

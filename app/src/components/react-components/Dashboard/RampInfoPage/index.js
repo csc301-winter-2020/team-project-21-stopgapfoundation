@@ -15,19 +15,20 @@ class RampInfoPage extends React.Component {
 
 
   render () {
+    const {data} = this.props;
 
     return (
       <Grid container>
         <Grid item xs={4}>
-          <GeneralInfo isAdmin={this.props.isAdmin} data={ {} }/>
+          <GeneralInfo isAdmin={this.props.isAdmin} data={ data }/>
         </Grid>
         <Grid item container xs={8}>
           <Grid container>
             <Grid item xs={6}>
-              <RampDimensions data={ {} } isAdmin={this.props.isAdmin} />
+              <RampDimensions data={ data } isAdmin={this.props.isAdmin} />
             </Grid>
             <Grid item xs={6}>
-              <StatusBlock isAdmin={this.props.isAdmin} data={ {} } />
+              <StatusBlock isAdmin={this.props.isAdmin} data={ data } />
             </Grid>
           </Grid>
           {this.props.isAdmin && <Notes />}
