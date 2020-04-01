@@ -34,42 +34,10 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage goBack = {this.goBack} id = {id} isAdmin={isAdmin} orders={this.state.orders} isLoaded={this.state.isLoaded}/>)
+    ramp_info: (isAdmin,data) => this.pushToStack(<RampInfoPage goBack = {this.goBack} data = {data} isAdmin={isAdmin} />)
   }
 
-  componentDidMount() {
-    fetch("http://localhost:8000/order-information/", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      }
-    })
-    .then(res => {
-      if (res.ok)
-        return res.json()
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(
-      (result) => {
-        const orders = result["results"];
-
-        this.setState({
-          isLoaded: true,
-          orders: orders
-        });
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
-  }
+  
   
 
   render () {
@@ -82,8 +50,8 @@ class Dashboard extends React.Component {
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.props.isAdmin 
-              ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} orders={this.state.orders} isLoaded={this.state.isLoaded}/> 
-              : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs} orders={this.state.orders} isLoaded={this.state.isLoaded}/> :
+              ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>

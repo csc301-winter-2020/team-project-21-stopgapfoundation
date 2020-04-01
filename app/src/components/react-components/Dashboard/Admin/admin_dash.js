@@ -13,20 +13,50 @@ class AdminDashboard extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      total:0,
-      build:0,
-      paint:0,
-      delivery:0,
-      complete:0,
       orders: []
     }
   }
-  /**
-   * 
-   */
+  
+
+  componentDidMount() {
+    fetch("http://localhost:8000/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+        const orders = result["results"];
+
+        this.setState({
+          isLoaded: true,
+          orders: orders
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
+  
 
   render () {
-    const {orders, isLoaded, gotoFuncs} = this.props;
+    const {gotoFuncs} = this.props;
+    const {orders, isLoaded} = this.state;
+
     const total = orders.length;
     var build_num = 0
     var paint_num = 0
@@ -70,7 +100,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={(id) => gotoFuncs.ramp_info(true,id)} orders={orders} isAdmin isLoaded/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded/>
       </div>
     );
   }
