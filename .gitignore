@@ -7,7 +7,6 @@
 
 # Folders to ignore
 **/__pycache__
-**/migrations
 
 # Ignore Idea file
 /.idea/*

@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import "./styles.css";
+import Navbar from "../Navbar";
 import AdminDashboard from "./Admin/admin_dash";
 import ClientDashboard from "./client_dash";
 import RampInfoPage from "./RampInfoPage";
@@ -40,7 +41,13 @@ class Dashboard extends React.Component {
     
     return (
       <div>
-        {this.props.user.isAdmin ? <AdminDashboard logout={this.props.logout} /> : <ClientDashboard logout={this.props.logout}/>}
+        <Navbar title={this.props.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} />
+        <div className={"content"}>
+          {this.state.pageStack.length == 0 ? 
+            this.props.isAdmin ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs}/> :
+            this.state.pageStack[this.state.pageStack.length - 1]
+          }
+        </div>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid'
-import ListingBox from '../../Listings';
 import "./admin_styles.css";
+import Grid from '@material-ui/core/Grid';
+import ListingBox from "../../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
@@ -12,70 +12,78 @@ class AdminDashboard extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
-      total: 0,
+      total:0,
       build:0,
       paint:0,
       delivery:0,
-      complete:0
+      complete:0,
+      orders: []
     }
   }
 
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"];
-          const total_num = orders.length
-          var build_num = 0
-          var paint_num = 0
-          var delivery_num = 0
-          var complete_num = 0
-          if(total_num > 0){
-            var order
-            for  (var i = 0; i < total_num; i++) {
-              const phase = orders[i]["status"]
-              if (phase == "Build Phase"){
-                build_num += 1
-
-              }
-              if (phase == "Paint Phase"){
-                paint_num += 1
-
-              }
-              if (phase ==  "Out for Delivery"){
-                delivery_num += 1
-
-              }
-              if (phase ==  "Completed"){
-                complete_num += 1
-
-              }
+    fetch("http://localhost:8000/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+        const orders = result["results"];
+        const total_num = result["count"]
+        var build_num = 0
+        var paint_num = 0
+        var delivery_num = 0
+        var complete_num = 0
+        if(total_num > 0){
+          var order
+          for  (var i = 0; i < total_num; i++) {
+            const phase = orders[i]["status"]
+            if (phase == "Build Phase"){
+              build_num += 1
 
             }
+            if (phase == "Paint Phase"){
+              paint_num += 1
 
-         
+            }
+            if (phase ==  "Out for Delivery"){
+              delivery_num += 1
+
+            }
+            if (phase ==  "Completed"){
+              complete_num += 1
+            }
           }
-          this.setState({
-            isLoaded: true,
-            total: total_num,
-            build: build_num,
-            paint:paint_num,
-            delivery: delivery_num,
-            complete:complete_num
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
         }
-      )
+        this.setState({
+          isLoaded: true,
+          total: total_num,
+          build: build_num,
+          paint:paint_num,
+          delivery: delivery_num,
+          complete:complete_num,
+          orders: orders
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
   }
 
 
@@ -101,7 +109,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
 
-        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(true,id)} isAdmin/>
+        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(true,id)} orders={this.state.orders} isAdmin isLoaded/>
       </div>
     );
   }
@@ -109,8 +117,8 @@ class AdminDashboard extends React.Component {
 
 function NumberStat(props){
   return (
-    <div className={"number-stat"}>
-      <h2 className={"number-stat-title"}>{props.title}</h2>
+    <div className={"number-stat block"}>
+      <h2 className={"block-title"}>{props.title}</h2>
       <span className={"number-stat-num"}>
         {props.stat}
       </span>
