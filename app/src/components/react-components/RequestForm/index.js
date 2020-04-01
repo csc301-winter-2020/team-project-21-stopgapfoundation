@@ -58,9 +58,14 @@ export class UserForm extends Component {
         "email":this.state.email,
         "companyName":this.state.companyName,
         "phoneNumber":this.state.phoneNumber}
+		
+		const token = localStorage.getItem('token-access')
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			},
             body: JSON.stringify(data)
         };
         fetch('/order-information/', requestOptions)
@@ -90,9 +95,13 @@ export class UserForm extends Component {
         "witness_first_name":this.state.managerFirst,
         "witness_last_name":this.state.managerFirst,
         "witness_signature":this.state.witnessSig}
+		const token = localStorage.getItem('token-access')
         const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+				'Content-Type': 'application/json',
+				'Authorization': 'Bearer ' + token
+			},
             body: JSON.stringify(data)
         };
         fetch('/waiver-information/', requestOptions)
