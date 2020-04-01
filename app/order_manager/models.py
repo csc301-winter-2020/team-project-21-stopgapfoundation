@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 import datetime
 
-
 # Use this method to get the directory to store a user's photos
 def user_directory_path(instance, filename):
     return "data/user_{0}/step_photos/{1}".format(instance.user.id, filename)
@@ -18,7 +17,7 @@ class Waiver(models.Model):
     )
 
     # Date of waiver creation/completion (assumed to be at the same time)
-    date = models.DateField(auto_now_add=True, default=datetime.date.today)
+    date = models.DateField(auto_now_add=True, blank=True)
 
     # Name and signature of owner or manager
     signatory_first_name = models.CharField(max_length=30, default="")
@@ -45,7 +44,7 @@ class Order(models.Model):
     phone_number = models.CharField(max_length=15, default="")
 
     # Date of order creation
-    date_created = models.DateField(auto_now_add=True, default=datetime.date.today)
+    date_created = models.DateField(auto_now_add=True, blank=True)
 
     # Address information
     billing_address = models.CharField(max_length=180, default="")
@@ -64,12 +63,12 @@ class Order(models.Model):
     step_right_photo = models.ImageField(upload_to=user_directory_path)
     step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
     step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
-    ramp_colour = models.CharField(max_length=50)
+    ramp_colour = models.CharField(max_length=50, default="")
     
     # Additional information
-    delivery_method = models.CharField(max_length=50)
+    delivery_method = models.CharField(max_length=50, default="")
     subsidize = models.BooleanField(default=False)
     
     # Status information
-    status = models.CharField(max_length=180)
-    notes = models.CharField(max_length=180)
+    status = models.CharField(max_length=180, default="")
+    notes = models.CharField(max_length=180, default="")
