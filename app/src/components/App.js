@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
-      isAdmin: false,
+      isAdmin: true, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true
     };
   }
@@ -81,6 +81,7 @@ class App extends React.Component {
     localStorage.removeItem('token-refresh');
   }
 
+  
   componentDidMount() {
     const refreshToken = localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh") 
       ? localStorage.getItem("token-refresh")

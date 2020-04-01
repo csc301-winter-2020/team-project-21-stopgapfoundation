@@ -16,40 +16,40 @@ class Listing extends React.Component {
 
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"];
-          const total_num = orders.length
-          if(total_num > 0){
-            for  (var i = 0; i < total_num; i++) {
-              const id = this.props.id
-              const check = orders[i]["pk"]
-              if (id == check){
-                this.setState({
-                  data:orders[i]
-                });
+    // fetch("/order-information/")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       const orders = result["results"];
+    //       const total_num = orders.length
+    //       if(total_num > 0){
+    //         for  (var i = 0; i < total_num; i++) {
+    //           const id = this.props.id
+    //           const check = orders[i]["pk"]
+    //           if (id == check){
+    //             this.setState({
+    //               data:orders[i]
+    //             });
 
-              }
+    //           }
               
 
-            }
+    //         }
 
          
-          }
+    //       }
    
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    //     },
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
   }
   render(){
 

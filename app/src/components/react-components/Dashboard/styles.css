@@ -25,3 +25,66 @@
 .h1 {
     text-align: center;
 }
+
+
+.block {
+    margin: 10px;
+    padding: 10px 20px;
+    /* border: 2px solid #212121; */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+    background-color: #F3F5F3;
+} .block:focus-within {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.block-title{
+    color: #615187;
+    text-align: center;
+    margin-top: 0px;
+    font-size: 1.7em;
+}
+
+
+.progress-bar {
+    background-color: #BDBDBD;
+    height: 20px;
+    border: 5px solid #BDBDBD;
+    border-radius: 15px;
+}
+
+.progress-bar-inner {
+    background-color: #689BF0;
+    width: 100%; /* Overriden in component based on progress */
+    transition: width 0.25s ease-out;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.kv {
+    font-size: 1.15em;
+    margin-bottom: 10px;
+}
+
+.kv-key {
+    text-align: right;
+    padding: 0 10px;
+}
+
+.kv-value {
+    text-align: left;
+    padding: 0 10px;
+}
+
+.listing_button {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+} .listing_button:hover, .listing_button:focus {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}

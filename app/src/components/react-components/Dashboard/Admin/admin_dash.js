@@ -1,7 +1,7 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid'
-import ListingBox from '../../Listings';
 import "./admin_styles.css";
+import Grid from '@material-ui/core/Grid';
+import ListingBox from "../../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class AdminDashboard extends React.Component {
@@ -22,12 +22,17 @@ class AdminDashboard extends React.Component {
 
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
+    fetch("http://localhost:8000/order-information/")
+      .then(res => res.json(), {
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+        }
+      })
       .then(
         (result) => {
           const orders = result["results"];
-          const total_num = orders.length
+          const total_num = result["count"]
           var build_num = 0
           var paint_num = 0
           var delivery_num = 0
@@ -109,8 +114,8 @@ class AdminDashboard extends React.Component {
 
 function NumberStat(props){
   return (
-    <div className={"number-stat"}>
-      <h2 className={"number-stat-title"}>{props.title}</h2>
+    <div className={"number-stat block"}>
+      <h2 className={"block-title"}>{props.title}</h2>
       <span className={"number-stat-num"}>
         {props.stat}
       </span>
