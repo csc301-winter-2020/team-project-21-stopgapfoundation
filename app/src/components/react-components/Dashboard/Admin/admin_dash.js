@@ -22,65 +22,66 @@ class AdminDashboard extends React.Component {
 
 
   componentDidMount() {
-    fetch("http://localhost:8000/order-information/")
-      .then(res => res.json(), {
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-        }
-      })
-      .then(
-        (result) => {
-          const orders = result["results"];
-          const total_num = result["count"]
-          var build_num = 0
-          var paint_num = 0
-          var delivery_num = 0
-          var complete_num = 0
-          if(total_num > 0){
-            var order
-            for  (var i = 0; i < total_num; i++) {
-              const phase = orders[i]["status"]
-              if (phase == "Build Phase"){
-                build_num += 1
+    fetch("http://localhost:8000/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => res.json())
+    .then(
+      (result) => {
+        const orders = result["results"];
+        const total_num = result["count"]
+        var build_num = 0
+        var paint_num = 0
+        var delivery_num = 0
+        var complete_num = 0
+        if(total_num > 0){
+          var order
+          for  (var i = 0; i < total_num; i++) {
+            const phase = orders[i]["status"]
+            if (phase == "Build Phase"){
+              build_num += 1
 
-              }
-              if (phase == "Paint Phase"){
-                paint_num += 1
+            }
+            if (phase == "Paint Phase"){
+              paint_num += 1
 
-              }
-              if (phase ==  "Out for Delivery"){
-                delivery_num += 1
+            }
+            if (phase ==  "Out for Delivery"){
+              delivery_num += 1
 
-              }
-              if (phase ==  "Completed"){
-                complete_num += 1
-
-              }
+            }
+            if (phase ==  "Completed"){
+              complete_num += 1
 
             }
 
-         
           }
-          this.setState({
-            isLoaded: true,
-            total: total_num,
-            build: build_num,
-            paint:paint_num,
-            delivery: delivery_num,
-            complete:complete_num
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
+
+        
         }
-      )
+        this.setState({
+          isLoaded: true,
+          total: total_num,
+          build: build_num,
+          paint:paint_num,
+          delivery: delivery_num,
+          complete:complete_num
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
   }
 
 
