@@ -25,7 +25,7 @@ class LoginForm extends React.Component {
   validateAndSubmit = e => {
     e.preventDefault();
     if(this.form.current.reportValidity()){
-      this.props.login(this.state.username, this.state.password)
+      this.props.login(this.state.username, this.state.password, this.props.isAdmin)
     }
   }
   

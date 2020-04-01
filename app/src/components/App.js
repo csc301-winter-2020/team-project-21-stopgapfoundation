@@ -13,16 +13,14 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
-      user: {
-        isAdmin: true
-      },
+      isAdmin: false,
       isCurrentlyCheckingStorageForLogin: true
     };
   }
 
-  login = (user, pwd) => {
+  login = (user, pwd, isAdmin) => {
     console.log("Stopgap: Logging in . . .");
-    if (this.state.user.loggedIn){ //already logged in.
+    if (this.state.loggedIn){ //already logged in.
       console.error("Stopgap: user already logged in.");
       // Refreshes the page
       this.setState({
@@ -60,6 +58,7 @@ class App extends React.Component {
         localStorage.setItem('token-refresh', res.refresh);
         this.setState({
           loggedIn: true,
+          isAdmin: isAdmin,
           invalidLogin: false
         });
       }
@@ -75,9 +74,8 @@ class App extends React.Component {
   logout = () => {
     this.setState({
       loggedIn: false,
-      user: {
-        isAdmin: true
-      }
+      isAdmin: false,
+      invalidLogin: false
     });
     localStorage.removeItem('token-access');
     localStorage.removeItem('token-refresh');
@@ -127,10 +125,10 @@ class App extends React.Component {
           <BrowserRouter>
             <Switch> { /* Similar to a switch statement - shows the component depending on the URL path */ }
               { /* Each Route below shows a different component depending on the exact path in the URL  */ }
-              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} user={this.state.user} invalidLogin={this.state.invalidLogin} />) } />
+              <Route path='/login' render={() => (<Login loggedIn={this.state.loggedIn} login={this.login} isAdmin={this.state.isAdmin} invalidLogin={this.state.invalidLogin} />) } />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
-                  ? <Dashboard loggedIn={this.state.loggedIn} user={this.state.user} logout={this.logout} />
+                  ? <Dashboard loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
                   : <Redirect to='/login' />
               )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>

@@ -28,6 +28,7 @@ class RegisterForm extends React.Component {
       return;
     }
     
+    // TODO: fix this
     this.props.login({isAdmin: this.props.isAdmin})
     
   }
