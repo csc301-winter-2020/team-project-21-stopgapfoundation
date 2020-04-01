@@ -1,11 +1,11 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
-import {ReactComponent as IconLeftGrade} from "./ramp-icons/left_grade.svg";
-import {ReactComponent as IconRightGrade} from "./ramp-icons/right_grade.svg";
+// import {ReactComponent as IconLeftGrade} from "./ramp-icons/left_grade.svg";
+// import {ReactComponent as IconRightGrade} from "./ramp-icons/right_grade.svg";
 import {ReactComponent as IconLeftHeight} from "./ramp-icons/left-height.svg";
 import {ReactComponent as IconRightHeight} from "./ramp-icons/right-height.svg";
-import {ReactComponent as IconLength} from "./ramp-icons/length.svg";
-import {ReactComponent as IconWidth} from "./ramp-icons/width.svg";
+// import {ReactComponent as IconLength} from "./ramp-icons/length.svg";
+// import {ReactComponent as IconWidth} from "./ramp-icons/width.svg";
 
 /** Component that will display dimensions for the ramp.
  *  Uses a 2D image for now, could potentially be updated to show a 3D model.
