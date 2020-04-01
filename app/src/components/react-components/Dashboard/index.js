@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage id = {id} isAdmin={isAdmin}/>)
+    ramp_info: (isAdmin,id) => this.pushToStack(<RampInfoPage goBack = {this.goBack} id = {id} isAdmin={isAdmin}/>)
   }
 
   render () {
@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
       return <Redirect to="/login" /> 
     return (
       <div>
-        <Navbar title={this.props.user.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} goBack={this.goBack}/>
+        <Navbar title={this.props.user.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} />
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.props.user.isAdmin ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs}/> :
