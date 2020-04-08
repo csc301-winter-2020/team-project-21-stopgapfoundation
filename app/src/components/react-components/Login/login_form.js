@@ -42,10 +42,10 @@ class LoginForm extends React.Component {
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="User Name"
-            name="username"
-            type="username"
+            id="email"
+            label="Email"
+            name="email"
+            type="email"
           />
   
           <TextField

@@ -9,6 +9,11 @@ import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem';
 
 export class FormUserDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.form = React.createRef();
+      }
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
@@ -29,7 +34,8 @@ export class FormUserDetails extends Component {
                     </AppBar>
                     <br />
 
-                    <div className='form' style={{ marginLeft: '5vh', marginTop: '5vh', marginRight:'20vh' }}>
+       
+                    <form ref={this.form} onSubmit={this.continue} style={{ marginLeft: '5vh', marginTop: '5vh', marginRight:'20vh' }}>
                         <h1>Please Enter Your Information:</h1>
                         <div>
                             <TextField
@@ -109,12 +115,15 @@ export class FormUserDetails extends Component {
                         <Button
                             style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>
                         <Button
-                            color="primary" variant="contained" onClick={this.continue}>Next</Button>
+                            type="submit"  color="primary" variant="contained" >Next</Button>
+                   
+
+
                         <p>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
                             We require all the info as mentioned above in order to send you a quote. Upon quote approval, there’s typically an approximate 4-6 weeks turnover.
                             We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!
                             </p>
-                    </div>
+                    </form>
                 </React.Fragment>
             </MuiThemeProvider>
         )

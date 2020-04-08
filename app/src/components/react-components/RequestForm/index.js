@@ -143,6 +143,7 @@ export class UserForm extends Component {
             case 1: 
                 return (
                     <FormUserDetails
+                        prevStep={this.prevStep}
                         nextStep={this.nextStep}
                         handleChange= {this.handleChange}
 						handleCheck= {this.handleCheck}

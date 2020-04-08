@@ -20,7 +20,9 @@ export class LiabilityWaiver extends Component {
     return (
       <div>
         <h1 style={{ textAlign: "center", textDecoration: "underline" }}>Liability Waiver, Assumption of Risk and Idemnity </h1>
+        <form onSubmit={this.continue}>
         <div className='container' style={{ width: '900px' }}>
+
           <Box style={{ float: "left" }} border={3} marginLeft='5vh' maxWidth="900px">Congratulations on joining The Ramp Project! By signing this document you waive certain legal rights, including the right to sue. Please read carefully before signing.
                     <br></br><br></br>I understand that The StopGap Foundation (“StopGap”) will construct and provide my business with a temporary ramp to be used to access my single stepped storefront. Once StopGap delivers the ramp, it is my property and my sole responsibility.
                     <br></br><br></br>I understand that in order to participate in The Ramp Project, I must agree to and sign this waiver and indemnity.
@@ -30,13 +32,14 @@ export class LiabilityWaiver extends Component {
                     <br></br><br></br>I agree to indemnify StopGap, its employees, contractors, agents, directors or volunteers for any and all liabilities, damages, costs, claims, suits, and actions that are directly or indirectly related to my activities or my participation in The Ramp Project. I agree not to sue or bring legal action against anyone who could seek contribution or indemnity from StopGap, its employees, contractors, agents, directors or volunteers under the Negligence Act.
                 </Box>
           <FormControlLabel
-            control={<Checkbox onChange={this.handleChange} name="check" />}
+            required
+            control={<Checkbox required onChange={this.handleChange} name="check" />}
             label="I understand and agree to the Liability Waiver."
             style={{ marginLeft: '40px' }}
           />
-        </div>
+
         <Box style={{ float:'left', marginTop: '40px', marginLeft: '40px' }} maxWidth='500px' border={3}>
-          <div>
+         
             <TextField
               required
               id="standard-required"
@@ -67,15 +70,17 @@ export class LiabilityWaiver extends Component {
               defaultValue=""
               onChange={this.props.handleChange('witnessSig')}
             />
-          </div>
-          <br></br>
+            <br></br>
           <Button
-            style={{ right: 1 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
-          <Button style={{ left: 6 }} color="primary" variant="contained" onClick={this.continue}>
+            style={{ right: 1 }} color="primary" variant="contained" onClick={this.back}>Previous
+         </Button>
+          <Button type = "submit" style={{ left: 6 }} color="primary" variant="contained">
             Next
-                    </Button>
-                </Box>
+          </Button>
+           </Box>
             </div>
+          </form>
+          </div>
         )
     }
 }
