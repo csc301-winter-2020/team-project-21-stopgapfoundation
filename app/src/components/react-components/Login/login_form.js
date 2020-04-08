@@ -45,7 +45,7 @@ class LoginForm extends React.Component {
             id="email"
             label="Email"
             name="email"
-            type="email"
+            type="text"
           />
   
           <TextField
