@@ -6,7 +6,89 @@ import ListingBox from "../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class ClientDashboard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: null,
+      isLoaded: false,
+      orders: [],
+      users:[]
+    }
+  }
+
+  componentDidMount() {
+    fetch("/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+        console.log(result)
+        const orders = result["results"];
+
+        this.setState({
+          isLoaded: true,
+          orders: orders
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+
+    fetch("/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+        console.log(result)
+        const orders = result["results"];
+
+        this.setState({
+          isLoaded: true,
+          orders: orders
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    )
+  }
+  
+
   render() {
+    const {gotoFuncs} = this.props;
+    const {orders, isLoaded} = this.state;
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>
@@ -22,7 +104,8 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} />
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );
   }

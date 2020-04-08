@@ -14,7 +14,8 @@ class App extends React.Component {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
       isAdmin: true, // TODO: properly store this
-      isCurrentlyCheckingStorageForLogin: true
+      isCurrentlyCheckingStorageForLogin: true,
+      username:""
     };
   }
 
@@ -24,10 +25,12 @@ class App extends React.Component {
       console.error("Stopgap: user already logged in.");
       // Refreshes the page
       this.setState({
-        loggedIn: false
+        loggedIn: false,
+        username:""
       });
       this.setState({
-        loggedIn: true
+        loggedIn: true,
+        username:user
       });
       return;
     }
@@ -51,7 +54,8 @@ class App extends React.Component {
         localStorage.removeItem('token-refresh')
         this.setState({
           loggedIn: false,
-          invalidLogin: true
+          invalidLogin: true,
+          username:user
         });
       } else if ('access' in res && 'refresh' in res){
         localStorage.setItem('token-access', res.access);
@@ -59,13 +63,15 @@ class App extends React.Component {
         this.setState({
           loggedIn: true,
           isAdmin: isAdmin,
-          invalidLogin: false
+          invalidLogin: false,
+          username:user
         });
       }
     }, err => {
       this.setState({
         loggedIn: false,
-        invalidLogin: true
+        invalidLogin: true,
+        username:""
       });
       console.error(err);
     })
@@ -82,7 +88,8 @@ class App extends React.Component {
         loggedIn: false
       });
       this.setState({
-        loggedIn: true
+        loggedIn: true,
+        username:username
       });
       return;
     }
@@ -112,7 +119,8 @@ class App extends React.Component {
     this.setState({
       loggedIn: false,
       isAdmin: false,
-      invalidLogin: false
+      invalidLogin: false,
+      username:""
     });
     localStorage.removeItem('token-access');
     localStorage.removeItem('token-refresh');
@@ -175,7 +183,7 @@ class App extends React.Component {
               />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
-                  ? <Dashboard loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
+                  ? <Dashboard user= {this.state.username} loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
                   : <Redirect to='/login' />
               )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>

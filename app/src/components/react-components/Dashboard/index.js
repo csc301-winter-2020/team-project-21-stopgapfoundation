@@ -43,6 +43,7 @@ class Dashboard extends React.Component {
   render () {
     if (!this.props.loggedIn) // user is not logged in.
       return <Redirect to="/" /> 
+
     
     return (
       <div>
@@ -50,8 +51,8 @@ class Dashboard extends React.Component {
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.props.isAdmin 
-              ? <AdminDashboard logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
-              : <ClientDashboard logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+              ? <AdminDashboard username = {this.props.user} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard username=  {this.props.user} l logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>
