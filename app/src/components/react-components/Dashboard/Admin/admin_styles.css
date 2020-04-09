@@ -81,6 +81,14 @@
     
 }
 
+.create-bttn {
+    height: 100%;
+}
+
+.horz-padding {
+    padding: 0px 5px;
+}
+
 .general-info-input {
     margin-bottom: 15px !important;
     font-size: 1em !important;

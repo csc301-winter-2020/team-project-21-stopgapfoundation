@@ -38,6 +38,10 @@
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
+.fullwidth {
+    width: 100%;
+}
+
 .block-title{
     color: #615187;
     text-align: center;

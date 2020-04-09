@@ -54,11 +54,7 @@ class Notes extends React.Component{
     };
   }
 
-  handleNewNoteInput = e => {
-    this.setState({
-      newNote: e.target.value
-    });
-  }
+  
 
   saveNote = e => {
     e.preventDefault();
@@ -102,16 +98,16 @@ class Notes extends React.Component{
   render() {
 
     return (
-      <div className={"block"}>
+      <div className={"block fullwidth"}>
         <h2 className={"block-title"}>
           Notes
         </h2>
         
         <Grid container>
-          <Grid item md={10}>
+          <Grid item md={9}>
             <TextField
-              value={this.state.newNote}
-              onChange={this.handleNewNoteInput}
+              value={this.props.newNote}
+              onChange={this.props.handleNewNoteInput}
               fullWidth
               variant="outlined"
               label="Create a New Note"
@@ -121,10 +117,10 @@ class Notes extends React.Component{
               }}
             />
           </Grid>
-          <Grid item md={2}>
-            <Button fullWidth variant="contained" color="primary" disabled={this.state.newNote.length == 0} onClick={this.saveNote}>
+          <Grid item md={3} className={"horz-padding"}>
+            <Button className={"create-bttn"} fullWidth variant="contained" color="primary" disabled={this.props.newNote.length == 0} onClick={this.props.saveNote}>
               Save
-            </Button>
+            </Button> 
           </Grid>
         </Grid>
 
