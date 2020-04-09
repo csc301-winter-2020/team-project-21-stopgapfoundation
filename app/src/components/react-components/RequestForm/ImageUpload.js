@@ -96,7 +96,7 @@ export class ImageUpload extends Component {
               style={{ right: 10 }} color="primary" variant="contained" onClick={this.back}>Previous
               </Button>
             <Button
-              type="submit" color="primary" variant="contained" >Next
+              type="submit" color="primary" variant="contained" onClick={this.continue}>Next
               </Button>
               <br/>
               </div>
