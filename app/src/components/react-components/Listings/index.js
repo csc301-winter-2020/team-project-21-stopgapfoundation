@@ -65,7 +65,7 @@ class ListingBox extends React.Component {
 
   componentWillMount(){
     this.setState({
-      filteredListings: orders
+      filteredListings: this.props.orders
     })
   }
 
@@ -82,8 +82,8 @@ class ListingBox extends React.Component {
   }
 
   render () {
-    const { error } = this.state;
-    const {filteredListings, click, isLoaded} = this.props;
+    const { filteredListings, error } = this.state;
+    const {click, isLoaded} = this.props;
     if (error) {
       return <div className="block"> Error: {error.message}</div>
     }
@@ -97,10 +97,18 @@ class ListingBox extends React.Component {
                   </h2>
         <FilterBox onChange={this.filterListings}></FilterBox>
         <Grid container spacing={4}>
-        <  Grid  align="center" item xs>        Order Number</Grid>
-          < Grid   align="center" item xs>        Full Name</Grid>
-          <Grid  align="center" item xs>        Company </Grid>
-          <Grid  align="center"item xs>        Status</Grid>
+          <Grid align="center" item xs>       
+            Order Number
+          </Grid>
+          <Grid align="center" item xs>        
+            Full Name
+          </Grid>
+          <Grid align="center" item xs>        
+            Company 
+          </Grid>
+          <Grid align="center" item xs>        
+            Status
+          </Grid>
         </Grid>
         {filteredListings.map((listing,i) => (
           <Listing
