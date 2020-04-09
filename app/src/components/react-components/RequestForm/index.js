@@ -5,22 +5,33 @@ import LiabilityWaiver from './LiabilityWaiver';
 import { Redirect, Link } from 'react-router-dom';
 
 export class UserForm extends Component {
-    state = {
-        step: 1, 
-        firstName: '',
-        lastName: '',
-        email: '',
-        companyName: '',
-        phoneNumber: '', 
-        deliveryAddress: '',
-        deliveryType: '',
-        rampColor: '',
-        managerFirst: '',
-        managerSig: '',
-        witnessName: '',
-        witnessSig: '',
-		subsidize: false
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            step: 1, 
+            firstName: '',
+            lastName: '',
+            email: '',
+            companyName: '',
+            phoneNumber: '', 
+            deliveryAddress: '',
+            deliveryType: '',
+            rampColor: '',
+            managerFirst: '',
+            managerSig: '',
+            witnessName: '',
+            witnessSig: '',
+            entrywayPhoto: '',
+            stepLeftPhoto: '',
+            stepRightPhoto: '',
+            subsidize: false
+        }
+
+        this.handlePicture = this.handlePicture.bind(this)
     }
+
 
     nextStep = () => {
         const { step } = this.state;
@@ -43,16 +54,33 @@ export class UserForm extends Component {
 	handleCheck = input => e => {
         this.setState({[input]: !this.state.subsidize})
     }
+
+    handlePicture(input, url) {
+
+        if (input == "entrywayPhoto") {
+            this.setState({
+                entrywayPhoto: url
+            });
+        } else if (input == "stepLeftPhoto") {
+            this.setState({
+                stepLeftPhoto: url
+            });
+        } else if (input == "stepRightPhoto") {
+            this.setState({
+                stepRightPhoto: url
+            });
+        }
+    }
 	
     handleSubmitOrder = () => {
         const data ={
 		"user":1,
-        "billing_address":this.state.deliveryAddress,
-        "shipping_address":this.state.billingAddress,
+        "billing_address": this.state.deliveryAddress,
+        "shipping_address": this.state.billingAddress,
         "waiver":1,
-        // "entryway_photo":"/order-information/data/user_2/step_photos/200XY_hnIn8xv.png",
-        // "step_left_photo":"/order-information/data/user_2/step_photos/15000.png",
-        // "step_right_photo":"/order-information/data/user_2/step_photos/gan1.png",
+        "entryway_photo": this.state.entrywayPhoto,
+        "step_left_photo": this.state.stepLeftPhoto,
+        "step_right_photo": this.state.stepRightPhoto,
         "step_left_height":this.state.leftStepHeight,
         "step_right_height":this.state.rightStepHeight,
         "ramp_colour":this.state.ramp_colour,
@@ -60,11 +88,11 @@ export class UserForm extends Component {
         "subsidize":this.state.subsidize,
         "status":"Request Recieved",
 		"notes":"",
-        "firstName":this.state.firstName,
-        "lastName":this.state.lastName,
+        "first_name":this.state.firstName,
+        "last_name":this.state.lastName,
         "email":this.state.email,
-        "companyName":this.state.companyName,
-        "phoneNumber":this.state.phoneNumber}
+        "company_name":this.state.companyName,
+        "phone_number":this.state.phoneNumber}
 		
 		const token = localStorage.getItem('token-access')
         const requestOptions = {
@@ -145,8 +173,8 @@ export class UserForm extends Component {
                     <FormUserDetails
                         prevStep={this.prevStep}
                         nextStep={this.nextStep}
-                        handleChange= {this.handleChange}
-						handleCheck= {this.handleCheck}
+                        handleChange={this.handleChange}
+						handleCheck={this.handleCheck}
                     
                     />
                 )
@@ -155,7 +183,8 @@ export class UserForm extends Component {
                     <ImageUpload
 						prevStep={this.prevStep}
                         nextStep={this.nextStep}
-                        handleChange= {this.handleChange}
+                        handlePicture={this.handlePicture}
+                        handleChange={this.handleChange}
                     />
                 )
             case 3:

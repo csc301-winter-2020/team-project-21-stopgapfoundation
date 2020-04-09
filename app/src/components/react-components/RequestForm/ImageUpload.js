@@ -43,19 +43,19 @@ export class ImageUpload extends Component {
                 For a safe turning radius, you will need 42″ of space in addition to the length of the ramp (which is 6 times the height of the step).
                                 <br /> <br />
                 * Entryway image loader here *
-                <div><Upload  required></Upload></div>
+                <div><Upload imageIdentifier="entrywayPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
               <li>
                 <h4>Photo of Left Side Step</h4>
                 <br />
                 * Left side image loader here *
-                <div><Upload required></Upload></div>
+                <div><Upload imageIdentifier="stepLeftPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
               <li>
                 <h4>Photo of Right Side Step</h4>
                 <br />
                 * Right side image loader here *
-                <div><Upload  required></Upload></div>
+                <div><Upload imageIdentifier="stepRightPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
             </ul>
             <div></div>
