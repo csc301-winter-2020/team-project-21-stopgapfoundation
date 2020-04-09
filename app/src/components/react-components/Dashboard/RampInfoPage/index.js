@@ -14,17 +14,51 @@ class RampInfoPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      newNote: ""
+      newNote: "",
+      notes: []
     }
   }
 
   // We place states here so that there is simply ONE universal save button
   handleNewNoteInput = e => {
+    e.preventDefault();
     this.setState({
       newNote: e.target.value
     });
   }
 
+  saveNote = e => {
+    e.preventDefault();
+
+    const months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "December"
+    ];
+
+    const now = new Date();
+    const date = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
+    const note = this.state.newNote;
+    const newNotesArr = [...this.state.notes];
+    newNotesArr.push({
+      date: date,
+      author: "user", // TODO: update
+      note: note,
+      dirtyBit: true
+    });
+    this.setState({
+      notes: newNotesArr,
+      newNote: ""
+    })
+  }
 
   render () {
     const {data} = this.props;
@@ -43,7 +77,8 @@ class RampInfoPage extends React.Component {
               <StatusBlock isAdmin={this.props.isAdmin} data={ data } />
             </Grid>
           </Grid>
-          {this.props.isAdmin && <Notes data={data} newNote={this.state.newNote} handleNewNoteInput={this.handleNewNoteInput}/>}
+          {this.props.isAdmin 
+            && <Notes notes={this.state.notes} newNote={this.state.newNote} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
         </Grid>
         {this.props.isAdmin && 
           <Button fullWidth variant="contained" color="primary" >

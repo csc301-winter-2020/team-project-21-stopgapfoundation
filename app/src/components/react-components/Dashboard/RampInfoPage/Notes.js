@@ -16,19 +16,7 @@ class Notes extends React.Component{
     }
   }
 
-  months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "December"
-  ]
+  
 
   generateNoteColor(author) {
     // Color generated based on author
@@ -58,41 +46,33 @@ class Notes extends React.Component{
 
   saveNote = e => {
     e.preventDefault();
-    const now = new Date();
-    const date = `${this.months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
-    const {newNote} = this.state;
-    const newNotesArr = [...this.state.notes];
-    newNotesArr.push({
-      date: date,
-      author: "user", // TODO: update
-      note: newNote
-    }); // Send post request
+     // Send post request
 
-    fetch(`/order-information/${this.props.data['pk']}/`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      },
-      body: JSON.stringify({
-        "notes": JSON.stringify(newNotesArr)
-      })
-    }).then(res => {
-      if (res.ok){
-        return res.json()
-      }
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(res => {
-      this.setState({
-        newNote: "",
-        notes: newNotesArr
-      });
-    }, err => {
-      console.error("Unable to update note");
-      console.error(err);
-    })
+    // fetch(`/order-information/${this.props.data['pk']}/`, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-type': 'application/json',
+    //     'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+    //   },
+    //   body: JSON.stringify({
+    //     "notes": JSON.stringify(newNotesArr)
+    //   })
+    // }).then(res => {
+    //   if (res.ok){
+    //     return res.json()
+    //   }
+    //   throw new Error(`Something went wrong with error code ${res.status}`)
+    // })
+    // .then(res => {
+    //   this.setState({
+    //     newNote: "",
+    //     notes: newNotesArr
+    //   });
+    // }, err => {
+    //   console.error("Unable to update note");
+    //   console.error(err);
+    // })
   }
 
   render() {
@@ -119,13 +99,13 @@ class Notes extends React.Component{
           </Grid>
           <Grid item md={3} className={"horz-padding"}>
             <Button className={"create-bttn"} fullWidth variant="contained" color="primary" disabled={this.props.newNote.length == 0} onClick={this.props.saveNote}>
-              Save
+              Create Note
             </Button> 
           </Grid>
         </Grid>
 
         <div className={"notes-container"}>
-          {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+          {this.props.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
         </div>
       </div>
     )
@@ -139,18 +119,17 @@ class Notes extends React.Component{
  * @prop {string} color - hexadecimal color code for note 
  */
 function NoteBlock(props) {
-
-
-  const {title, date, author, note} = props.note;
+  const {dirtyBit, date, author, note} = props.note;
   return (
-    <div className="note-block" style={{backgroundColor: props.color.bg}}>
+    <div className={`note-block ${dirtyBit ? "unsaved" : ""}`} style={{backgroundColor: props.color.bg}}>
+      
       <p className="note-block-metadata" style={{color: props.color.text}}>
         <span className="note-block-date">
           {date}
         </span>
         {" by "}
         <span className="note-block-author">
-          {author}
+          {author}{dirtyBit && <strong>*</strong>}
         </span>
       </p>
       <p className="note-block-content" style={{color: props.color.text}}> 
