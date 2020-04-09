@@ -27,12 +27,12 @@ export class ImageUpload extends Component {
         <React.Fragment>
           <AppBar position="static">
             <Typography variant="h6" >
-              StopGap - Request A Ramp Form
+              Ramp Request Form
                         </Typography>
           </AppBar>
           <br />
 
-          <div className='form' style={{ marginLeft: '5vh', marginTop: '5vh', marginRight: '20vh' }}>
+          <form onSubmit={this.continue} style={{ marginLeft: '5vh', marginTop: '5vh', marginRight: '20vh' }}>
             <h1>Upload your Images:</h1>
             <h3>StopGap requires three images to process your ramp request:</h3>
             <ul>
@@ -43,19 +43,19 @@ export class ImageUpload extends Component {
                 For a safe turning radius, you will need 42″ of space in addition to the length of the ramp (which is 6 times the height of the step).
                                 <br /> <br />
                 * Entryway image loader here *
-                <div><Upload></Upload></div>
+                <div><Upload imageIdentifier="entrywayPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
               <li>
                 <h4>Photo of Left Side Step</h4>
                 <br />
                 * Left side image loader here *
-                <div><Upload></Upload></div>
+                <div><Upload imageIdentifier="stepLeftPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
               <li>
                 <h4>Photo of Right Side Step</h4>
                 <br />
                 * Right side image loader here *
-                <div><Upload></Upload></div>
+                <div><Upload imageIdentifier="stepRightPhoto" handlePicture={this.props.handlePicture} required></Upload></div>
               </li>
             </ul>
             <div></div>
@@ -67,6 +67,8 @@ export class ImageUpload extends Component {
                         </h3>
             <TextField
               required
+              type="number"
+              inputProps={{ min: "0", max: "100", step: "0.01" }}
               id="standard-required"
               label="Step Height - Left"
               defaultValue=""
@@ -75,6 +77,8 @@ export class ImageUpload extends Component {
             <br /> <br />
             <TextField
               required
+              type="number"
+              inputProps={{ min: "0", max: "100", step: "0.01" }}
               id="standard-required"
               label="Step Height - Right"
               defaultValue=""
@@ -84,9 +88,9 @@ export class ImageUpload extends Component {
             <Button
               style={{ right: 10 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
             <Button
-              color="primary" variant="contained" onClick={this.continue}>Next
+              type= "submit" color="primary" variant="contained" >Next
                         </Button>
-          </div>
+          </form>
         </React.Fragment>
       </MuiThemeProvider>
     )

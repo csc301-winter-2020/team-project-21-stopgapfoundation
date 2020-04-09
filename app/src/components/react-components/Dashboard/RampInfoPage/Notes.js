@@ -4,36 +4,31 @@ import { TextField, Grid, Button } from "@material-ui/core"
 class Notes extends React.Component{
   constructor(props){
     super(props);
+    var notes;
+    try {
+      notes = JSON.parse(props.notes)
+    } catch {
+      notes = []
+    }
     this.state = {
-      notes: [{
-        title: "Example Note",
-        date: "Mar 11",
-        author: "StopGap Team",
-        note: "This is an example note that comes with the component, for testing purposes."
-      }, {
-        title: "Same Author",
-        date: "Mar 11",
-        author: "StopGap Team",
-        note: "This note was also written by StopGap Team. Notice how the color is the same."
-      }, {
-        title: "Example Note",
-        date: "Mar 11",
-        author: "Another Admin",
-        note: "A note by a different admin and this a different color"
-      }, {
-        title: "Quick Note",
-        date: "Mar 11",
-        author: "another-auth",
-        note: "test"
-      }, {
-        title: "Quick Note",
-        date: "Mar 11",
-        author: "another-auth",
-        note: "test"
-      }],
+      notes: notes,
       newNote: ""
     }
   }
+
+  months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "December"
+  ]
 
   generateNoteColor(author) {
     // Color generated based on author
@@ -50,8 +45,13 @@ class Notes extends React.Component{
     const c = (hash & 0x00FFFFFF)
         .toString(16)
         .toUpperCase();
+    
+    const luminence = parseInt(c.slice(0, 2), 16) + parseInt(c.slice(2, 4), 16) + parseInt(c.slice(4, 6), 16)
 
-    return "#" + "00000".substring(0, 6 - c.length) + c;
+    return {
+      bg: "#" + "00000".substring(0, 6 - c.length) + c,
+      text: luminence >= 400 ? "#000000" : "#ffffff"
+    };
   }
 
   handleNewNoteInput = e => {
@@ -62,19 +62,41 @@ class Notes extends React.Component{
 
   saveNote = e => {
     e.preventDefault();
+    const now = new Date();
+    const date = `${this.months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
     const {newNote} = this.state;
     const newNotesArr = [...this.state.notes];
     newNotesArr.push({
-      title: "New Note",
-      date: "Mar 11",
-      author: "user",
+      date: date,
+      author: "user", // TODO: update
       note: newNote
-    });
+    }); // Send post request
 
-    this.setState({
-      newNote: "",
-      notes: newNotesArr
-    });
+    fetch(`/order-information/${this.props.data['pk']}/`, {
+      method: 'PATCH',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      },
+      body: JSON.stringify({
+        "notes": JSON.stringify(newNotesArr)
+      })
+    }).then(res => {
+      if (res.ok){
+        return res.json()
+      }
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(res => {
+      this.setState({
+        newNote: "",
+        notes: newNotesArr
+      });
+    }, err => {
+      console.error("Unable to update note");
+      console.error(err);
+    })
   }
 
   render() {
@@ -122,16 +144,11 @@ class Notes extends React.Component{
  */
 function NoteBlock(props) {
 
-  console.log(props.color);
 
   const {title, date, author, note} = props.note;
   return (
-    <div className="note-block" style={{backgroundColor: props.color}}>
-      <p className="note-block-metadata">
-        <span className="note-block-title">
-          {title}
-        </span>
-        <br />
+    <div className="note-block" style={{backgroundColor: props.color.bg}}>
+      <p className="note-block-metadata" style={{color: props.color.text}}>
         <span className="note-block-date">
           {date}
         </span>
@@ -140,7 +157,7 @@ function NoteBlock(props) {
           {author}
         </span>
       </p>
-      <p className="note-block-content">
+      <p className="note-block-content" style={{color: props.color.text}}> 
         {note}
       </p>
     </div>

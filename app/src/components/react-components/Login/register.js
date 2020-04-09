@@ -8,26 +8,37 @@ class RegisterForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      firstName:"", 
+      lastName: "",
       email: "",
       pwd: "",
       pwdConfirm: "",
-      passwordsMatch: true
+      passwordsMatch: true,
+      isAdmin: false
     }
     this.form = React.createRef();
   }
 
   validateAndSubmit = e => {
-    /* TODO: feed in actual new user data */
     e.preventDefault();
+
+    // Form incomplete
     if(!this.form.current.reportValidity())
       return;
+    // Passwords do not match
     if (this.state.pwd != this.state.pwdConfirm){
       this.setState({passwordsMatch: false});
       return;
     }
-    
-    this.props.login({isAdmin: this.props.isAdmin})
-    
+    console.log(this.state)
+    // No issues; sign user up
+    this.props.register(
+      this.state.email,
+      this.state.pwd,
+      this.state.firstName,
+      this.state.lastName,
+      this.state.isAdmin
+    );
   }
 
   render() {
@@ -35,19 +46,35 @@ class RegisterForm extends React.Component {
       <div className="buttons center">
         <form ref={this.form} onSubmit={this.validateAndSubmit}>
         <TextField
-            value={this.state.email}
+            value={this.state.firstName}
             onChange = { e => this.setState({
-              username: e.target.value
+              firstName: e.target.value
             })}
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="username"
-            label="User Name"
-            name="username"
-            type="username"
-            autoComplete="username"
+            id="firstName"
+            label="First Name"
+            name="firstName"
+            type="name"
+            autoComplete="firstName"
+            autoFocus
+          />
+          <TextField
+            value={this.state.lastName}
+            onChange = { e => this.setState({
+              lastName: e.target.value
+            })}
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="lastName"
+            label="Last Name"
+            name="lastName"
+            type="name"
+            autoComplete="lastName"
             autoFocus
           />
   
@@ -95,7 +122,7 @@ class RegisterForm extends React.Component {
             required
             fullWidth
             name="repeatpassword"
-            label="RepeatPassword"
+            label="Confirm Password"
             type="password"
             id="repeatpassword"
             autoComplete="current-password"

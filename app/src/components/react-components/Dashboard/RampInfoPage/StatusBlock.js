@@ -14,67 +14,96 @@ class StatusBlock extends React.Component {
       "Request Accepted",
       "Build Phase",
       "Paint Phase",
-      "Out for Delivery"
+      "Out for Delivery",
+      "Completed"
     ];
+    this.statuses[-1] = "--"
 
     this.state = {
-    error: null,
-    isLoaded: false,
-    date:"",
-    // statusInput: this.statuses[3],
-    // progress: (3 / (this.statuses.length - 1)) * 100,
-    // status: this.statuses[3]
-    progress: (0 / (this.statuses.length - 1)) * 100,
-    status: ""
+      data:this.props.data,
+      error: null,
+      isLoaded: false,
+      date:"",
+      statusInput: 0,
+      status: -1
+      // progress: (0 / (this.statuses.length - 1)) * 100,
     };
   }  
 
-  // handleStatusInput = e => {
-  //   this.setState({
-  //     statusInput: e.target.value
-  //   });
-  // }
 
-  componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"][0];
 
-          const new_progress = (this.statuses.indexOf(orders["status"]) / (this.statuses.length - 1)) * 100
-          this.setState({
-            status: orders["status"],
-            date: orders["date_created"],
-            isLoaded: true,
-            progress:new_progress
-            
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+
+  handleStatusInput = e => {
+    this.setState({
+      statusInput: this.statuses.indexOf(e.target.value)
+    });
   }
 
-  // saveData = e => {
-  //   e.preventDefault();
-  //   const status = this.state.statusInput;
-  //   const progress = (this.statuses.indexOf(status) / (this.statuses.length - 1)) * 100
-  //   this.setState({
-  //     progress,
-  //     status
-  //   })
-  // }
+  componentDidMount() {
+    let new_progress = "status" in this.props.data ? this.statuses.indexOf(this.props.data["status"]) : -1
+    if (new_progress >= this.statuses.length || new_progress < -1){
+      new_progress = -1;
+    }
+    this.setState({
+      // status: this.state.data["status"],
+      date: this.state.data["date_created"],
+      isLoaded: true,
+      status: new_progress,
+      statusInput: new_progress
+    });
+  }
+
+  handle(){
+    const data = this.state.data
+    
+		const token = localStorage.getItem('token-access')
+    const requestOptions = {
+          method: 'POST',
+          headers: {
+				      'Content-Type': 'application/json',
+				      'Authorization': 'Bearer ' + token
+		      },
+          body: JSON.stringify(data)
+    };
+    // const link =  '/order-information/' + data["pk"]
+    const link =  '/order-information/' 
+    fetch(link, requestOptions)
+          .then(async response => {
+          const data = await response.json();
+    
+          // check for error response
+          if (!response.ok) {
+              // get error message from body or default to response status
+              const error = (data && data.message) || response.status;
+              return Promise.reject(error);
+          }
+				    //  console.log(data.pk)
+            // this.setState({ postId: data.pk })
+    })
+    .catch(error => {
+        this.setState({ errorMessage: error });
+        console.error('There was an error!', error);
+    }); 
+
+  }
+
+  saveData = e => {
+    e.preventDefault();
+    // TODO: make post request
+    const new_status = this.state.statusInput;
+    var data = this.state.data
+    data["status"] = this.statuses[new_status]
+    this.setState({
+      status:new_status,
+      data:data
+    })
+    this.handle()
+  }
 
   render() {
-    const { listings, error, isLoaded } = this.state;
+    const { status, statusInput, date, error, isLoaded } = this.state;
+    const statusMsg = this.statuses[statusInput];
+    const progress = (statusInput / (this.statuses.length - 1));
     if (error) {
       return <div> Error: {error.message}</div>
     }
@@ -83,7 +112,7 @@ class StatusBlock extends React.Component {
     }
     else{
 
-    const dirtyBit = this.state.statusInput != this.state.status;
+    const dirtyBit = statusInput != status;
 
     return (
       <div className={"block"}>
@@ -91,13 +120,13 @@ class StatusBlock extends React.Component {
           Status
         </h2>
         <span className={"status-block-last-updated"}>
-          Date Created: <strong>
-            {this.state.date}
+          Initial Request Date: <strong>
+            {date}
           </strong>
         </span>
-        <ProgressBar progress={this.state.progress / 100} />
-        <span className={"status-block-status"} > { /* style={{left: `${this.state.progress}%`}} */}
-          {this.state.status}
+        <ProgressBar progress={progress} />
+        <span className={"status-block-status"} > 
+          {statusMsg}
           <br/>
         </span>
         { this.props.isAdmin &&
@@ -105,7 +134,7 @@ class StatusBlock extends React.Component {
             <Grid item md={10}>
               <Select
                 className = {"status-bar-textfield"}
-                value={this.state.statusInput}
+                value={statusMsg}
                 onChange={this.handleStatusInput}
                 type="number"
                 variant="outlined"

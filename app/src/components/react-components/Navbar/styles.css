@@ -1,7 +1,7 @@
 .navbar {
     width: 100%;
     height: 80px;
-    background-color:  rgb(163, 30, 30);
+    background-color:  #2F4858;
     position: fixed;
     top: 0px;
 }
@@ -17,10 +17,7 @@
     color: white;
 }
 
-#logOutButton {
-    width: 150px;
-    height: 50px;
-    background-color: floralwhite;
-    display: block;
-    margin-top: 2%;
+#backButton {
+    margin-top: 10px;
+    background-color: #F9F9F8;
 }

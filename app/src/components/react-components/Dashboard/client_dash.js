@@ -6,7 +6,150 @@ import ListingBox from "../Listings";
 
 /* Primary Component for the Admin Dashboard page */
 class ClientDashboard extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      error: null,
+      isLoaded: false,
+      userisLoaded: false,
+      orders: [],
+      users:[],
+      username:this.props.username
+    }
+  }
+
+
+  componentDidMount()  {
+    // if(!this.state.isLoaded){
+
+    
+    fetch("/users", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+
+        const users = result["results"];
+        // users.map(x => {
+        //   if (x["username"] == this.props.username){
+        //       id = x["pk"]
+
+              
+        //   }
+        // })
+
+        this.setState({
+          isLoaded: true,
+          users:users
+        });
+      
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+       
+      }
+    )
+    // }
+  
+
+  }
+
+  
+
+
+  
+
+  handleUser() {
+
+
+
+
+    fetch("/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+
+        const orders = result["results"];
+        var results = []
+
+        
+        const users = this.state.users;
+
+
+        var user
+
+        users.map(x => {
+            if (x["username"] == this.state.username){
+              user = x
+            }
+          }
+         )
+
+
+        orders.map(x => {
+          // console.log(x["user"])
+          if (x["user"] == user["pk"]){
+            
+              results.push(x)
+          }
+        })
+
+
+
+
+        this.setState({
+          userisLoaded:true,
+          orders: results
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          userisLoaded:true,
+          error
+        });
+      }
+    )
+  
+
+}
+  
+
   render() {
+  
+    if (this.state.isLoaded && !this.state.userisLoaded){
+      this.handleUser()
+    }
+    const {gotoFuncs} = this.props;
+    const {orders, isLoaded} = this.state;
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>
@@ -22,7 +165,8 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={() => this.props.gotoFuncs.ramp_info(false)} />
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );
   }

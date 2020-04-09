@@ -4,10 +4,13 @@
     "private": true,
     "dependencies": {
         "@material-ui/core": "^4.9.5",
+        "@material-ui/lab": "^4.0.0-alpha.47",
         "@material-ui/styles": "^4.9.0",
         "@testing-library/jest-dom": "^4.2.4",
         "@testing-library/react": "^9.3.2",
         "@testing-library/user-event": "^7.1.2",
+        "cloudinary": "^1.21.0",
+        "connect-multiparty": "^2.2.0",
         "package.json": "^2.0.1",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",

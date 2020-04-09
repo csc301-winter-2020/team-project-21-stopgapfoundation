@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from '@material-ui/core/Grid';
+import { Button, Grid } from '@material-ui/core';
 import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
@@ -8,30 +8,33 @@ import "../Admin/admin_styles.css"; // TODO: update w/ different css file
 
 /* Primary Component for the Admin Dashboard page */
 class RampInfoPage extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+
   render () {
-    const rampData = {
-      l_height: 10,
-      r_height: 10,
-      color: "#EFDA33"
-    };
+    const {data} = this.props;
 
     return (
       <Grid container>
         <Grid item xs={4}>
-          <GeneralInfo isAdmin={this.props.isAdmin} />
+          <GeneralInfo isAdmin={this.props.isAdmin} data={ data }/>
         </Grid>
         <Grid item container xs={8}>
           <Grid container>
             <Grid item xs={6}>
-              <RampDimensions ramp={ rampData } isAdmin={this.props.isAdmin} />
+              <RampDimensions data={ data } isAdmin={this.props.isAdmin} />
             </Grid>
             <Grid item xs={6}>
-              <StatusBlock isAdmin={this.props.isAdmin} />
+              <StatusBlock isAdmin={this.props.isAdmin} data={ data } />
             </Grid>
           </Grid>
-          {this.props.isAdmin && <Notes />}
+          {this.props.isAdmin && <Notes data={data}/>}
         </Grid>
       </Grid>
+
     );
   }
 }

@@ -1,28 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import datetime
 
 # Use this method to get the directory to store a user's photos
 def user_directory_path(instance, filename):
     return "data/user_{0}/step_photos/{1}".format(instance.user.id, filename)
-
-
-# # Expand the standard user class provided by Django Auth
-# # Store any additional information about client in this model
-# class Client(models.Model):
-#     # Reference to base user model
-#     user = models.OneToOneField(
-#         User,
-#         on_delete=models.CASCADE,
-#         primary_key=True
-#     )
-#
-#     # Additional information
-#     email = models.CharField(max_length=180)
-#     company = models.CharField(max_length=180)
-#     phone_number = models.CharField(max_length=15)
-#     address = models.CharField(max_length=180)
-
 
 
 # Store a single waiver instance with this model
@@ -35,18 +17,17 @@ class Waiver(models.Model):
     )
 
     # Date of waiver creation/completion (assumed to be at the same time)
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(auto_now_add=True, blank=True)
 
     # Name and signature of owner or manager
-    signatory_first_name = models.CharField(max_length=30)
-    signatory_last_name = models.CharField(max_length=150)
-    signatory_signature = models.CharField(max_length=180)  # Use full name as e-signature
+    signatory_first_name = models.CharField(max_length=30, default="")
+    signatory_last_name = models.CharField(max_length=150, default="")
+    signatory_signature = models.CharField(max_length=180, default="")  # Use full name as e-signature
 
     # Name and signature of witness
-    witness_first_name = models.CharField(max_length=30)
-    witness_last_name = models.CharField(max_length=150)
-    witness_signature = models.CharField(max_length=180)    # Use full name as e-signature
-
+    witness_first_name = models.CharField(max_length=30, default="")
+    witness_last_name = models.CharField(max_length=150, default="")
+    witness_signature = models.CharField(max_length=180, default="")    # Use full name as e-signature
 
 class Order(models.Model):
     # Reference to associated client
@@ -55,20 +36,19 @@ class Order(models.Model):
         on_delete=models.CASCADE
     )
 
-    #User information
-    firstName =  models.CharField(max_length=30)
-    lastName = models.CharField(max_length=30)
-    email = models.CharField(max_length=30)
-    companyName =   models.CharField(max_length=30)
-    phoneNumber  =  models.CharField(max_length=30)
-
+    # User information
+    first_name =  models.CharField(max_length=30, default="")
+    last_name = models.CharField(max_length=150, default="")
+    email = models.CharField(max_length=180, default="")
+    company = models.CharField(max_length=180, default="")
+    phone_number = models.CharField(max_length=15, default="")
 
     # Date of order creation
-    date_created = models.DateField(auto_now_add=True)
+    date_created = models.DateField(auto_now_add=True, blank=True)
 
     # Address information
-    billing_address = models.CharField(max_length=180)
-    shipping_address = models.CharField(max_length=180)
+    billing_address = models.CharField(max_length=180, default="")
+    shipping_address = models.CharField(max_length=180, default="")
 
     # Waiver information
     waiver = models.OneToOneField(
@@ -78,16 +58,18 @@ class Order(models.Model):
     )
 
     # Ramp information; height information stored in inches
-    entryway_photo = models.ImageField(upload_to=user_directory_path)
-    step_left_photo = models.ImageField(upload_to=user_directory_path)
-    step_right_photo = models.ImageField(upload_to=user_directory_path)
+    entryway_photo = models.CharField(max_length=500, default="")
+    step_left_photo = models.CharField(max_length=500, default="")
+    step_right_photo = models.ImageField(max_length=500, default="")
+
     step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
     step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
-    ramp_colour = models.CharField(max_length=50)
-
-    # #status
-    status = models.CharField(max_length=20)
+    ramp_colour = models.CharField(max_length=50, default="")
     
     # Additional information
-    delivery_method = models.CharField(max_length=50)
+    delivery_method = models.CharField(max_length=50, default="")
     subsidize = models.BooleanField(default=False)
+    
+    # Status information
+    status = models.CharField(max_length=180, default="")
+    notes = models.CharField(max_length=180, default="")

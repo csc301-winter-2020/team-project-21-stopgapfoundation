@@ -2,12 +2,18 @@ import React, { Component } from 'react'
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import AppBar from '@material-ui/core/AppBar'
 import TextField from '@material-ui/core/TextField'
+import Checkbox from '@material-ui/core/Checkbox'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Select from '@material-ui/core/Select'
 import MenuItem from '@material-ui/core/MenuItem';
 
 export class FormUserDetails extends Component {
+
+    constructor(props) {
+        super(props);
+        this.form = React.createRef();
+      }
     continue = e => {
         e.preventDefault();
         this.props.nextStep();
@@ -17,19 +23,19 @@ export class FormUserDetails extends Component {
         this.props.prevStep();
     }
     render() {
-        const { values } = this.props;
 
         return (
             <MuiThemeProvider>
                 <React.Fragment>
-                    <AppBar position="static">
+                    <AppBar position="static" style={{ background: '#2F4858' }}>
                         <Typography variant="h6" >
-                            StopGap - Request A Ramp Form
+                             Ramp Request Form
                         </Typography>
                     </AppBar>
                     <br />
 
-                    <div className='form' style={{ marginLeft: '5vh', marginTop: '5vh', marginRight:'20vh' }}>
+       
+                    <form ref={this.form} onSubmit={this.continue} style={{ marginLeft: '5vh', marginTop: '5vh', marginRight:'20vh' }}>
                         <h1>Please Enter Your Information:</h1>
                         <div>
                             <TextField
@@ -97,16 +103,27 @@ export class FormUserDetails extends Component {
                             defaultValue=""
                             onChange={this.props.handleChange('rampColor')}
                         />
-
+						<label>
+							<Checkbox
+								onClick={this.props.handleCheck('subsidize')}
+								name="check"
+								style={{ marginLeft: '40px' }}
+							/>
+							<span>Subsidize</span>
+						</label>
                         <br /> <br />
                         <Button
                             style={{right:10}}color="primary" variant="contained" onClick={this.back}>Previous</Button>
                         <Button
-                            color="primary" variant="contained" onClick={this.continue}>Next</Button>
-                        <h4>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
+                            type="submit"  color="primary" variant="contained" >Next</Button>
+                   
+
+
+                        <p>*Please note that we’re currently experiencing a bit of a backlog of ramp requests.
                             We require all the info as mentioned above in order to send you a quote. Upon quote approval, there’s typically an approximate 4-6 weeks turnover.
-                            We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!</h4>
-                    </div>
+                            We are so excited that our awareness raising efforts have worked but we’re a very small team working hard at getting more ramps to more steps!
+                            </p>
+                    </form>
                 </React.Fragment>
             </MuiThemeProvider>
         )

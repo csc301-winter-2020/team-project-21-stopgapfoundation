@@ -1,11 +1,11 @@
 import React from "react";
 import Grid from '@material-ui/core/Grid'
-import {ReactComponent as IconLeftGrade} from "./ramp-icons/left_grade.svg";
-import {ReactComponent as IconRightGrade} from "./ramp-icons/right_grade.svg";
+// import {ReactComponent as IconLeftGrade} from "./ramp-icons/left_grade.svg";
+// import {ReactComponent as IconRightGrade} from "./ramp-icons/right_grade.svg";
 import {ReactComponent as IconLeftHeight} from "./ramp-icons/left-height.svg";
 import {ReactComponent as IconRightHeight} from "./ramp-icons/right-height.svg";
-import {ReactComponent as IconLength} from "./ramp-icons/length.svg";
-import {ReactComponent as IconWidth} from "./ramp-icons/width.svg";
+// import {ReactComponent as IconLength} from "./ramp-icons/length.svg";
+// import {ReactComponent as IconWidth} from "./ramp-icons/width.svg";
 
 /** Component that will display dimensions for the ramp.
  *  Uses a 2D image for now, could potentially be updated to show a 3D model.
@@ -57,57 +57,40 @@ class RampDimensions extends React.Component{
   }
 
   componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"][0];
-          this.setState({
-            //values: orders, 
-            data : {
-              
-              // "Length": {
-              //   value: "",
-              //   icon: < IconLength style={{width: "24px", height: "auto"}}/>
-              // },
-              // "Width": {
-              //   value: "",
-              //   icon: < IconWidth style={{width: "24px", height: "auto"}}/>
-              // },
-              "Left Height": {
-                value: orders["step_left_height"],
-                icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
-              },
-              "Right Height": {
-                value: orders["step_right_height"],
-                icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
-              },
-              // "Left Grade": {
-              //   value: "",
-              //   icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
-              // },
-              // "Right Grade": {
-              //   value: "",
-              //   icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
-              // },
-              "Color": {
-                value: orders["ramp_colour"],
-                icon: null
-              },
-            },
-            isLoaded: true,
-          });
+    this.setState({
+      data : {
+        
+        // "Length": {
+        //   value: "",
+        //   icon: < IconLength style={{width: "24px", height: "auto"}}/>
+        // },
+        // "Width": {
+        //   value: "",
+        //   icon: < IconWidth style={{width: "24px", height: "auto"}}/>
+        // },
+        "Left Height": {
+          value: this.props.data["step_left_height"],
+          icon: < IconLeftHeight style={{width: "24px", height: "auto"}}/>
         },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+        "Right Height": {
+          value: this.props.data["step_right_height"],
+          icon: < IconRightHeight style={{width: "24px", height: "auto"}}/>
+        },
+        // "Left Grade": {
+        //   value: "",
+        //   icon: < IconLeftGrade style={{width: "24px", height: "auto"}}/>
+        // },
+        // "Right Grade": {
+        //   value: "",
+        //   icon: < IconRightGrade style={{width: "24px", height: "auto"}}/>
+        // },
+        "Color": {
+          value: this.props.data["ramp_colour"],
+          icon: null
+        },
+      },
+      isLoaded: true,
+    });
   }
 
 
@@ -170,9 +153,6 @@ class RampDimensions extends React.Component{
               );
             })
           }
-
-          {/* TODO: add icons to keys */}
-
         </Grid>   
       </div>
     );

@@ -48,7 +48,7 @@ class FilterBox extends React.Component{
         label="Filter Client" 
         variant="filled"
         defaultValue=""
-        onChange={this.props.handleChange}
+        onChange={this.handleChange}
       />
     )
   }
@@ -57,6 +57,7 @@ class FilterBox extends React.Component{
 class ListingBox extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       filteredListings: [],
       error: null,
@@ -64,26 +65,29 @@ class ListingBox extends React.Component {
   }
 
   componentWillMount(){
+    console.log(this.props.orders);
     this.setState({
-      filteredListings: orders
+      filteredListings: this.props.orders
     })
   }
 
   filterListings = (listingFilter) => {
-    let filteredListings = this.state.listings
+    console.log(listingFilter);
+    listingFilter = listingFilter.toLowerCase();
+    let filteredListings = this.props.orders;
     filteredListings = filteredListings.filter((listing) =>{
-      let client_name = listing.client_name
-      return client_name.indexOf(
-        listingFilter) !== -1
-    })
+      let client_name = `${listing['first_name']} ${listing['last_name']}`.toLowerCase();
+      console.log(`    ${client_name}`);
+      return client_name.includes(listingFilter)
+    });
     this.setState ({
       filteredListings
-    })
+    });
   }
 
   render () {
-    const { error } = this.state;
-    const {filteredListings, click, isLoaded} = this.props;
+    const { filteredListings, error } = this.state;
+    const {click, isLoaded} = this.props;
     if (error) {
       return <div className="block"> Error: {error.message}</div>
     }
@@ -97,10 +101,18 @@ class ListingBox extends React.Component {
                   </h2>
         <FilterBox onChange={this.filterListings}></FilterBox>
         <Grid container spacing={4}>
-        <  Grid  align="center" item xs>        Order Number</Grid>
-          < Grid   align="center" item xs>        Full Name</Grid>
-          <Grid  align="center" item xs>        Company </Grid>
-          <Grid  align="center"item xs>        Status</Grid>
+          <Grid align="center" item xs>       
+            Order Number
+          </Grid>
+          <Grid align="center" item xs>        
+            Full Name
+          </Grid>
+          <Grid align="center" item xs>        
+            Company 
+          </Grid>
+          <Grid align="center" item xs>        
+            Status
+          </Grid>
         </Grid>
         {filteredListings.map((listing,i) => (
           <Listing
