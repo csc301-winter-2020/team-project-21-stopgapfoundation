@@ -99,8 +99,9 @@ class AdminDashboard extends React.Component {
             <NumberStat title="Completed Ramps" stat={complete_num} />
           </Grid>
         </Grid>
-
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        {
+          isLoaded && <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        }
       </div>
     );
   }
