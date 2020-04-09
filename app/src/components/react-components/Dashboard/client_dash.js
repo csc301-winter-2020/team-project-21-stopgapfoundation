@@ -12,13 +12,19 @@ class ClientDashboard extends React.Component {
     this.state = {
       error: null,
       isLoaded: false,
+      userisLoaded: false,
       orders: [],
-      users:[]
+      users:[],
+      username:this.props.username
     }
   }
 
-  componentDidMount() {
-    fetch("/order-information/", {
+
+  componentDidMount()  {
+    // if(!this.state.isLoaded){
+
+    
+    fetch("/users", {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -32,13 +38,21 @@ class ClientDashboard extends React.Component {
     })
     .then(
       (result) => {
-        console.log(result)
-        const orders = result["results"];
+
+        const users = result["results"];
+        // users.map(x => {
+        //   if (x["username"] == this.props.username){
+        //       id = x["pk"]
+
+              
+        //   }
+        // })
 
         this.setState({
           isLoaded: true,
-          orders: orders
+          users:users
         });
+      
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -48,45 +62,92 @@ class ClientDashboard extends React.Component {
           isLoaded: true,
           error
         });
+       
       }
     )
+    // }
+  
 
-    fetch("/order-information/", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      }
-    })
-    .then(res => {
-      if (res.ok)
-        return res.json()
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(
-      (result) => {
-        console.log(result)
-        const orders = result["results"];
-
-        this.setState({
-          isLoaded: true,
-          orders: orders
-        });
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
   }
+
+  
+
+
+  
+
+  handleUser() {
+
+
+
+
+    fetch("/order-information/", {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+      }
+    })
+    .then(res => {
+      if (res.ok)
+        return res.json()
+      throw new Error(`Something went wrong with error code ${res.status}`)
+    })
+    .then(
+      (result) => {
+
+        const orders = result["results"];
+        var results = []
+
+        
+        const users = this.state.users;
+
+
+        var user
+
+        users.map(x => {
+            if (x["username"] == this.state.username){
+              user = x
+            }
+          }
+         )
+
+
+        orders.map(x => {
+          // console.log(x["user"])
+          if (x["user"] == user["pk"]){
+            
+              results.push(x)
+          }
+        })
+
+
+
+
+        this.setState({
+          userisLoaded:true,
+          orders: results
+        });
+      },
+      // Note: it's important to handle errors here
+      // instead of a catch() block so that we don't swallow
+      // exceptions from actual bugs in components.
+      (error) => {
+        this.setState({
+          userisLoaded:true,
+          error
+        });
+      }
+    )
+  
+
+}
   
 
   render() {
+  
+    if (this.state.isLoaded && !this.state.userisLoaded){
+      this.handleUser()
+    }
     const {gotoFuncs} = this.props;
     const {orders, isLoaded} = this.state;
     return (

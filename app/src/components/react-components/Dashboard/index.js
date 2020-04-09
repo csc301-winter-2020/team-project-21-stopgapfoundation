@@ -8,12 +8,22 @@ import RampInfoPage from "./RampInfoPage";
 
 /* Primary Component for the Admin Dashboard page */
 class Dashboard extends React.Component {
+    
+
+
   constructor(props) {
     super(props);
+
+  
+
+
+    
     this.state = {
       pageStack: [], // when we navigate to a "sub-page", push to stack. When we "go back", pop from stack
       isLoaded: false, // 
-      orders: [] // list of all orders TODO: don't load ALL orders here, since then clients can view it via dev tools
+      username:this.props.username,
+      error:null,
+      users:[]
     }
   }
 
@@ -37,12 +47,16 @@ class Dashboard extends React.Component {
     ramp_info: (isAdmin,data) => this.pushToStack(<RampInfoPage goBack = {this.goBack} data = {data} isAdmin={isAdmin} />)
   }
 
-  
+
   
 
   render () {
     if (!this.props.loggedIn) // user is not logged in.
       return <Redirect to="/" /> 
+
+
+    
+
 
     
     return (
@@ -51,8 +65,8 @@ class Dashboard extends React.Component {
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.props.isAdmin 
-              ? <AdminDashboard username = {this.props.user} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
-              : <ClientDashboard username=  {this.props.user} l logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+              ? <AdminDashboard username ={this.props.username}  logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard username ={this.props.username}  logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>

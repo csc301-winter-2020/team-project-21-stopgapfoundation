@@ -15,7 +15,10 @@ class App extends React.Component {
       invalidLogin: false,
       isAdmin: true, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true,
-      username:""
+      username:"",
+      error: null,
+      isLoaded: false,
+      
     };
   }
 
@@ -163,7 +166,17 @@ class App extends React.Component {
         isCurrentlyCheckingStorageForLogin: false
       })
     });
+
+
+   
   }
+
+
+
+    
+
+    
+
 
   render() { 
       return (
@@ -183,7 +196,7 @@ class App extends React.Component {
               />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
-                  ? <Dashboard user= {this.state.username} loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
+                  ? <Dashboard username = {this.state.username}  loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
                   : <Redirect to='/login' />
               )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>
