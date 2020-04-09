@@ -26,7 +26,8 @@
 /* Increase specificity to override component styles */
 .MuiButton-root.login__button {
   background-color: transparent;
-  border: 4px black solid;
+  border: 1px grey solid;
+  background-color: #EEE;
   border-radius: 0;
   margin: 5px;
 }
