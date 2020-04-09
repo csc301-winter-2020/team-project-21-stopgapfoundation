@@ -124,13 +124,14 @@ export class FormUserDetails extends Component {
                             <span>Subsidize</span>
                         </label>
                         <br /> <br />
-                        <Button
-                            style={{ right: 10 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
-                        <Button
-                            type="submit" color="primary" variant="contained" >Next</Button>
+                        <div style={{margin:10}}>
+                            <Button
+                                style={{ right: 10 }} color="primary" variant="contained" onClick={this.back}>Previous</Button>
+                            <Button
+                                type="submit" color="primary" variant="contained" >Next</Button>
+                        </div>
 
-
-                        <div style={{ maxWidth: '65vh' }}>
+                        <div style={{ maxWidth: '65vh'}}>
                             <h4>
                                 *Please note that we’re currently experiencing a bit of a backlog of ramp requests.
                                 We require all the info as mentioned above in order to send you a quote. Upon quote approval, there’s typically an approximate 4-6 weeks turnover.
