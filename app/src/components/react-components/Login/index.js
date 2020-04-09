@@ -43,7 +43,7 @@ function AccountTypeSelector(props) {
   return (
     <div className="buttons center">
         <Button
-           className="newRequestButton login__button"
+           className="block newRequestButton login__button"
           onClick={() => props.clickHandler(false)}
            variant="contained" size='large'
           style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', marginTop: '10%' }}>
@@ -53,7 +53,7 @@ function AccountTypeSelector(props) {
           <br/>
           Check Status of Existing Ramp Request
         </Button>
-        <Button className="login__button" onClick={() => props.clickHandler(true) }>
+        <Button className="block login__button" onClick={() => props.clickHandler(true) }>
           Admin
           <br/>
           (StopGap Staff Only)
