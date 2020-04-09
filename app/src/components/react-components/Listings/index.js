@@ -1,29 +1,29 @@
 import React from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid"
+import {Skeleton} from '@material-ui/lab';
 import TextField from "@material-ui/core/TextField";
-import ReactDOM from 'react-dom';
 import "./styles.css"
 
 //Listing returns a button with the client/business names and status
-function Listing (props) {
-  return (
-    <Button className="listing_button" onClick={props.click}>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          {props.fullName}
+class Listing extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render(){
+    const {listing, click} = this.props;
+    return (
+      <Button className="listing_button" onClick={click}>
+        <Grid container spacing={4}>
+        <Grid item xs>{listing["pk"]} </Grid>
+          <Grid item xs>{`${listing['first_name']} ${listing['last_name']}`}</Grid>
+          <Grid item xs>{listing['company']} </Grid>
+          <Grid item xs>{listing['status']} </Grid>
         </Grid>
-        <Grid item xs>{props.business} </Grid>
-        <Grid item xs>{props.status} </Grid>
-      </Grid>
-    </Button>
-  );
+      </Button>
+    );
+  }
 }
 
 class FilterBox extends React.Component{
@@ -58,34 +58,15 @@ class ListingBox extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      listings: [],
       filteredListings: [],
       error: null,
-      isLoaded: false,
     }
   }
 
-  componentDidMount() {
-    fetch("/order-information/")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          const orders = result["results"];
-          this.setState({
-            listings: orders, 
-            isLoaded: true,
-          });
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+  componentWillMount(){
+    this.setState({
+      filteredListings: orders
+    })
   }
 
   filterListings = (listingFilter) => {
@@ -101,34 +82,39 @@ class ListingBox extends React.Component {
   }
 
   render () {
-    const {listings, error, isLoaded } = this.state;
+    const { error } = this.state;
+    const {filteredListings, click, isLoaded} = this.props;
     if (error) {
-      return <div> Error: {error.message}</div>
+      return <div className="block"> Error: {error.message}</div>
     }
     else if (!isLoaded) {
-      return <div>Loading...</div>
+      return <Skeleton className="block" variant="rect" height={220}/>
     }
-    else {
-      return (
-        <div className="listing_box block">
-          <h2 className="block-title">
-            Ramp Requests
-                    </h2>
-          <FilterBox onChange={this.filterListings}></FilterBox>
-          {listings.map((listing, i) => (
-            <Listing
-              fullName={listing["firstName"] + " " + listing["lastName"]}
-              business={listing["companyName"]}
-              status={listing["status"]}
-              click={e => {
-                e.preventDefault();
-                this.props.click(i);
-              }}
-            />
-          ))}
-        </div>
-      );
-    }
+    return (
+      <div className="listing_box block">
+        <h2 className="block-title">
+          Ramp Requests
+                  </h2>
+        <FilterBox onChange={this.filterListings}></FilterBox>
+        <Grid container spacing={4}>
+        <  Grid  align="center" item xs>        Order Number</Grid>
+          < Grid   align="center" item xs>        Full Name</Grid>
+          <Grid  align="center" item xs>        Company </Grid>
+          <Grid  align="center"item xs>        Status</Grid>
+        </Grid>
+        {filteredListings.map((listing,i) => (
+          <Listing
+            listing={listing}
+            key={i}
+            click={e => {
+
+              e.preventDefault();
+              click(listing);
+            }}
+          />
+        ))}
+      </div>
+    );
   }
 }
 
