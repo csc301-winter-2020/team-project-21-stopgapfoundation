@@ -48,7 +48,7 @@ class FilterBox extends React.Component{
         label="Filter Client" 
         variant="filled"
         defaultValue=""
-        onChange={this.props.handleChange}
+        onChange={this.handleChange}
       />
     )
   }
@@ -57,6 +57,7 @@ class FilterBox extends React.Component{
 class ListingBox extends React.Component {
   constructor(props) {
     super(props);
+    console.log(props);
     this.state = {
       filteredListings: [],
       error: null,
@@ -64,21 +65,24 @@ class ListingBox extends React.Component {
   }
 
   componentWillMount(){
+    console.log(this.props.orders);
     this.setState({
       filteredListings: this.props.orders
     })
   }
 
   filterListings = (listingFilter) => {
-    let filteredListings = this.state.listings
+    console.log(listingFilter);
+    listingFilter = listingFilter.toLowerCase();
+    let filteredListings = this.props.orders;
     filteredListings = filteredListings.filter((listing) =>{
-      let client_name = listing.client_name
-      return client_name.indexOf(
-        listingFilter) !== -1
-    })
+      let client_name = `${listing['first_name']} ${listing['last_name']}`.toLowerCase();
+      console.log(`    ${client_name}`);
+      return client_name.includes(listingFilter)
+    });
     this.setState ({
       filteredListings
-    })
+    });
   }
 
   render () {
