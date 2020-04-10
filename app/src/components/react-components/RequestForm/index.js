@@ -141,7 +141,7 @@ export class UserForm extends Component {
         "delivery_method":this.state.deliveryType,
         "subsidize":this.state.subsidize,
         "status":"Request Recieved",
-		"notes":"There is no notes now"
+		"notes":"[]"
         }
 
 
