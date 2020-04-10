@@ -77,6 +77,8 @@ class Notes extends React.Component{
 
   render() {
 
+    const {newNote, notes} = this.props.noteState
+
     return (
       <div className={"block fullwidth"}>
         <h2 className={"block-title"}>
@@ -86,7 +88,7 @@ class Notes extends React.Component{
         <Grid container>
           <Grid item md={9}>
             <TextField
-              value={this.props.newNote}
+              value={newNote}
               onChange={this.props.handleNewNoteInput}
               fullWidth
               variant="outlined"
@@ -98,14 +100,14 @@ class Notes extends React.Component{
             />
           </Grid>
           <Grid item md={3} className={"horz-padding"}>
-            <Button className={"create-bttn"} fullWidth variant="contained" color="primary" disabled={this.props.newNote.length == 0} onClick={this.props.saveNote}>
+            <Button className={"create-bttn"} fullWidth variant="contained" color="primary" disabled={newNote.length == 0} onClick={this.props.saveNote}>
               Create Note
             </Button> 
           </Grid>
         </Grid>
 
         <div className={"notes-container"}>
-          {this.props.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+          {notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
         </div>
       </div>
     )

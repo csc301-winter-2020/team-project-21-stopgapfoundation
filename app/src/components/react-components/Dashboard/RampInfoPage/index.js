@@ -12,18 +12,37 @@ class RampInfoPage extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      newNote: "",
-      notes: [],
-      statusInput: 0,
-      status: -1
+      noteState: {
+        newNote: "",
+        notes: [],
+        dirtyBit: false
+      },
+      statusState: {
+        statusInput: 0,
+        status: -1,
+        dirtyBit: false
+      },
+      infoState: {
+        dirtyBit: false
+      }
     }
+  }
+
+  overallDirtyBit = () => {
+    const states = [this.state.noteState, this.state.statusState, this.state.infoState];
+    return states.some(x => x.dirtyBit)
   }
 
   // We place states here so that there is simply ONE universal save button
   handleNewNoteInput = e => {
     e.preventDefault();
+    // make a copy of the note state, and then update the newNote property
+    const noteStateCopy = {}
+    Object.assign(noteStateCopy, this.state.noteState)
+    noteStateCopy.newNote = e.target.value
+    // Save the note state
     this.setState({
-      newNote: e.target.value
+      noteState: noteStateCopy 
     });
   }
 
@@ -47,16 +66,19 @@ class RampInfoPage extends React.Component {
     const now = new Date();
     const date = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
     const note = this.state.newNote;
-    const newNotesArr = [...this.state.notes];
-    newNotesArr.push({
+
+    const noteStateCopy = {};
+    Object.assign(noteStateCopy, this.state.noteState);
+    noteStateCopy.newNote = "";
+    noteStateCopy.notes.push({
       date: date,
       author: "user", // TODO: update
       note: note,
       dirtyBit: true
     });
+    noteStateCopy.dirtyBit = true;
     this.setState({
-      notes: newNotesArr,
-      newNote: ""
+      noteState: noteStateCopy
     })
   }
 
@@ -74,14 +96,14 @@ class RampInfoPage extends React.Component {
               <RampDimensions data={ data } isAdmin={this.props.isAdmin} />
             </Grid>
             <Grid item xs={6}>
-              <StatusBlock isAdmin={this.props.isAdmin} data={ data } />
+              <StatusBlock isAdmin={this.props.isAdmin} data={ data } statusState={this.state.statusState} />
             </Grid>
           </Grid>
           {this.props.isAdmin 
-            && <Notes notes={this.state.notes} newNote={this.state.newNote} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
+            && <Notes noteState={this.state.noteState} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
         </Grid>
         {this.props.isAdmin && 
-          <Button fullWidth variant="contained" color="primary" >
+          <Button fullWidth variant="contained" color="primary" disabled={!this.overallDirtyBit()} >
             Save
           </Button>
         }
