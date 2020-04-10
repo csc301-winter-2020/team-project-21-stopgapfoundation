@@ -15,7 +15,6 @@ class App extends React.Component {
       invalidLogin: false,
       isAdmin: false, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true,
-      username:"",
       error: null,
       isLoaded: false,
       
@@ -29,11 +28,9 @@ class App extends React.Component {
       // Refreshes the page
       this.setState({
         loggedIn: false,
-        username:""
       });
       this.setState({
         loggedIn: true,
-        username:user
       });
       return;
     }
@@ -58,23 +55,22 @@ class App extends React.Component {
         this.setState({
           loggedIn: false,
           invalidLogin: true,
-          username:user
         });
       } else if ('access' in res && 'refresh' in res){
         localStorage.setItem('token-access', res.access);
         localStorage.setItem('token-refresh', res.refresh);
+        localStorage.setItem('username', res.user);
+        localStorage.setItem('is-admin', res.isAdmin);
         this.setState({
           loggedIn: true,
           isAdmin: isAdmin,
           invalidLogin: false,
-          username:user
         });
       }
     }, err => {
       this.setState({
         loggedIn: false,
         invalidLogin: true,
-        username:""
       });
       console.error(err);
     })
@@ -92,7 +88,6 @@ class App extends React.Component {
       });
       this.setState({
         loggedIn: true,
-        username:username
       });
       return;
     }
@@ -127,56 +122,77 @@ class App extends React.Component {
     });
     localStorage.removeItem('token-access');
     localStorage.removeItem('token-refresh');
+    localStorage.removeItem('username');
+    localStorage.removeItem('is-admin');          
   }
 
   
   componentDidMount() {
-    const refreshToken = localStorage.hasOwnProperty("token-access") &&  localStorage.hasOwnProperty("token-refresh") 
-      ? localStorage.getItem("token-refresh")
-      : "";
-    // check if the existing token is valid.
-    fetch("/api/token/refresh/", {
+    const accessToken = localStorage.hasOwnProperty("token-access") 
+      ? localStorage.getItem("token-access") : "";
+    const refreshToken = localStorage.hasOwnProperty("token-refresh") 
+      ? localStorage.getItem("token-refresh") : "";
+    // check if the existing access token is valid.
+    // If not, attempt to retrieve a new one using the refresh token
+    fetch("/api/token/verify/", {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-type': 'application/json'
       },
       body: JSON.stringify({
-        refresh: refreshToken
+        token: accessToken
       })
     })
-    .then(res => res.json())
-    .then(res => {
-        if ('access' in res){
-          localStorage.setItem("token-access", res.access)
-          this.setState({
-            loggedIn: true,
-            isCurrentlyCheckingStorageForLogin: false
-          })
-        } else {
-          this.setState({
-            loggedIn: false,
-            isCurrentlyCheckingStorageForLogin: false
-          })
-        }
-    }, error => {
+    .then( res => {
+      if (res.ok){
+        console.log(`Access Token: ${accessToken}`)
+        this.setState({
+          loggedIn: true,
+          isCurrentlyCheckingStorageForLogin: false
+        });
+        return;
+      }
+
+      // token is NOT valid, so attempt to refresh.
+      fetch("/api/token/refresh/", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          refresh: refreshToken
+        })
+      })
+      .then(res => {
+          if ('access' in res){
+            localStorage.setItem("token-access", res.access)
+            this.setState({
+              loggedIn: true,
+              isCurrentlyCheckingStorageForLogin: false
+            })
+          } else {
+            this.setState({
+              loggedIn: false,
+              isCurrentlyCheckingStorageForLogin: false
+            })
+          }
+      }, error => { // REFRESH ERROR
+        console.error(error)
+        this.setState({
+          loggedIn: false,
+          isCurrentlyCheckingStorageForLogin: false
+        })
+      })
+    }, error => { // VERIFY ERROR
       console.error(error)
       this.setState({
         loggedIn: false,
         isCurrentlyCheckingStorageForLogin: false
       })
     });
-
-
-   
   }
-
-
-
-    
-
-    
-
 
   render() { 
       return (
@@ -196,7 +212,7 @@ class App extends React.Component {
               />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
-                  ? <Dashboard username = {this.state.username}  loggedIn={this.state.loggedIn} isAdmin={this.state.isAdmin} logout={this.logout} />
+                  ? <Dashboard loggedIn={this.state.loggedIn} logout={this.logout} />
                   : <Redirect to='/login' />
               )} />
               <Route exact path='/form' render={() => (<UserForm />)}/>

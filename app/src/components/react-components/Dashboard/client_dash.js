@@ -20,7 +20,7 @@ class ClientDashboard extends React.Component {
   }
 
 
-  componentDidMount()  {
+  componentWillMount()  {
     // if(!this.state.isLoaded){
     fetch("/users", {
       method: 'GET',
@@ -60,6 +60,10 @@ class ClientDashboard extends React.Component {
       }
     )
     // }
+
+    if (this.state.isLoaded && !this.state.userisLoaded){
+      this.handleUser()
+    } // TODO: we moved this here so calls are not being NON STOP made to the backend
   }
 
   handleUser() {
@@ -110,11 +114,7 @@ class ClientDashboard extends React.Component {
   
 
   render() {
-   
-  
-    if (this.state.isLoaded && !this.state.userisLoaded){
-      this.handleUser()
-    }
+
     const gotoFuncs = this.props.gotoFuncs;
     const orders= this.state.orders;
     const isLoaded = this.state.userisLoaded;
