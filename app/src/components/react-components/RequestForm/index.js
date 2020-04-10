@@ -199,7 +199,7 @@ export class UserForm extends Component {
     }
 	
 	handleSubmitWaiver = () => {
-        console.log(this.state.user)
+        console.log(this.state)
 		const data ={
         //"pk":1,
        

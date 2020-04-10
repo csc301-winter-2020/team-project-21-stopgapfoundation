@@ -18,6 +18,7 @@ class App extends React.Component {
       isCurrentlyCheckingStorageForLogin: true,
       error: null,
       isLoaded: false,
+      username:""
       
     };
   }
@@ -63,6 +64,7 @@ class App extends React.Component {
         if (res.isAdmin != isAdmin){
           this.setState({
             loggedIn: false,
+            username:user,
             invalidLogin: true,
             loginMsg: `Attempting to use a${res.isAdmin ? "n admin" : " client"} account to access the ${isAdmin ? "admin" : "client"} dashboard`
           });
@@ -75,6 +77,7 @@ class App extends React.Component {
             loggedIn: true,
             isAdmin: isAdmin,
             invalidLogin: false,
+            username:user,
             loginMsg: ""
           });
         }
@@ -97,10 +100,12 @@ class App extends React.Component {
       console.error("Stopgap: user already logged in.");
       // Refreshes the page
       this.setState({
-        loggedIn: false
+        loggedIn: false,
+        username:username
       });
       this.setState({
         loggedIn: true,
+        username:username
       });
       return;
     }

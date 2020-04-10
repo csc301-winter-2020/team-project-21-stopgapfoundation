@@ -20,7 +20,6 @@ export class ImageUpload extends Component {
 }
   continue = e => {
     e.preventDefault();
-    console.log(this.props)
     if (this.props.Uploaded){
       this.props.nextStep();
     }else{
