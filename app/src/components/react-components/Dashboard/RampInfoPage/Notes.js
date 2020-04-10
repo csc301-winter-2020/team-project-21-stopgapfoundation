@@ -4,15 +4,11 @@ import { TextField, Grid, Button } from "@material-ui/core"
 class Notes extends React.Component{
   constructor(props){
     super(props);
-    var notes;
-    try {
-      notes = JSON.parse(props.notes)
-    } catch {
-      notes = []
-    }
+    const Note = props.data["notes"]
     this.state = {
-      notes: notes,
-      newNote: ""
+      newNote: "",
+      Note:Note,
+      date:""
     }
   }
 
@@ -30,16 +26,16 @@ class Notes extends React.Component{
     "December"
   ]
 
-  generateNoteColor(author) {
+  generateNoteColor() {
     // Color generated based on author
     // First, hash the author (https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript)
     let hash = 0;
     let i, chr;
-    for (i = 0; i < author.length; i++){
-      chr = author.charCodeAt(i);
-      hash = ((hash << 5) - hash) + chr;
-      hash |= 0;
-    }
+    // for (i = 0; i < author.length; i++){
+    //   chr = author.charCodeAt(i);
+    //   hash = ((hash << 5) - hash) + chr;
+    //   hash |= 0;
+    // }
 
     // Then, use hash to generate color (https://stackoverflow.com/questions/3426404/create-a-hexadecimal-colour-based-on-a-string-with-javascript)
     const c = (hash & 0x00FFFFFF)
@@ -64,39 +60,43 @@ class Notes extends React.Component{
     e.preventDefault();
     const now = new Date();
     const date = `${this.months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
-    const {newNote} = this.state;
-    const newNotesArr = [...this.state.notes];
-    newNotesArr.push({
-      date: date,
-      author: "user", // TODO: update
-      note: newNote
-    }); // Send post request
+    const newNote = this.state.newNote;
+    this.setState({
+      Note: newNote,
+      date:date
+    });
+    // const newNotesArr = [...this.state.notes];
+    // newNotesArr.push({
+    //   date: date,
+    //   author: "user", // TODO: update
+    //   note: newNote
+    // }); // Send post request
 
-    fetch(`/order-information/${this.props.data['pk']}/`, {
-      method: 'PATCH',
-      headers: {
-        'Accept': 'application/json',
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      },
-      body: JSON.stringify({
-        "notes": JSON.stringify(newNotesArr)
-      })
-    }).then(res => {
-      if (res.ok){
-        return res.json()
-      }
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(res => {
-      this.setState({
-        newNote: "",
-        notes: newNotesArr
-      });
-    }, err => {
-      console.error("Unable to update note");
-      console.error(err);
-    })
+    // fetch(`/order-information/${this.props.data['pk']}/`, {
+    //   method: 'PATCH',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-type': 'application/json',
+    //     'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+    //   },
+    //   body: JSON.stringify({
+    //     "notes": JSON.stringify(newNotesArr)
+    //   })
+    // }).then(res => {
+    //   if (res.ok){
+    //     return res.json()
+    //   }
+    //   throw new Error(`Something went wrong with error code ${res.status}`)
+    // })
+    // .then(res => {
+    //   this.setState({
+    //     newNote: "",
+    //     notes: newNotesArr
+    //   });
+    // }, err => {
+    //   console.error("Unable to update note");
+    //   console.error(err);
+    // })
   }
 
   render() {
@@ -114,7 +114,7 @@ class Notes extends React.Component{
               onChange={this.handleNewNoteInput}
               fullWidth
               variant="outlined"
-              label="Create a New Note"
+              label="Update Note"
               type="text"
               InputLabelProps={{
                 shrink: true,
@@ -123,13 +123,14 @@ class Notes extends React.Component{
           </Grid>
           <Grid item md={2}>
             <Button fullWidth variant="contained" color="primary" disabled={this.state.newNote.length == 0} onClick={this.saveNote}>
-              Save
+              Save Note
             </Button>
-          </Grid>
+          </Grid> 
         </Grid>
 
         <div className={"notes-container"}>
-          {this.state.notes.map((note, i) => <NoteBlock note={note} color={this.generateNoteColor(note.author)} key={i} />)}
+          <NoteBlock date = {this.state.date} note={this.state.Note} color={this.generateNoteColor()} >
+           </NoteBlock>
         </div>
       </div>
     )
@@ -145,17 +146,18 @@ class Notes extends React.Component{
 function NoteBlock(props) {
 
 
-  const {title, date, author, note} = props.note;
+  const note = props.note;
+  const date = props.date;
   return (
     <div className="note-block" style={{backgroundColor: props.color.bg}}>
       <p className="note-block-metadata" style={{color: props.color.text}}>
         <span className="note-block-date">
           {date}
         </span>
-        {" by "}
-        <span className="note-block-author">
+        {/* {" by "} */}
+        {/* <span className="note-block-author">
           {author}
-        </span>
+        </span> */}
       </p>
       <p className="note-block-content" style={{color: props.color.text}}> 
         {note}

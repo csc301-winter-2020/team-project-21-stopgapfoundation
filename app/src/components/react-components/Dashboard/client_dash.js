@@ -103,8 +103,6 @@ class ClientDashboard extends React.Component {
 
 
         var user
-        console.log(users)
-        console.log(this.state.username)
 
         users.map(x => {
             if (x["username"] == this.state.username){
@@ -152,7 +150,6 @@ class ClientDashboard extends React.Component {
       this.handleUser()
     }
     const gotoFuncs = this.props.gotoFuncs;
-    console.log(gotoFuncs)
     const orders= this.state.orders;
     const isLoaded = this.state.userisLoaded;
     return (

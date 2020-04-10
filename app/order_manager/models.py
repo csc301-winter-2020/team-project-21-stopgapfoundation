@@ -60,7 +60,7 @@ class Order(models.Model):
     # Ramp information; height information stored in inches
     entryway_photo = models.CharField(max_length=500, default="")
     step_left_photo = models.CharField(max_length=500, default="")
-    step_right_photo = models.ImageField(max_length=500, default="")
+    step_right_photo =  models.CharField(max_length=500, default="")
 
     step_left_height = models.DecimalField(max_digits=4, decimal_places=2)
     step_right_height = models.DecimalField(max_digits=4, decimal_places=2)
