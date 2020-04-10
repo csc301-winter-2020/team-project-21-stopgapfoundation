@@ -28,10 +28,13 @@ export class UserForm extends Component {
             entrywayPhoto: '',
             stepLeftPhoto: '',
             stepRightPhoto: '',
+            leftStepHeight:'',
+            rightStepHeight:'',
             subsidize: false,
             waiver:'',
             user: '',
-            isLoaded: false
+            isLoaded: false,
+            Uploaded:false,
         }
 
         this.handlePicture = this.handlePicture.bind(this)
@@ -54,6 +57,13 @@ export class UserForm extends Component {
     // Handle Field Changes
     handleChange = input => e => {
         this.setState({[input]: e.target.value})
+        if (this.state.rightStepHeight != '' && this.state.leftStepHeight != ''  &&
+        this.state.entrywayPhoto != '' && this.state.stepLeftPhoto != '' && this.state.stepRightPhoto != ''){
+            this.setState({
+                Uploaded: true
+            });
+            
+        }
     }
 	
 	handleCheck = input => e => {
@@ -61,6 +71,8 @@ export class UserForm extends Component {
     }
 
     handlePicture(input, url) {
+
+        
 
         if (input == "entrywayPhoto") {
             this.setState({
@@ -74,6 +86,14 @@ export class UserForm extends Component {
             this.setState({
                 stepRightPhoto: url
             });
+        }
+
+        if (this.state.rightStepHeight != '' && this.state.leftStepHeight != ''  &&
+        this.state.entrywayPhoto != '' && this.state.stepLeftPhoto != '' && this.state.stepRightPhoto != ''){
+            this.setState({
+                Uploaded: true
+            });
+            
         }
     }
 
@@ -222,7 +242,7 @@ export class UserForm extends Component {
 
     render() {
         const { step } = this.state;
-        const { firstName, lastName, email, companyName, phoneNumber,billingAddress, deliveryAddress, deliveryType, rampColor,rightStepHeight, leftStepHeight, subsidize } = this.state;
+        
    
 
         switch (step) {
@@ -245,6 +265,7 @@ export class UserForm extends Component {
                         nextStep={this.nextStep}
                         handlePicture={this.handlePicture}
                         handleChange={this.handleChange}
+                        Uploaded = {this.state.Uploaded}
                     />
                 )
             case 3:
@@ -267,12 +288,14 @@ export class UserForm extends Component {
                         </Link>
                     </div>
                 )
+            default:
+                return <Redirect to="/dashboard" />
         }
-        return (
-            <div>
+        // return (
+        //     <div>
                 
-            </div>
-        )
+        //     </div>
+        
     }
 }
 

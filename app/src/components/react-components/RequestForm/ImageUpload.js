@@ -8,9 +8,30 @@ import Typography from '@material-ui/core/Typography';
 import Upload from "./Upload/Upload"
 
 export class ImageUpload extends Component {
+  constructor(props) {
+    super(props)
+
+    
+
+    this.state = {
+        show:false
+    }
+
+}
   continue = e => {
     e.preventDefault();
-    this.props.nextStep();
+    console.log(this.props)
+    if (this.props.Uploaded){
+      this.props.nextStep();
+    }else{
+
+      this.setState({
+        show:true
+      });
+
+
+    }
+
   }
 
   back = e => {
@@ -31,7 +52,7 @@ export class ImageUpload extends Component {
                         </Typography>
           </AppBar>
           <br />
-
+          <form onSubmit={this.continue}>
           <div id="form" style={{ marginLeft: '7vh', marginTop: '5vh', height:'70vh'}}>
             <h1>Upload Ramp Images:</h1>
             <h3>StopGap requires three images to process your ramp request.</h3>
@@ -39,7 +60,7 @@ export class ImageUpload extends Component {
               Take a picture of the entire entrance including the step in front of the doorway and the sidewalk.
               For a safe turning radius, you will need 42″ of space in addition to the length of the ramp (which is 6 times the height of the step).
             </div>
-            <form onSubmit={this.continue}>
+           
               <div style={{margin:"10px"}}>
                 <div id="entryImageBox" style={{ float: 'left', maxWidth: '27vh', marginRight:"5%"}}>
                   <h4>Photo of Entire Entryway</h4>
@@ -61,7 +82,7 @@ export class ImageUpload extends Component {
                 </div>
 
               </div>
-            </form>
+            
           </div>
           <div style={{ marginLeft: '7vh', marginTop: '5vh', maxWidth:'60vh'}}>
           <h4>
@@ -98,9 +119,14 @@ export class ImageUpload extends Component {
             <Button
               type="submit" color="primary" variant="contained" onClick={this.continue}>Next
               </Button>
+              {this.state.show &&<h4 style={{ left: 10 }}  color="red" >
+              Please fill in all information before continue
+              </h4>}
               <br/>
+             
               </div>
           </div>
+          </form>
           {/* <form onSubmit={this.continue} style={{ marginLeft: '5vh', marginTop: '5vh', marginRight: '20vh' }}>
             <h1>Upload your Images:</h1>
             <h3>StopGap requires three images to process your ramp request:</h3>
