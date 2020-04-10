@@ -20,12 +20,12 @@ class RampInfoPage extends React.Component {
     this.state = {
       noteState: {
         newNote: "",
-        notes: [],
+        notes: JSON.parse(props.data["notes"]),
         dirtyBit: false
       },
       statusState: {
-        statusInput: 0,  // This is what will be posted when "save changes" is pressed.
-        oldStatus: 0,
+        statusInput: parseInt(props.data["status"]),  // This is what will be posted when "save changes" is pressed.
+        oldStatus: parseInt(props.data["status"]),
         dirtyBit: false
       },
       infoState: {
@@ -37,6 +37,11 @@ class RampInfoPage extends React.Component {
   overallDirtyBit = () => {
     const states = [this.state.noteState, this.state.statusState, this.state.infoState];
     return states.some(x => x.dirtyBit)
+  }
+
+  saveChanges = () => {
+    const newOrder = {};
+    Object.assign(newOrder, this.props.data);
   }
 
   // We place states here so that there is simply ONE universal save button
@@ -71,14 +76,14 @@ class RampInfoPage extends React.Component {
 
     const now = new Date();
     const date = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-    const note = this.state.newNote;
+    const note = this.state.noteState.newNote;
 
     const noteStateCopy = {};
     Object.assign(noteStateCopy, this.state.noteState);
     noteStateCopy.newNote = "";
     noteStateCopy.notes.push({
       date: date,
-      author: "user", // TODO: update
+      author: localStorage.getItem("username"), // TODO: update
       note: note,
       dirtyBit: true
     });

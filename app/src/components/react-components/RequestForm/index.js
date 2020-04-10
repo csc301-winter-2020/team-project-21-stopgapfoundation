@@ -140,7 +140,7 @@ export class UserForm extends Component {
         "ramp_colour":this.state.rampColor,
         "delivery_method":this.state.deliveryType,
         "subsidize":this.state.subsidize,
-        "status":"Request Recieved",
+        "status":0,
 		"notes":"[]"
         }
 
