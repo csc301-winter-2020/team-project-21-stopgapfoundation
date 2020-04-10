@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
+      loginMsg: "",
       isAdmin: false, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true,
       error: null,
@@ -55,22 +56,34 @@ class App extends React.Component {
         this.setState({
           loggedIn: false,
           invalidLogin: true,
+          loginMsg: "Login credentials not valid."
         });
-      } else if ('access' in res && 'refresh' in res){
-        localStorage.setItem('token-access', res.access);
-        localStorage.setItem('token-refresh', res.refresh);
-        localStorage.setItem('username', res.user);
-        localStorage.setItem('is-admin', res.isAdmin);
-        this.setState({
-          loggedIn: true,
-          isAdmin: isAdmin,
-          invalidLogin: false,
-        });
+      } else if ('access' in res && 'refresh' in res && 'user' in res && 'isAdmin' in res){
+        // First check if the user is of the correct account type (that is, only clients can access the client dashboard and vice versa)
+        if (res.isAdmin != isAdmin){
+          this.setState({
+            loggedIn: false,
+            invalidLogin: true,
+            loginMsg: `Attempting to use a${res.isAdmin ? "n admin" : " client"} account to access the ${isAdmin ? "admin" : "client"} dashboard`
+          });
+        } else {
+          localStorage.setItem('token-access', res.access);
+          localStorage.setItem('token-refresh', res.refresh);
+          localStorage.setItem('username', res.user);
+          localStorage.setItem('is-admin', res.isAdmin);
+          this.setState({
+            loggedIn: true,
+            isAdmin: isAdmin,
+            invalidLogin: false,
+            loginMsg: ""
+          });
+        }
       }
     }, err => {
       this.setState({
         loggedIn: false,
         invalidLogin: true,
+        loginMsg: "An error occurred while attempting to validate login credentials."
       });
       console.error(err);
     })
@@ -118,6 +131,7 @@ class App extends React.Component {
       loggedIn: false,
       isAdmin: false,
       invalidLogin: false,
+      loginMsg: "",
       username:""
     });
     localStorage.removeItem('token-access');
@@ -125,7 +139,6 @@ class App extends React.Component {
     localStorage.removeItem('username');
     localStorage.removeItem('is-admin');          
   }
-
   
   componentDidMount() {
     const accessToken = localStorage.hasOwnProperty("token-access") 
@@ -205,9 +218,11 @@ class App extends React.Component {
                 render={() => (
                   <Login loggedIn={this.state.loggedIn}
                   login={this.login}
+                  logout={this.logout}
                   register={this.register}
                   isAdmin={this.state.isAdmin}
-                  invalidLogin={this.state.invalidLogin} />
+                  invalidLogin={this.state.invalidLogin}
+                  loginMsg={this.state.loginMsg} />
                 )}
               />
               <Route path='/dashboard' render={() => (
