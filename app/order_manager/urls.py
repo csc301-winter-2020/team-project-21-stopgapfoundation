@@ -10,6 +10,7 @@ router.register(r'waiver-information', views.WaiverViewSet)
 
 urlpatterns =[
     path('', include(router.urls)),
-    path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', views.CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_verify')
 ]
