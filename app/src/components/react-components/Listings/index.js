@@ -30,7 +30,7 @@ class FilterBox extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      listingFilter: ""
+      listingFilter: "",
     }
   }
 
@@ -45,7 +45,7 @@ class FilterBox extends React.Component{
     return (
       <TextField 
         id="filled-basic" 
-        label="Filter Client" 
+        label="Filter Client by Full Name" 
         variant="filled"
         defaultValue=""
         onChange={this.handleChange}
@@ -57,15 +57,16 @@ class FilterBox extends React.Component{
 class ListingBox extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    // console.log(props);
     this.state = {
       filteredListings: [],
       error: null,
+      Loaded:false
     }
   }
 
   componentWillMount(){
-    console.log(this.props.orders);
+    // console.log(this.props.orders);
     this.setState({
       filteredListings: this.props.orders
     })
@@ -77,7 +78,7 @@ class ListingBox extends React.Component {
     let filteredListings = this.props.orders;
     filteredListings = filteredListings.filter((listing) =>{
       let client_name = `${listing['first_name']} ${listing['last_name']}`.toLowerCase();
-      console.log(`    ${client_name}`);
+      // console.log(`    ${client_name}`);
       return client_name.includes(listingFilter)
     });
     this.setState ({
@@ -85,21 +86,47 @@ class ListingBox extends React.Component {
     });
   }
 
+  
+  
+
+  
+
   render () {
-    const { filteredListings, error } = this.state;
-    const {click, isLoaded} = this.props;
+    const { filteredListings, error,Loaded } = this.state;
+    const click= this.props.click;
+    const isLoaded = this.props.isLoaded
     if (error) {
       return <div className="block"> Error: {error.message}</div>
     }
     else if (!isLoaded) {
       return <Skeleton className="block" variant="rect" height={220}/>
     }
+
+ 
+   
+    console.log(this.props.orders)
+    console.log(this.state.filterListings)
+    console.log(Loaded)
+    console.log(isLoaded)
+    if (isLoaded && !Loaded)
+    this.setState({
+      filteredListings: this.props.orders,
+      Loaded:true
+    })
+
+
+    
+  
+
+  
+
     return (
       <div className="listing_box block">
         <h2 className="block-title">
           Ramp Requests
                   </h2>
-        <FilterBox onChange={this.filterListings}></FilterBox>
+        {this.props.isAdmin &&
+        <FilterBox onChange={this.filterListings}></FilterBox>}
         <Grid container spacing={4}>
           <Grid align="center" item xs>       
             Order Number
@@ -114,6 +141,7 @@ class ListingBox extends React.Component {
             Status
           </Grid>
         </Grid>
+
         {filteredListings.map((listing,i) => (
           <Listing
             listing={listing}

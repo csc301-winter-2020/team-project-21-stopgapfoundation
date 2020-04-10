@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       loggedIn: false, // by default, no one is logged in
       invalidLogin: false,
-      isAdmin: true, // TODO: properly store this
+      isAdmin: false, // TODO: properly store this
       isCurrentlyCheckingStorageForLogin: true,
       username:"",
       error: null,

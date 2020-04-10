@@ -103,6 +103,8 @@ class ClientDashboard extends React.Component {
 
 
         var user
+        console.log(users)
+        console.log(this.state.username)
 
         users.map(x => {
             if (x["username"] == this.state.username){
@@ -144,12 +146,15 @@ class ClientDashboard extends React.Component {
   
 
   render() {
+    console.log(this.state)
+   
   
     if (this.state.isLoaded && !this.state.userisLoaded){
       this.handleUser()
     }
-    const {gotoFuncs} = this.props;
-    const {orders, isLoaded} = this.state;
+    const {gotoFuncs} = this.props.gotoFuncs;
+    const orders= this.state.orders;
+    const isLoaded = this.state.userisLoaded;
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>
@@ -165,7 +170,7 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );
