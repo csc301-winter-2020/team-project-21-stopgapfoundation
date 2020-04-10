@@ -24,14 +24,9 @@ class StatusBlock extends React.Component {
       error: null,
       isLoaded: false,
       date:"",
-      statusInput: 0,
-      status: -1
       // progress: (0 / (this.statuses.length - 1)) * 100,
     };
   }  
-
-
-
 
   handleStatusInput = e => {
     this.setState({
@@ -65,25 +60,24 @@ class StatusBlock extends React.Component {
 		      },
           body: JSON.stringify(data)
     };
-    // const link =  '/order-information/' + data["pk"]
-    const link =  '/order-information/' 
-    fetch(link, requestOptions)
-          .then(async response => {
-          const data = await response.json();
+    // const link =  '/order-information/' 
+    // fetch(link, requestOptions)
+    //       .then(async response => {
+    //       const data = await response.json();
     
-          // check for error response
-          if (!response.ok) {
-              // get error message from body or default to response status
-              const error = (data && data.message) || response.status;
-              return Promise.reject(error);
-          }
-				    //  console.log(data.pk)
-            // this.setState({ postId: data.pk })
-    })
-    .catch(error => {
-        this.setState({ errorMessage: error });
-        console.error('There was an error!', error);
-    }); 
+    //       // check for error response
+    //       if (!response.ok) {
+    //           // get error message from body or default to response status
+    //           const error = (data && data.message) || response.status;
+    //           return Promise.reject(error);
+    //       }
+		// 		    //  console.log(data.pk)
+    //         // this.setState({ postId: data.pk })
+    // })
+    // .catch(error => {
+    //     this.setState({ errorMessage: error });
+    //     console.error('There was an error!', error);
+    // }); 
 
   }
 

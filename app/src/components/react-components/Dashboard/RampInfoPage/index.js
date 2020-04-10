@@ -9,13 +9,13 @@ import "../Admin/admin_styles.css";
 /* Primary Component for the Admin Dashboard page */
 class RampInfoPage extends React.Component {
 
-
-
   constructor(props){
     super(props);
     this.state = {
       newNote: "",
-      notes: []
+      notes: [],
+      statusInput: 0,
+      status: -1
     }
   }
 
