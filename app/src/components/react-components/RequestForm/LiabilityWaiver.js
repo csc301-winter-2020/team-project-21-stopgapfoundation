@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button'
 export class LiabilityWaiver extends Component {
   continue = e => {
     e.preventDefault();
-	this.props.handleSubmitWaiver();
-    this.props.handleSubmitOrder();
+	// this.props.handleSubmitWaiver();
+  // this.props.handleSubmitOrder();
+  this.props.handleUser();
 	this.props.nextStep();
   }
 
