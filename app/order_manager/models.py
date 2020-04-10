@@ -50,11 +50,10 @@ class Order(models.Model):
     billing_address = models.CharField(max_length=180, default="")
     shipping_address = models.CharField(max_length=180, default="")
 
-    # Waiver information
+    # # Waiver information
     waiver = models.OneToOneField(
         Waiver,
-        on_delete=models.CASCADE,
-        primary_key=True
+        on_delete=models.CASCADE
     )
 
     # Ramp information; height information stored in inches
