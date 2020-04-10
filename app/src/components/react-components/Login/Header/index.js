@@ -8,7 +8,7 @@ class Header extends React.Component {
 
     return (
       <div className="header">
-            <img style={{ display: 'block', margin: 'auto', width:600, height: 200 } } src={"/static/logo.png"}></img>
+            <img style={{ display: 'block', margin: 'auto', maxWidth:'30%' } } src={"/static/logo.png"}></img>
       </div>
     );
   }
