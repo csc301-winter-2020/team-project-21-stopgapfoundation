@@ -73,7 +73,7 @@ class ListingBox extends React.Component {
   }
 
   filterListings = (listingFilter) => {
-    console.log(listingFilter);
+
     listingFilter = listingFilter.toLowerCase();
     let filteredListings = this.props.orders;
     filteredListings = filteredListings.filter((listing) =>{
@@ -104,10 +104,7 @@ class ListingBox extends React.Component {
 
  
    
-    console.log(this.props.orders)
-    console.log(this.state.filterListings)
-    console.log(Loaded)
-    console.log(isLoaded)
+
     if (isLoaded && !Loaded)
     this.setState({
       filteredListings: this.props.orders,

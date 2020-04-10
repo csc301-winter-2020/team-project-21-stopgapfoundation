@@ -146,13 +146,13 @@ class ClientDashboard extends React.Component {
   
 
   render() {
-    console.log(this.state)
    
   
     if (this.state.isLoaded && !this.state.userisLoaded){
       this.handleUser()
     }
-    const {gotoFuncs} = this.props.gotoFuncs;
+    const gotoFuncs = this.props.gotoFuncs;
+    console.log(gotoFuncs)
     const orders= this.state.orders;
     const isLoaded = this.state.userisLoaded;
     return (
@@ -170,7 +170,7 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(false,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );
