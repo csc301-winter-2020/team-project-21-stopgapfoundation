@@ -22,8 +22,6 @@ class ClientDashboard extends React.Component {
 
   componentDidMount()  {
     // if(!this.state.isLoaded){
-
-    
     fetch("/users", {
       method: 'GET',
       headers: {
@@ -38,7 +36,6 @@ class ClientDashboard extends React.Component {
     })
     .then(
       (result) => {
-
         const users = result["results"];
         // users.map(x => {
         //   if (x["username"] == this.props.username){
@@ -47,12 +44,10 @@ class ClientDashboard extends React.Component {
               
         //   }
         // })
-
         this.setState({
           isLoaded: true,
           users:users
         });
-      
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -62,24 +57,12 @@ class ClientDashboard extends React.Component {
           isLoaded: true,
           error
         });
-       
       }
     )
     // }
-  
-
   }
 
-  
-
-
-  
-
   handleUser() {
-
-
-
-
     fetch("/order-information/", {
       method: 'GET',
       headers: {
@@ -94,39 +77,24 @@ class ClientDashboard extends React.Component {
     })
     .then(
       (result) => {
-
         const orders = result["results"];
-        var results = []
-
-        
         const users = this.state.users;
-
-
-        var user
-
-        users.map(x => {
-            if (x["username"] == this.state.username){
-              user = x
-            }
-          }
-         )
-
-
-        orders.map(x => {
-          // console.log(x["user"])
-          if (x["user"] == user["pk"]){
-            
-              results.push(x)
-          }
-        })
-
-
-
-
-        this.setState({
-          userisLoaded:true,
-          orders: results
-        });
+        const user = users.find(x => x["username"] == this.state.username)
+        if (user){
+          const results = orders.filter(x => x["user"] == user["pk"])
+          
+          this.setState({
+            userisLoaded:true,
+            orders: results
+          });
+        } else {
+          // user wasn't found - return an error
+          this.setState({
+            isLoaded: true,
+            error: "User not found."
+          });
+        }
+        
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -138,18 +106,18 @@ class ClientDashboard extends React.Component {
         });
       }
     )
-  
-
-}
+  }
   
 
   render() {
+   
   
     if (this.state.isLoaded && !this.state.userisLoaded){
       this.handleUser()
     }
-    const {gotoFuncs} = this.props;
-    const {orders, isLoaded} = this.state;
+    const gotoFuncs = this.props.gotoFuncs;
+    const orders= this.state.orders;
+    const isLoaded = this.state.userisLoaded;
     return (
       <div>
         <h1 style={{ textAlign: 'center' }}>
@@ -165,7 +133,7 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(false,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );

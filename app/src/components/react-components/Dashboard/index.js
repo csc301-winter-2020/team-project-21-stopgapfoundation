@@ -65,8 +65,8 @@ class Dashboard extends React.Component {
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.props.isAdmin 
-              ? <AdminDashboard username ={this.props.username}  logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
-              : <ClientDashboard username ={this.props.username}  logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+              ? <AdminDashboard username ={this.props.username} isAdmin = { this.props.isAdmin} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard username ={this.props.username}  isAdmin = { this.props.isAdmin} logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>

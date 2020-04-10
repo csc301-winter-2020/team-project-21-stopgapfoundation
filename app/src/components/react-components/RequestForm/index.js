@@ -74,25 +74,29 @@ export class UserForm extends Component {
 	
     handleSubmitOrder = () => {
         const data ={
-		"user":1,
+        "pk":1,
+        "user":1,
+        "first_name":this.state.firstName,
+        "last_name":this.state.lastName,
+        "email":this.state.email,
+        "company":this.state.companyName,
+        "phone_number":this.state.phoneNumber,
         "billing_address": this.state.deliveryAddress,
         "shipping_address": this.state.billingAddress,
         "waiver":1,
         "entryway_photo": this.state.entrywayPhoto,
         "step_left_photo": this.state.stepLeftPhoto,
         "step_right_photo": this.state.stepRightPhoto,
-        "step_left_height":this.state.leftStepHeight,
-        "step_right_height":this.state.rightStepHeight,
-        "ramp_colour":this.state.ramp_colour,
+        "step_left_height":parseFloat(this.state.leftStepHeight),
+        "step_right_height":parseFloat(this.state.rightStepHeight),
+        "ramp_colour":this.state.rampColor,
         "delivery_method":this.state.deliveryType,
         "subsidize":this.state.subsidize,
         "status":"Request Recieved",
-		"notes":"",
-        "first_name":this.state.firstName,
-        "last_name":this.state.lastName,
-        "email":this.state.email,
-        "company_name":this.state.companyName,
-        "phone_number":this.state.phoneNumber}
+		"notes":"There is no notes now"
+        }
+
+        console.log(data)
 		
 		const token = localStorage.getItem('token-access')
         const requestOptions = {
@@ -106,6 +110,8 @@ export class UserForm extends Component {
         fetch('/order-information/', requestOptions)
             .then(async response => {
                 const data = await response.json();
+                console.log(response)
+                console.log(data)
     
                 // check for error response
                 if (!response.ok) {
@@ -119,6 +125,7 @@ export class UserForm extends Component {
             .catch(error => {
                 this.setState({ errorMessage: error });
                 console.error('There was an error!', error);
+                console.log( error);
             }); 
     }
 	
@@ -132,6 +139,7 @@ export class UserForm extends Component {
         "witness_first_name":this.state.witnessName,
         "witness_last_name":this.state.witnessName,
         "witness_signature":this.state.witnessSig}
+
 		const token = localStorage.getItem('token-access')
         const requestOptions = {
             method: 'POST',
@@ -151,7 +159,7 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-				console.log(data.pk)
+				console.log(data)
                 this.setState({ postId: data.pk })
             })
             .catch(error => {

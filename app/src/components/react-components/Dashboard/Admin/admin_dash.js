@@ -54,6 +54,7 @@ class AdminDashboard extends React.Component {
   
 
   render () {
+
     const {gotoFuncs} = this.props;
     const {orders, isLoaded} = this.state;
 
@@ -100,7 +101,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
         {
-          isLoaded && <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin isLoaded={isLoaded}/>
+          isLoaded && <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         }
       </div>
     );
