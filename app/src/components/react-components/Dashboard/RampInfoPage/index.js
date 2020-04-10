@@ -11,6 +11,12 @@ class RampInfoPage extends React.Component {
 
   constructor(props){
     super(props);
+
+    // let new_progress = "status" in props.data ? this.statuses.indexOf(props.data["status"]) : -1
+    // if (new_progress >= this.statuses.length || new_progress < -1){
+    //   new_progress = -1;
+    // }
+
     this.state = {
       noteState: {
         newNote: "",
@@ -18,8 +24,8 @@ class RampInfoPage extends React.Component {
         dirtyBit: false
       },
       statusState: {
-        statusInput: 0,
-        status: -1,
+        statusInput: 0,  // This is what will be posted when "save changes" is pressed.
+        oldStatus: 0,
         dirtyBit: false
       },
       infoState: {
@@ -82,27 +88,38 @@ class RampInfoPage extends React.Component {
     })
   }
 
+  handleStatusInput = status => {
+    const statusStateCopy = {};
+    Object.assign(statusStateCopy, this.state.statusState);
+
+    statusStateCopy.statusInput = status;
+    statusStateCopy.dirtyBit = statusStateCopy.statusInput != statusStateCopy.oldStatus; // Remains as such until the entire dash's changes are saved.
+    this.setState({
+      statusState: statusStateCopy
+    });
+  }
+
   render () {
-    const {data} = this.props;
+    const {data, isAdmin} = this.props;
 
     return (
       <Grid container>
         <Grid item xs={4}>
-          <GeneralInfo isAdmin={this.props.isAdmin} data={ data }/>
+          <GeneralInfo isAdmin={isAdmin} data={ data } infoState={this.state.infoState}/>
         </Grid>
         <Grid item container xs={8}>
           <Grid container>
             <Grid item xs={6}>
-              <RampDimensions data={ data } isAdmin={this.props.isAdmin} />
+              <RampDimensions data={ data } isAdmin={isAdmin} />
             </Grid>
             <Grid item xs={6}>
-              <StatusBlock isAdmin={this.props.isAdmin} data={ data } statusState={this.state.statusState} />
+              <StatusBlock isAdmin={isAdmin} statusState={this.state.statusState} date={data["date_created"]} handleStatusInput={this.handleStatusInput}/>
             </Grid>
           </Grid>
-          {this.props.isAdmin 
+          {isAdmin 
             && <Notes noteState={this.state.noteState} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
         </Grid>
-        {this.props.isAdmin && 
+        {isAdmin && 
           <Button fullWidth variant="contained" color="primary" disabled={!this.overallDirtyBit()} >
             Save
           </Button>

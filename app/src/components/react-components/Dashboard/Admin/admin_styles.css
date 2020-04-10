@@ -63,12 +63,7 @@
     max-width: 250px;
     padding: 1em;
     margin: 0 5px 10px;
-} .note-block.unsaved {
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    border: 4px dashed black;
-}
+} 
 
 .note-block-content {
     font-weight: bold;
@@ -99,3 +94,9 @@
     font-size: 1em !important;
 }
 
+.unsaved {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border: 4px dashed black;
+}

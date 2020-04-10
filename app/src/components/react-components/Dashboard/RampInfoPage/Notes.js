@@ -77,10 +77,10 @@ class Notes extends React.Component{
 
   render() {
 
-    const {newNote, notes} = this.props.noteState
+    const {newNote, notes, dirtyBit} = this.props.noteState
 
     return (
-      <div className={"block fullwidth"}>
+      <div className={`block fullwidth ${dirtyBit ? "unsaved" : ""}`}>
         <h2 className={"block-title"}>
           Notes
         </h2>

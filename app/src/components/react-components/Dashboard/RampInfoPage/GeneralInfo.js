@@ -56,9 +56,10 @@ class GeneralInfo extends React.Component {
 
   render() {
     const dataCopy = {...this.state.data};
+    const {dirtyBit} = this.props.infoState;
     
     return (
-      <div className={"block"}>
+      <div className={`block ${dirtyBit ? "unsaved" : ""}`}>
         <h2 className={"block-title"}>
           General Info
         </h2>
