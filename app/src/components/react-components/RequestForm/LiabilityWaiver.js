@@ -38,7 +38,7 @@ export class LiabilityWaiver extends Component {
             style={{ marginLeft: '40px' }}
           />
 
-        <Box style={{ float:'left', marginTop: '40px', marginLeft: '40px' }} maxWidth='500px' border={3}>
+        <Box style={{ float:'left', marginTop: '40px', marginLeft:'5vh' }} maxWidth='500px' border={3}>
          
             <TextField
               required
@@ -72,9 +72,9 @@ export class LiabilityWaiver extends Component {
             />
             <br></br>
           <Button
-            style={{ right: 1 }} color="primary" variant="contained" onClick={this.back}>Previous
+            style={{ right: 1, marginTop: '10px' }} color="primary" variant="contained" onClick={this.back}>Previous
          </Button>
-          <Button type = "submit" style={{ left: 6 }} color="primary" variant="contained">
+          <Button type = "submit" style={{ left: 6, marginTop: '10px' }} color="primary" variant="contained">
             Next
           </Button>
            </Box>
