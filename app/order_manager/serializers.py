@@ -103,6 +103,9 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
         # Custom data you want to include
         data.update({'user': self.user.username})
-        data.update({'id': self.user.id})
+        # data.update({'id': self.user.id})
+
+        # TODO: if this is inconsidtent, try self.user.is_staff instead.
+        data.update({'isAdmin': self.user.is_superuser })
         # and everything else you want to send in the response
         return data
