@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from rest_framework_jwt.settings import api_settings
 from .models import Waiver, Order
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
 
 UserModel = get_user_model()
@@ -95,3 +96,16 @@ class OrderSerializer(serializers.ModelSerializer):
             'status',
             'notes'
         ]
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self, attrs):
+        # The default result (access/refresh tokens)
+        data = super(CustomTokenObtainPairSerializer, self).validate(attrs)
+        # Custom data you want to include
+        data.update({'user': self.user.username})
+        # data.update({'id': self.user.id})
+
+        # TODO: if this is inconsidtent, try self.user.is_staff instead.
+        data.update({'isAdmin': self.user.is_superuser })
+        # and everything else you want to send in the response
+        return data

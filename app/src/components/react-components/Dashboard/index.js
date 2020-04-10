@@ -8,21 +8,16 @@ import RampInfoPage from "./RampInfoPage";
 
 /* Primary Component for the Admin Dashboard page */
 class Dashboard extends React.Component {
-    
-
 
   constructor(props) {
     super(props);
-
-  
-
-
     
     this.state = {
       pageStack: [], // when we navigate to a "sub-page", push to stack. When we "go back", pop from stack
       isLoaded: false, // 
-      username:this.props.username,
       error:null,
+      isAdmin: localStorage.getItem("is-admin") || "false",
+      username: localStorage.getItem("username") || "",
       users:[]
     }
   }
@@ -48,25 +43,18 @@ class Dashboard extends React.Component {
   }
 
 
-  
-
   render () {
     if (!this.props.loggedIn) // user is not logged in.
       return <Redirect to="/" /> 
-
-
-    
-
-
     
     return (
       <div>
-        <Navbar title={this.props.isAdmin ? "Admin Dashboard" : "Client Dashboard"} logout={this.props.logout} goBack={this.goBack} stackSize={this.state.pageStack.length}/>
+        <Navbar title={`${this.state.isAdmin == "true" ? "Admin" : "Client"} Dashboard - ${this.state.username}`} logout={this.props.logout} goBack={this.goBack} stackSize={this.state.pageStack.length}/>
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
-            this.props.isAdmin 
-              ? <AdminDashboard username ={this.props.username} isAdmin = { this.props.isAdmin} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
-              : <ClientDashboard username ={this.props.username}  isAdmin = { this.props.isAdmin} logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+            this.state.isAdmin == "true" 
+              ? <AdminDashboard isAdmin={true} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard isAdmin={false} logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>

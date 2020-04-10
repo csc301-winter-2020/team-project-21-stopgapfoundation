@@ -66,16 +66,16 @@ class AdminDashboard extends React.Component {
     if (isLoaded){
       for (var i = 0; i < total; i++) { // More efficient than built-in filter functions
         const phase = orders[i]["status"]
-        if (phase == "Build Phase"){
+        if (phase == 2){ // TODO: this works, but could be cleaner . . .
           build_num ++;
         }
-        if (phase == "Paint Phase"){
+        if (phase == 3){
           paint_num ++;
         }
-        if (phase == "Out for Delivery"){
+        if (phase == 4){
           delivery_num ++;
         }
-        if (phase ==  "Completed"){
+        if (phase ==  5){
           complete_num ++;
         }
       }
@@ -111,7 +111,7 @@ class AdminDashboard extends React.Component {
 function NumberStat(props){
   return (
     <div className={"number-stat block"}>
-      <h2 className={"block-title"}>{props.title}</h2>
+    <h2 className={"block-title"}>{props.title}</h2>
       <span className={"number-stat-num"}>
         {props.stat}
       </span>

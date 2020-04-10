@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import generics, viewsets, permissions, status
 from order_manager.models import  Waiver, Order
-from order_manager.serializers import UserSerializer, GroupSerializer, OrderSerializer, WaiverSerializer
+from order_manager.serializers import UserSerializer, GroupSerializer, OrderSerializer, WaiverSerializer, CustomTokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 # TODO: Need to limit viewset access based on user pk
 
@@ -34,3 +35,7 @@ class WaiverViewSet(viewsets.ModelViewSet):
     permission_classes =[
         permissions.IsAuthenticated
     ]
+
+class CustomTokenObtainPairView(TokenObtainPairView):
+    # Replace the serializer with your custom
+    serializer_class = CustomTokenObtainPairSerializer
