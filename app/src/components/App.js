@@ -230,7 +230,7 @@ class App extends React.Component {
                   ? <Dashboard loggedIn={this.state.loggedIn} logout={this.logout} />
                   : <Redirect to='/login' />
               )} />
-              <Route exact path='/form' render={() => (<UserForm />)}/>
+              <Route exact path='/form' render={() => (<UserForm username ={this.state.username} />)}/>
               <Route path='/' render={() => (
                 this.state.isCurrentlyCheckingStorageForLogin 
                   ? (<div>
