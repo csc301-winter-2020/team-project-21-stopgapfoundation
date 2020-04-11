@@ -22,94 +22,102 @@ class ClientDashboard extends React.Component {
 
   componentWillMount()  {
     // if(!this.state.isLoaded){
-    fetch("/users", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      }
-    })
-    .then(res => {
-      if (res.ok)
-        return res.json()
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(
-      (result) => {
-        const users = result["results"];
-        // users.map(x => {
-        //   if (x["username"] == this.props.username){
-        //       id = x["pk"]
-
-              
-        //   }
-        // })
-        this.handleUser(users)
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
-    // }
-
-    if (this.state.isLoaded && !this.state.userisLoaded){
-      this.handleUser()
-    } // TODO: we moved this here so calls are not being NON STOP made to the backend
+    this.props.verifyTokens().then(valid => {
+      if (!valid)
+        return;
+      fetch("/users", {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+        }
+      })
+      .then(res => {
+        if (res.ok)
+          return res.json()
+        throw new Error(`Something went wrong with error code ${res.status}`)
+      })
+      .then(
+        (result) => {
+          const users = result["results"];
+          // users.map(x => {
+          //   if (x["username"] == this.props.username){
+          //       id = x["pk"]
+  
+                
+          //   }
+          // })
+          this.handleUser(users)
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
+      // }
+  
+      if (this.state.isLoaded && !this.state.userisLoaded){
+        this.handleUser()
+      } // TODO: we moved this here so calls are not being NON STOP made to the backend
+    });
   }
 
   handleUser(users) {
-    fetch("/order-information/", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      }
-    })
-    .then(res => {
-      if (res.ok)
-        return res.json()
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(
-      (result) => {
-        const orders = result["results"];
-       
-        const user = users.find(x => x["username"] == this.state.username)
-  
-        if (user){
-        
-          const results = orders.filter(x => x["user"] == user["pk"])
+    this.props.verifyTokens().then(valid => {
+      if (!valid)
+        return;
+      fetch("/order-information/", {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+        }
+      })
+      .then(res => {
+        if (res.ok)
+          return res.json()
+        throw new Error(`Something went wrong with error code ${res.status}`)
+      })
+      .then(
+        (result) => {
+          const orders = result["results"];
           
+          const user = users.find(x => x["username"] == this.state.username)
+    
+          if (user){
+          
+            const results = orders.filter(x => x["user"] == user["pk"])
+            
+            this.setState({
+              isLoaded: true,
+              userisLoaded:true,
+              orders: results
+            });
+          } else {
+            // user wasn't found - return an error
+            this.setState({
+              isLoaded: true,
+              error: "User not found."
+            });
+          }
+          
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
           this.setState({
-            isLoaded: true,
             userisLoaded:true,
-            orders: results
-          });
-        } else {
-          // user wasn't found - return an error
-          this.setState({
-            isLoaded: true,
-            error: "User not found."
+            error
           });
         }
-        
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          userisLoaded:true,
-          error
-        });
-      }
-    )
+      )
+    })
   }
   
 
@@ -133,7 +141,7 @@ class ClientDashboard extends React.Component {
         </Link>
         <br />
         <br />
-        <ListingBox click={(data) => gotoFuncs.ramp_info(false,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
+        <ListingBox click={(data) => gotoFuncs.ramp_info(false,data, this.props.verifyTokens)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         {/* <ListingBox click={(id) => this.props.gotoFuncs.ramp_info(false,id)} /> */}
       </div>
     );

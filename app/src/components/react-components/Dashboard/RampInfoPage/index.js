@@ -64,43 +64,46 @@ class RampInfoPage extends React.Component {
     }
     // TODO: general info
 
-    fetch(`/order-information/${newOrder["pk"]}/`, {
-      method: 'PATCH',
-      headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Authorization': `Bearer ${localStorage.getItem('token-access')}`   
-			},
-      body: JSON.stringify(newOrder)
-    })
-    .then (res => {
-      res.json();
-    })
-    .then (res => {
-      console.log(res);
-      // TODO: update dirty bits
-      const noteStateCopy = {}
-      Object.assign(noteStateCopy, this.state.noteState)
-      noteStateCopy.dirtyBit = false;
-
-      const statusStateCopy = {}
-      Object.assign(statusStateCopy, this.state.statusState)
-      statusStateCopy.dirtyBit = false;
-
-      const infoStateCopy = {}
-      Object.assign(infoStateCopy, this.state.infoState)
-      infoStateCopy.dirtyBit = false;
-
-      this.setState({
-        noteState: noteStateCopy,
-        statusState: statusStateCopy,
-        infoState: infoStateCopy
+    this.props.verifyTokens().then(valid => {
+      if (!valid)
+        return;
+      fetch(`/order-information/${newOrder["pk"]}/`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('token-access')}`   
+        },
+        body: JSON.stringify(newOrder)
       })
-    })
-    .catch(err => {
-      console.error("there was an error with saving changes!", err);
-    })
-    
+      .then (res => {
+        res.json();
+      })
+      .then (res => {
+        console.log(res);
+        // TODO: update dirty bits
+        const noteStateCopy = {}
+        Object.assign(noteStateCopy, this.state.noteState)
+        noteStateCopy.dirtyBit = false;
+  
+        const statusStateCopy = {}
+        Object.assign(statusStateCopy, this.state.statusState)
+        statusStateCopy.dirtyBit = false;
+  
+        const infoStateCopy = {}
+        Object.assign(infoStateCopy, this.state.infoState)
+        infoStateCopy.dirtyBit = false;
+  
+        this.setState({
+          noteState: noteStateCopy,
+          statusState: statusStateCopy,
+          infoState: infoStateCopy
+        })
+      })
+      .catch(err => {
+        console.error("there was an error with saving changes!", err);
+      })
+    });
   }
 
   // We place states here so that there is simply ONE universal save button

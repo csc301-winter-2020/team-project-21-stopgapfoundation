@@ -99,45 +99,49 @@ export class UserForm extends Component {
 
 
     handleUser = () => {
-        fetch("/users", {
-            method: 'GET',
-            headers: {
-              'Accept': 'application/json',
-              'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-            }
-          })
-          .then(res => {
-            if (res.ok)
-              return res.json()
-            throw new Error(`Something went wrong with error code ${res.status}`)
-          })
-          .then(
-            (result) => {
-              const users = result["results"];
-              var id
-              users.map(x => {
-                if (x["username"] == this.props.username){
-                    id = x["pk"]
-      
-                    
+        this.props.verifyTokens().then(valid => {
+            if (!valid)
+                return;
+            fetch("/users", {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('token-access')}`
                 }
-              })
-              this.setState({
-                isLoaded: true,
-                user:id
-              });
-              this.handleSubmitWaiver()
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-              this.setState({
-                isLoaded: true,
-                error
-              });
-            }
-          )
+                })
+                .then(res => {
+                if (res.ok)
+                    return res.json()
+                throw new Error(`Something went wrong with error code ${res.status}`)
+                })
+                .then(
+                (result) => {
+                    const users = result["results"];
+                    var id
+                    users.map(x => {
+                    if (x["username"] == this.props.username){
+                        id = x["pk"]
+            
+                        
+                    }
+                    })
+                    this.setState({
+                    isLoaded: true,
+                    user:id
+                    });
+                    this.handleSubmitWaiver()
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                    isLoaded: true,
+                    error
+                    });
+                }
+            )
+        });
     }
 	
     handleSubmitOrder = () => {
@@ -164,20 +168,22 @@ export class UserForm extends Component {
 		"notes":"[]"
         }
 
-
-		const token = localStorage.getItem('token-access')
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': 'Bearer ' + token
-               
-			},
-            body: JSON.stringify(data)
-         
-        };
-        fetch('/order-information/', requestOptions)
+        this.props.verifyTokens().then(valid => {
+            if (!valid)
+                return;
+            const token = localStorage.getItem('token-access')
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                    
+                },
+                body: JSON.stringify(data)
+                
+            };
+            fetch('/order-information/', requestOptions)
             .then(async response => {
                 const data = await response.json();
 
@@ -187,13 +193,14 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-				
+                
             })
             .catch(error => {
                 this.setState({ errorMessage: error });
                 console.error('There was an error!', error);
                 console.log( error);
             }); 
+        });
     }
 	
 	handleSubmitWaiver = () => {
@@ -209,16 +216,20 @@ export class UserForm extends Component {
         "witness_last_name":this.state.witnessName,
         "witness_signature":this.state.witnessSig}
 
-		const token = localStorage.getItem('token-access')
-        const requestOptions = {
-            method: 'POST',
-            headers: {
-				'Content-Type': 'application/json',
-				'Authorization': 'Bearer ' + token
-			},
-            body: JSON.stringify(data)
-        };
-        fetch('/waiver-information/', requestOptions)
+        this.props.verifyTokens().then(valid => {
+            if (!valid)
+                return;
+            const token = localStorage.getItem('token-access')
+            console.log(token);
+            const requestOptions = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + token
+                },
+                body: JSON.stringify(data)
+            };
+            fetch('/waiver-information/', requestOptions)
             .then(async response => {
                 const data = await response.json();
     
@@ -228,14 +239,15 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-		
+        
                 this.setState({ waiver: data.pk })
                 this.handleSubmitOrder()
             })
             .catch(error => {
                 this.setState({ errorMessage: error });
-                console.error('There was an error!', error);
+                console.error('There was an error!', JSON.stringify(data));
             }); 
+        });
 	}
 
     render() {

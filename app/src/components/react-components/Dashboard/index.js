@@ -40,7 +40,7 @@ class Dashboard extends React.Component {
   }
 
   gotoFuncs = {
-    ramp_info: (isAdmin,data) => this.pushToStack(<RampInfoPage goBack = {this.goBack} data = {data} isAdmin={isAdmin} />)
+    ramp_info: (isAdmin,data, verifyTokens) => this.pushToStack(<RampInfoPage goBack = {this.goBack} data = {data} isAdmin={isAdmin} verifyTokens={verifyTokens} />)
   }
 
 
@@ -54,8 +54,8 @@ class Dashboard extends React.Component {
         <div className={"content"}>
           {this.state.pageStack.length == 0 ? 
             this.state.isAdmin == "true" 
-              ? <AdminDashboard isAdmin={true} logout={this.props.logout} gotoFuncs={this.gotoFuncs} /> 
-              : <ClientDashboard isAdmin={false} logout={this.props.logout}  gotoFuncs={this.gotoFuncs} /> :
+              ? <AdminDashboard isAdmin={true} logout={this.props.logout} verifyTokens={this.props.verifyTokens} gotoFuncs={this.gotoFuncs} /> 
+              : <ClientDashboard isAdmin={false} logout={this.props.logout} verifyTokens={this.props.verifyTokens} gotoFuncs={this.gotoFuncs} /> :
             this.state.pageStack[this.state.pageStack.length - 1]
           }
         </div>
