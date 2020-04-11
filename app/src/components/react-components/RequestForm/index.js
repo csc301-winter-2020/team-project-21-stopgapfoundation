@@ -180,9 +180,7 @@ export class UserForm extends Component {
         fetch('/order-information/', requestOptions)
             .then(async response => {
                 const data = await response.json();
-                console.log(response)
-                console.log(data)
-    
+
                 // check for error response
                 if (!response.ok) {
                     // get error message from body or default to response status
@@ -230,7 +228,7 @@ export class UserForm extends Component {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-				console.log(data.pk)
+		
                 this.setState({ waiver: data.pk })
                 this.handleSubmitOrder()
             })
