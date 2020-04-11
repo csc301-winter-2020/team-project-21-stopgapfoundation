@@ -71,4 +71,4 @@ class Order(models.Model):
     
     # Status information
     status = models.CharField(max_length=180, default="")
-    notes = models.CharField(max_length=180, default="")
+    notes = models.CharField(max_length=5000, default="")
