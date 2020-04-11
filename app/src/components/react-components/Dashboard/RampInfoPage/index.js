@@ -103,6 +103,7 @@ class RampInfoPage extends React.Component {
       })
       .catch(err => {
         console.error("there was an error with saving changes!", err);
+        console.error("request:", newOrder )
       })
     });
   }
