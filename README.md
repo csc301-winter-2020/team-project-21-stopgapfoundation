@@ -35,8 +35,11 @@
 
         python manage.py runserver
 		
-Also if you change anything on the model, do
-Delete db.sqkute3, and then step 5, to ensure those
+Also if you change anything on the model, do:
+
+	Delete db.sqlite3
+	
+and then step 5, to ensure those
 changes are detected by the server.
 
 
