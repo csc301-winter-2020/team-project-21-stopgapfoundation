@@ -48,7 +48,7 @@ class Upload extends React.Component {
               buttonText="Upload Images"
               onChange={(e) => this.onDrop(e)}
               imgExtension={[".jpg", ".gif", ".png", ".gif", ".svg"]}
-              maxFileSize={1048576}
+              maxFileSize={9999999}
               fileSizeError=" file size is too big"
             />
           </div>
