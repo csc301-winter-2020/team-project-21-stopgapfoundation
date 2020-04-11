@@ -25,6 +25,12 @@ class GeneralInfo extends React.Component {
           clientEditable: false,
           adminEditable: false,
         },
+        "Phone Number": {
+          value: data["phone_number"],
+          options: [],
+          clientEditable: false,
+          adminEditable: false,
+        },
         "Delivery Address": {
           value: data["shipping_address"],
           options: [],
