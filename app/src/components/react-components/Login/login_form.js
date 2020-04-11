@@ -64,7 +64,7 @@ class LoginForm extends React.Component {
             autoComplete="current-password"
           />
   
-          {this.props.invalidLogin && <Alert severity="error">Unable to authenticate credentials.</Alert> }
+          {this.props.invalidLogin && (<Alert severity="error">{this.props.loginMsg}</Alert>) }
 
           <Button
             type="submit"

@@ -9,17 +9,27 @@ import "./styles.css"
 class Listing extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   render(){
     const {listing, click} = this.props;
+    const all_status = [
+      "Request Recieved",
+      "Request Accepted",
+      "Build Phase",
+      "Paint Phase",
+      "Out for Delivery",
+      "Completed"
+    ];
+    
     return (
       <Button className="listing_button" onClick={click}>
         <Grid container spacing={4}>
         <Grid item xs>{listing["pk"]} </Grid>
           <Grid item xs>{`${listing['first_name']} ${listing['last_name']}`}</Grid>
           <Grid item xs>{listing['company']} </Grid>
-          <Grid item xs>{listing['status']} </Grid>
+          <Grid item xs>{all_status[listing['status']]} </Grid>
         </Grid>
       </Button>
     );

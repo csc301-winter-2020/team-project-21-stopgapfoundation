@@ -15,12 +15,12 @@ class ClientDashboard extends React.Component {
       userisLoaded: false,
       orders: [],
       users:[],
-      username:this.props.username
+      username: localStorage.getItem("username") || ""
     }
   }
 
 
-  componentDidMount()  {
+  componentWillMount()  {
     // if(!this.state.isLoaded){
     fetch("/users", {
       method: 'GET',
@@ -44,10 +44,7 @@ class ClientDashboard extends React.Component {
               
         //   }
         // })
-        this.setState({
-          isLoaded: true,
-          users:users
-        });
+        this.handleUser(users)
       },
       // Note: it's important to handle errors here
       // instead of a catch() block so that we don't swallow
@@ -60,9 +57,13 @@ class ClientDashboard extends React.Component {
       }
     )
     // }
+
+    if (this.state.isLoaded && !this.state.userisLoaded){
+      this.handleUser()
+    } // TODO: we moved this here so calls are not being NON STOP made to the backend
   }
 
-  handleUser() {
+  handleUser(users) {
     fetch("/order-information/", {
       method: 'GET',
       headers: {
@@ -78,12 +79,15 @@ class ClientDashboard extends React.Component {
     .then(
       (result) => {
         const orders = result["results"];
-        const users = this.state.users;
+       
         const user = users.find(x => x["username"] == this.state.username)
+  
         if (user){
+        
           const results = orders.filter(x => x["user"] == user["pk"])
           
           this.setState({
+            isLoaded: true,
             userisLoaded:true,
             orders: results
           });
@@ -110,11 +114,7 @@ class ClientDashboard extends React.Component {
   
 
   render() {
-   
-  
-    if (this.state.isLoaded && !this.state.userisLoaded){
-      this.handleUser()
-    }
+
     const gotoFuncs = this.props.gotoFuncs;
     const orders= this.state.orders;
     const isLoaded = this.state.userisLoaded;

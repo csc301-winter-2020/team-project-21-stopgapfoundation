@@ -20,12 +20,12 @@ class RampInfoPage extends React.Component {
     this.state = {
       noteState: {
         newNote: "",
-        notes: [],
+        notes: JSON.parse(props.data["notes"]).map(x => ({ ...x, dirtyBit: false})),
         dirtyBit: false
       },
       statusState: {
-        statusInput: 0,  // This is what will be posted when "save changes" is pressed.
-        oldStatus: 0,
+        statusInput: parseInt(props.data["status"]),  // This is what will be posted when "save changes" is pressed.
+        oldStatus: parseInt(props.data["status"]),
         dirtyBit: false
       },
       infoState: {
@@ -37,6 +37,63 @@ class RampInfoPage extends React.Component {
   overallDirtyBit = () => {
     const states = [this.state.noteState, this.state.statusState, this.state.infoState];
     return states.some(x => x.dirtyBit)
+  }
+
+  saveChanges = e => {
+    e.preventDefault();
+    const newOrder = {};
+    Object.assign(newOrder, this.props.data);
+
+    if (this.state.noteState.dirtyBit){
+      const serializedNotes = this.state.noteState.notes.map(note => ({
+        date: note.date,
+        author: note.author,
+        note: note.note
+      }));
+      newOrder["notes"] = JSON.stringify(serializedNotes);
+    }
+    if (this.state.statusState.dirtyBit){
+      newOrder["status"] = JSON.stringify(this.state.statusState.statusInput);
+    }
+    // TODO: general info
+
+    fetch(`/order-information/${newOrder["pk"]}/`, {
+      method: 'PATCH',
+      headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token-access')}`   
+			},
+      body: JSON.stringify(newOrder)
+    })
+    .then (res => {
+      res.json();
+    })
+    .then (res => {
+      console.log(res);
+      // TODO: update dirty bits
+      const noteStateCopy = {}
+      Object.assign(noteStateCopy, this.state.noteState)
+      noteStateCopy.dirtyBit = false;
+
+      const statusStateCopy = {}
+      Object.assign(statusStateCopy, this.state.statusState)
+      statusStateCopy.dirtyBit = false;
+
+      const infoStateCopy = {}
+      Object.assign(infoStateCopy, this.state.infoState)
+      infoStateCopy.dirtyBit = false;
+
+      this.setState({
+        noteState: noteStateCopy,
+        statusState: statusStateCopy,
+        infoState: infoStateCopy
+      })
+    })
+    .catch(err => {
+      console.error("there was an error with saving changes!", err);
+    })
+    
   }
 
   // We place states here so that there is simply ONE universal save button
@@ -71,14 +128,14 @@ class RampInfoPage extends React.Component {
 
     const now = new Date();
     const date = `${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`;
-    const note = this.state.newNote;
+    const note = this.state.noteState.newNote;
 
     const noteStateCopy = {};
     Object.assign(noteStateCopy, this.state.noteState);
     noteStateCopy.newNote = "";
     noteStateCopy.notes.push({
       date: date,
-      author: "user", // TODO: update
+      author: localStorage.getItem("username"), // TODO: update
       note: note,
       dirtyBit: true
     });
@@ -120,7 +177,7 @@ class RampInfoPage extends React.Component {
             && <Notes noteState={this.state.noteState} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
         </Grid>
         {isAdmin && 
-          <Button fullWidth variant="contained" color="primary" disabled={!this.overallDirtyBit()} >
+          <Button fullWidth variant="contained" color="primary" disabled={!this.overallDirtyBit()} onClick={this.saveChanges} >
             Save
           </Button>
         }
