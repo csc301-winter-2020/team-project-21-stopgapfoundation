@@ -110,8 +110,8 @@ export class ImageUpload extends Component {
               defaultValue=""
               onChange={this.props.handleChange('rightStepHeight')}
             />
-            {this.state.show &&<h4 style={{ left: 10 }}  color="red" >
-              Please fill in all information before continue
+            {this.state.show &&<h4 style={{ left: 10, color:'red' }} >
+              Please ensure that you've uploaded all the necessary photos.
               </h4>}
             <br /> <br />
             
