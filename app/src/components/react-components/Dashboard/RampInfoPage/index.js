@@ -4,6 +4,7 @@ import RampDimensions from "./RampDimensions";
 import StatusBlock from "./StatusBlock";
 import Notes from "./Notes";
 import GeneralInfo from "./GeneralInfo";
+import PhotoGallery from "./PhotoGallery";
 import "../Admin/admin_styles.css";
 
 /* Primary Component for the Admin Dashboard page */
@@ -30,6 +31,12 @@ class RampInfoPage extends React.Component {
       },
       infoState: {
         dirtyBit: false
+      },
+      galleryState: {
+        dirtyBit: false,
+        leftSrc: props.data["step_left_photo"],
+        entrySrc: props.data["entryway_photo"],
+        rightSrc: props.data["step_right_photo"]
       }
     }
   }
@@ -160,29 +167,31 @@ class RampInfoPage extends React.Component {
     const {data, isAdmin} = this.props;
 
     return (
-      <Grid container>
-        <Grid item xs={4}>
-          <GeneralInfo isAdmin={isAdmin} data={ data } infoState={this.state.infoState}/>
-        </Grid>
-        <Grid item container xs={8}>
-          <Grid container>
-            <Grid item xs={6}>
-              <RampDimensions data={ data } isAdmin={isAdmin} />
-            </Grid>
-            <Grid item xs={6}>
-              <StatusBlock isAdmin={isAdmin} statusState={this.state.statusState} date={data["date_created"]} handleStatusInput={this.handleStatusInput}/>
-            </Grid>
+      <div>
+        <Grid container>
+          <Grid item xs={4}>
+            <GeneralInfo isAdmin={isAdmin} data={ data } infoState={this.state.infoState}/>
           </Grid>
-          {isAdmin 
-            && <Notes noteState={this.state.noteState} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
+          <Grid item container xs={8}>
+            <Grid container>
+              <Grid item xs={6}>
+                <RampDimensions data={ data } isAdmin={isAdmin} />
+              </Grid>
+              <Grid item xs={6}>
+                <StatusBlock isAdmin={isAdmin} statusState={this.state.statusState} date={data["date_created"]} handleStatusInput={this.handleStatusInput}/>
+              </Grid>
+            </Grid>
+            {isAdmin 
+              && <Notes noteState={this.state.noteState} saveNote={this.saveNote} handleNewNoteInput={this.handleNewNoteInput}/>}
+          </Grid>
         </Grid>
+        <PhotoGallery galleryState={this.state.galleryState}/>
         {isAdmin && 
           <Button fullWidth variant="contained" color="primary" disabled={!this.overallDirtyBit()} onClick={this.saveChanges} >
             Save
           </Button>
         }
-      </Grid>
-
+      </div>
     );
   }
 }

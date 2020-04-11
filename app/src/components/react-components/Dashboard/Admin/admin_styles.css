@@ -100,3 +100,17 @@
     -webkit-box-sizing: border-box;
     border: 4px dashed black;
 }
+
+.center-text {
+    text-align: center;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bottom-margin {
+    margin-bottom: 2em;
+}
