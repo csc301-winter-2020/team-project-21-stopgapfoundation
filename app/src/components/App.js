@@ -23,7 +23,7 @@ class App extends React.Component {
     };
   }
 
-  refresh = () => {
+  refresh = () => { // idk why i made this a seperate function, but w/e
     console.log('refreshing!')
     const refreshToken = localStorage.hasOwnProperty("token-refresh") 
       ? localStorage.getItem("token-refresh") : "";
@@ -183,6 +183,94 @@ class App extends React.Component {
     localStorage.removeItem('username');
     localStorage.removeItem('is-admin');          
   }
+
+  quickRefresh = () => {
+    console.log('(quick) refreshing!')
+    const refreshToken = localStorage.hasOwnProperty("token-refresh") 
+      ? localStorage.getItem("token-refresh") : "";
+    
+    let refreshSuccessful = false;
+    let async_flag = true;
+    // Otherwise, refresh the token
+    return new Promise((resolve, reject) => {
+      fetch("/api/token/refresh/", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          refresh: refreshToken
+        })
+      })
+      .then(res => res.json())
+      .then(res => {
+        if ('access' in res){
+          localStorage.setItem("token-access", res.access)
+          resolve(true);
+        } else {
+          this.setState({
+            loggedIn: false,
+            isCurrentlyCheckingStorageForLogin: false
+          });
+          resolve(false);
+        }
+      }, error => { // REFRESH ERROR
+        console.error(error)
+        async_flag = false;
+        this.setState({
+          loggedIn: false,
+          isCurrentlyCheckingStorageForLogin: false
+        })
+        reject(false);
+      });
+    });
+  }
+
+  /**
+   * Params need not contain the authorization token, it will be automatically added.
+   */
+  verifyTokens = () => {
+    this.setState({
+      loggedIn: true,
+      isCurrentlyCheckingStorageForLogin: true
+    });
+    // We must verify the token first.
+    let accessToken = localStorage.hasOwnProperty("token-access") 
+      ? localStorage.getItem("token-access") : "";
+    
+    return new Promise((resolve, reject) => {
+      fetch("/api/token/verify/", {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          token: accessToken
+        })
+      })
+      .then( res => {
+        return res.ok;
+      })
+      .then( validToken => {
+        console.log('ok ok');
+        if (validToken){
+          console.log('its good');
+          resolve(true);
+        } else {
+          console.log('bouta refresh');
+          this.quickRefresh().then(value => {
+            resolve(value);
+          });
+        }
+      })
+      .catch( err => {
+        console.error(err);
+        reject(false);
+      });
+    });
+  }
   
   componentDidMount() {
     const accessToken = localStorage.hasOwnProperty("token-access") 
@@ -201,7 +289,6 @@ class App extends React.Component {
     })
     .then( res => {
       if (res.ok){
-        console.log(`Access Token: ${accessToken}`)
         this.setState({
           loggedIn: true,
           isCurrentlyCheckingStorageForLogin: false
@@ -240,10 +327,10 @@ class App extends React.Component {
               />
               <Route path='/dashboard' render={() => (
                 this.state.loggedIn 
-                  ? <Dashboard loggedIn={this.state.loggedIn} logout={this.logout} />
+                  ? <Dashboard loggedIn={this.state.loggedIn} logout={this.logout} verifyTokens={this.verifyTokens} />
                   : <Redirect to='/login' />
               )} />
-              <Route exact path='/form' render={() => (<UserForm username ={this.state.username} />)}/>
+              <Route exact path='/form' render={() => (<UserForm username ={this.state.username} verifyTokens={this.verifyTokens} />)}/>
               <Route path='/' render={() => (
                 this.state.isCurrentlyCheckingStorageForLogin 
                   ? (<div>

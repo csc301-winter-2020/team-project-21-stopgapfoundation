@@ -18,38 +18,45 @@ class AdminDashboard extends React.Component {
   }
   
 
-  componentDidMount() {
-    fetch("/order-information/", {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token-access')}`
-      }
-    })
-    .then(res => {
-      if (res.ok)
-        return res.json()
-      throw new Error(`Something went wrong with error code ${res.status}`)
-    })
-    .then(
-      (result) => {
-        const orders = result["results"];
-
-        this.setState({
-          isLoaded: true,
-          orders: orders
-        });
-      },
-      // Note: it's important to handle errors here
-      // instead of a catch() block so that we don't swallow
-      // exceptions from actual bugs in components.
-      (error) => {
-        this.setState({
-          isLoaded: true,
-          error
-        });
-      }
-    )
+  componentWillMount() {
+    console.log('wow')
+    console.log(typeof this.props.verifyTokens())
+    this.props.verifyTokens().then(valid => {
+      console.log(valid);
+      if (!valid)
+        return;
+      fetch("/order-information/", {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token-access')}`
+        }
+      })
+      .then(res => {
+        if (res.ok)
+          return res.json()
+        throw new Error(`Something went wrong with error code ${res.status}`)
+      })
+      .then(
+        (result) => {
+          const orders = result["results"];
+  
+          this.setState({
+            isLoaded: true,
+            orders: orders
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      );
+    });
   }
   
 
@@ -101,7 +108,7 @@ class AdminDashboard extends React.Component {
           </Grid>
         </Grid>
         {
-          isLoaded && <ListingBox click={(data) => gotoFuncs.ramp_info(true,data)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
+          isLoaded && <ListingBox click={(data) => gotoFuncs.ramp_info(true,data, this.props.verifyTokens)} orders={orders} isAdmin = { this.props.isAdmin} isLoaded={isLoaded}/>
         }
       </div>
     );
