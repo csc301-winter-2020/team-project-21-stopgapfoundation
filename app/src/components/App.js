@@ -23,6 +23,45 @@ class App extends React.Component {
     };
   }
 
+  refresh = () => {
+    console.log('refreshing!')
+    const refreshToken = localStorage.hasOwnProperty("token-refresh") 
+      ? localStorage.getItem("token-refresh") : "";
+
+    // token is NOT valid, so attempt to refresh.
+    fetch("/api/token/refresh/", {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        refresh: refreshToken
+      })
+    })
+    .then(res => res.json())
+    .then(res => {
+        if ('access' in res){
+          localStorage.setItem("token-access", res.access)
+          this.setState({
+            loggedIn: true,
+            isCurrentlyCheckingStorageForLogin: false
+          })
+        } else {
+          this.setState({
+            loggedIn: false,
+            isCurrentlyCheckingStorageForLogin: false
+          })
+        }
+    }, error => { // REFRESH ERROR
+      console.error(error)
+      this.setState({
+        loggedIn: false,
+        isCurrentlyCheckingStorageForLogin: false
+      })
+    })
+  }
+
   login = (user, pwd, isAdmin) => {
     console.log("StopGap: Logging in...");
     if (this.state.loggedIn){ //already logged in.
@@ -148,8 +187,6 @@ class App extends React.Component {
   componentDidMount() {
     const accessToken = localStorage.hasOwnProperty("token-access") 
       ? localStorage.getItem("token-access") : "";
-    const refreshToken = localStorage.hasOwnProperty("token-refresh") 
-      ? localStorage.getItem("token-refresh") : "";
     // check if the existing access token is valid.
     // If not, attempt to retrieve a new one using the refresh token
     fetch("/api/token/verify/", {
@@ -171,38 +208,9 @@ class App extends React.Component {
         });
         return;
       }
-
-      // token is NOT valid, so attempt to refresh.
-      fetch("/api/token/refresh/", {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          refresh: refreshToken
-        })
-      })
-      .then(res => {
-          if ('access' in res){
-            localStorage.setItem("token-access", res.access)
-            this.setState({
-              loggedIn: true,
-              isCurrentlyCheckingStorageForLogin: false
-            })
-          } else {
-            this.setState({
-              loggedIn: false,
-              isCurrentlyCheckingStorageForLogin: false
-            })
-          }
-      }, error => { // REFRESH ERROR
-        console.error(error)
-        this.setState({
-          loggedIn: false,
-          isCurrentlyCheckingStorageForLogin: false
-        })
-      })
+      console.log('about to refresh . . .')
+      this.refresh();
+      
     }, error => { // VERIFY ERROR
       console.error(error)
       this.setState({
