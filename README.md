@@ -25,6 +25,7 @@
 
         python manage.py makemigrations
         python manage.py migrate
+		python manage.py migrate --run-syncdb
 
 6) Run:
 
@@ -33,6 +34,11 @@
 7) Run:
 
         python manage.py runserver
+		
+Also if you change anything on the model, do
+Delete db.sqkute3, and then step 5, to ensure those
+changes are detected by the server.
+
 
 ## Deployment instructions
 1) Run:
