@@ -85,6 +85,7 @@ class RampInfoPage extends React.Component {
         const noteStateCopy = {}
         Object.assign(noteStateCopy, this.state.noteState)
         noteStateCopy.dirtyBit = false;
+        noteStateCopy.notes = noteStateCopy.notes.map(x => ({ ...x, dirtyBit: false}));
   
         const statusStateCopy = {}
         Object.assign(statusStateCopy, this.state.statusState)
