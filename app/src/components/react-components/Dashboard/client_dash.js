@@ -79,11 +79,11 @@ class ClientDashboard extends React.Component {
     .then(
       (result) => {
         const orders = result["results"];
-        console.log(users);
+       
         const user = users.find(x => x["username"] == this.state.username)
-        console.log(user);
+  
         if (user){
-          console.log(user);
+        
           const results = orders.filter(x => x["user"] == user["pk"])
           
           this.setState({
