@@ -14,24 +14,25 @@ class PhotoGallery extends React.Component {
         <h2 className={"block-title"}>
           Photo Gallery
         </h2>
-        <Grid container spacing={2}>
-          <Grid item xs={12} md={4}>
+        <Grid container spacing={2}  >
+          <Grid item xs={12} md={4}  style = {{overflow:"scroll"}} >
             <h3 className={"center-text"}>
               Left Step Photo
             </h3>
-            <img alt="left-step-photo" src={leftSrc} className={"center-block"} />
+
+            <img  alt="left-step-photo" src={leftSrc} className={"center-block"} />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} style = {{overflow:"scroll"}} >
             <h3 className={"center-text"}>
               Entryway Photo
             </h3>
-            <img alt="left-step-photo" src={entrySrc} className={"center-block"} />
+            <img  alt="left-step-photo" src={entrySrc} className={"center-block"} />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} style = {{overflow:"scroll"}} >
             <h3 className={"center-text"}>
               Right Step Photo
             </h3>
-            <img alt="left-step-photo" src={rightSrc} className={"center-block"} />
+            <img  alt="left-step-photo" src={rightSrc} className={"center-block"} />
           </Grid>
 
         </Grid>
